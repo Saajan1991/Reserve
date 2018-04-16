@@ -1,0 +1,13 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>image-display</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    Latest Picture:
+    <img [src]="base64Image" *ngIf="base64Image" />
+</ion-content>

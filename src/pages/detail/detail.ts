@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ImageDisplayPage } from '../image-display/image-display';
 
 @Component({
   selector: 'page-detail',
@@ -38,7 +39,7 @@ export class DetailPage {
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(base64Image);
-      
+      this.navCtrl.push(ImageDisplayPage, {image : this.base64Image });
     }, (err) => {
       // Handle error
     });
