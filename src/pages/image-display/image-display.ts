@@ -17,5 +17,4 @@ export class ImageDisplayPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImageDisplayPage');
   }
-
 }
