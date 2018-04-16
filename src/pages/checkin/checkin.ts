@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DetailPage } from '../detail/detail';
 
 
 @Component({
@@ -47,6 +48,9 @@ export class CheckinPage {
   public nextPage(){
     if(this.currentNumberOfAdults < 1){
       alert("There should be at least one Adult");
+    }
+    else {
+      this.navCtrl.push(DetailPage, {adults : this.currentNumberOfAdults, kids : this.currentNumberOfKids });
     }
   }
 
