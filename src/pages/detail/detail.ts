@@ -39,6 +39,7 @@ export class DetailPage {
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(base64Image);
+      alert(base64Image);
       this.navCtrl.push(ImageDisplayPage, {image : this.base64Image });
     }, (err) => {
       // Handle error

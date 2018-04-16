@@ -11,7 +11,7 @@ export class ImageDisplayPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.base64Image = navParams.get('image');
-    console.log(this.base64Image);
+    alert(this.base64Image);
   }
 
   ionViewDidLoad() {
