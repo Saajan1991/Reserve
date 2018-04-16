@@ -1,13 +1,24 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>image-display</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-    Latest Picture:
-    <img [src]="base64Image" *ngIf="base64Image" />
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          Picture:
+          <img [src]="base64Image" *ngIf="base64Image" />
+      </ion-col>
+
+      <ion-col>
+          <ion-label>Adults</ion-label>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <ion-label>Kids</ion-label>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
 </ion-content>
