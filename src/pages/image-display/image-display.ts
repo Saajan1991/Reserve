@@ -15,8 +15,8 @@ export class ImageDisplayPage {
   kids = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // this.base64Image = navParams.get('image');
-    this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
+    this.base64Image = navParams.get('image');
+    // this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
     this.TotalNumberOfAdults = navParams.get('adults');
     this.TotalNumberOfKids = navParams.get('kids');
     this.adult(this.TotalNumberOfAdults);
