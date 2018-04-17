@@ -37,13 +37,11 @@ export class DetailPage {
       // If it's base64:
       // let base64Image = 'data:image/jpeg;base64,' + imageData;
       // alert(base64Image);
-      alert(imageData);
-      // this.navCtrl.push(ImageDisplayPage, { image: this.base64Image });
+      alert("test");
       this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
     }, (err) => {
       // Handle error
     });
-    // this.navCtrl.push(ImageDisplayPage, { adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
   }
 
 }
