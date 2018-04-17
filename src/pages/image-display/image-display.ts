@@ -14,13 +14,13 @@ export class ImageDisplayPage {
   items = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.base64Image = navParams.get('image');
-    alert(this.base64Image);
+    // this.base64Image = navParams.get('image');
+    // alert(this.base64Image);
 
-    // this.TotalNumberOfAdults = navParams.get('adults');
-    // this.TotalNumberOfKids = navParams.get('kids');
-    // alert(this.TotalNumberOfAdults);
-    // this.adult(this.TotalNumberOfAdults);
+    this.TotalNumberOfAdults = navParams.get('adults');
+    this.TotalNumberOfKids = navParams.get('kids');
+    alert(this.TotalNumberOfAdults);
+    this.adult(this.TotalNumberOfAdults);
     // this.kid(this.TotalNumberOfKids);
 
   }

@@ -24,25 +24,26 @@ export class DetailPage {
   }
 
   takePhoto() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    console.log("camera option");
+    // const options: CameraOptions = {
+    //   quality: 100,
+    //   destinationType: this.camera.DestinationType.DATA_URL,
+    //   encodingType: this.camera.EncodingType.JPEG,
+    //   mediaType: this.camera.MediaType.PICTURE
+    // }
+    // console.log("camera option");
 
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      console.log(base64Image);
-      alert(base64Image);
-      // this.navCtrl.push(ImageDisplayPage, { image: this.base64Image });
-      // this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
-    }, (err) => {
-      // Handle error
-    });
+    // this.camera.getPicture(options).then((imageData) => {
+    //   // imageData is either a base64 encoded string or a file URI
+    //   // If it's base64:
+    //   let base64Image = 'data:image/jpeg;base64,' + imageData;
+    //   console.log(base64Image);
+    //   alert(base64Image);
+    //   // this.navCtrl.push(ImageDisplayPage, { image: this.base64Image });
+    //   this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
+    // }, (err) => {
+    //   // Handle error
+    // });
+    this.navCtrl.push(ImageDisplayPage, { adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
   }
 
 }
