@@ -27,7 +27,7 @@ export class DetailPage {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
+      //encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
     alert("camera option");
@@ -37,8 +37,9 @@ export class DetailPage {
       // If it's base64:
       // let base64Image = 'data:image/jpeg;base64,' + imageData;
       // alert(base64Image);
+      this.base64image = 'data:image/jpeg;base64,' + imageData;
       alert("test");
-      this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
+      this.navCtrl.push(ImageDisplayPage, { image: this.base64image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
     }, (err) => {
       // Handle error
     });
