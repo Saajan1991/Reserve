@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
+import { HomePage } from '../home/home';
 
 
 @Component({
@@ -21,7 +22,6 @@ export class CheckinPage {
 
   //increase number of adults
   private incrementAdult (){
-    console.log(this.currentNumberOfAdults);
     this.currentNumberOfAdults++;
   }
 
@@ -35,7 +35,6 @@ export class CheckinPage {
   // increase number of kids
   private incrementKid (){
     this.currentNumberOfKids++;
-    console.log(this.currentNumberOfKids);
   }
 
   // decrease number of kids
@@ -51,6 +50,7 @@ export class CheckinPage {
     }
     else {
       this.navCtrl.push(DetailPage, {adults : this.currentNumberOfAdults, kids : this.currentNumberOfKids });
+      // this.navCtrl.push(HomePage, {adults : this.currentNumberOfAdults, kids : this.currentNumberOfKids });
     }
   }
 

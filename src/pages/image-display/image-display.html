@@ -10,14 +10,16 @@
       <ion-col>
           Picture:
           <!-- <img [src]="base64Image" *ngIf="base64Image" /> -->
-          <img src="http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png" alt="">
+          <ion-img src="http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png" alt=""></ion-img>
       </ion-col>
 
       <ion-col>
-          <ion-label>Adults</ion-label>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-          <ion-label>Kids</ion-label>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+        <ion-label>Adults</ion-label>
+        <ion-list *ngFor="let item of items">
+          <ion-input type="text"></ion-input>
+        </ion-list>
+        <ion-label>Kids</ion-label>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
       </ion-col>
 
     </ion-row>
