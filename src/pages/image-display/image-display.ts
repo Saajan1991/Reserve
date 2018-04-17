@@ -14,8 +14,8 @@ export class ImageDisplayPage {
   items = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // this.base64Image = navParams.get('image');
-    // alert(this.base64Image);
+    this.base64Image = navParams.get('image');
+    alert(this.base64Image);
 
     this.TotalNumberOfAdults = navParams.get('adults');
     this.TotalNumberOfKids = navParams.get('kids');
@@ -32,7 +32,6 @@ export class ImageDisplayPage {
   // kid(kidNumber){
   //   this.items = Array(kidNumber).fill(0).map((x,i)=>i);
   // }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImageDisplayPage');

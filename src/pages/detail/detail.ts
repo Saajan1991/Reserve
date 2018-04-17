@@ -17,15 +17,13 @@ export class DetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
     this.TotalNumberOfAdults = navParams.get('adults');
     this.TotalNumberOfKids = navParams.get('kids');
-    console.log("total adults:", this.TotalNumberOfAdults);
-    console.log("total kids:", this.TotalNumberOfKids);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
   }
 
-  takePhoto(){
+  takePhoto() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -40,7 +38,7 @@ export class DetailPage {
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       console.log(base64Image);
       alert(base64Image);
-      this.navCtrl.push(ImageDisplayPage, {image : this.base64Image, adults : this.TotalNumberOfAdults, kids : this.TotalNumberOfKids });
+      this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
     }, (err) => {
       // Handle error
     });
