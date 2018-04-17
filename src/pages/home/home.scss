@@ -1,4 +1,22 @@
 page-home {
-   
+    ion-input {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 20%;
+        left: 40%;
+      }
+      ion-icon {
+        font-size: 30px;
+      }
+      #adult-block, #kid-block {
+        display: inline-flex;
+      }
+      ion-content {
+        text-align: center;
+      }
+      
+      button{
+          left: 40%;
+      }
 }
 
