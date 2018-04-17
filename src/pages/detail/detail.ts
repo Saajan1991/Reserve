@@ -37,7 +37,7 @@ export class DetailPage {
       // If it's base64:
       // let base64Image = 'data:image/jpeg;base64,' + imageData;
       // alert(base64Image);
-      alert("test");
+      alert(imageData);
       // this.navCtrl.push(ImageDisplayPage, { image: this.base64Image });
       this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
     }, (err) => {
