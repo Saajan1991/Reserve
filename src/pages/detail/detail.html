@@ -7,11 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-
-  <ion-label>Adults</ion-label>
-  {{TotalNumberOfAdults}}
-  <ion-label>Kids</ion-label>
-  {{TotalNumberOfKids}}
+  <div id="adult-block">
+    <ion-label>Adults</ion-label>
+    {{TotalNumberOfAdults}}
+  </div>
+  <div id="kid-block">
+    <ion-label>Kids</ion-label>
+    {{TotalNumberOfKids}}
+  </div>
 
   <ion-item>
     <button ion-button (click)="takePhoto()">Take a Photo</button>
