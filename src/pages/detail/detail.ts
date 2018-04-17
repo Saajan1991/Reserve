@@ -12,7 +12,7 @@ export class DetailPage {
   TotalNumberOfAdults = 0;
   TotalNumberOfKids = 0;
 
-  public base64Image: string;
+  public base64image: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
     this.TotalNumberOfAdults = navParams.get('adults');
