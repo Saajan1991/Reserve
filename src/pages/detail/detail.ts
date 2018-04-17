@@ -35,8 +35,9 @@ export class DetailPage {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      alert(base64Image);
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      // alert(base64Image);
+      alert("test");
       // this.navCtrl.push(ImageDisplayPage, { image: this.base64Image });
       this.navCtrl.push(ImageDisplayPage, { image: this.base64Image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
     }, (err) => {
