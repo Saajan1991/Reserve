@@ -7,5 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-  Home Page
+  <ion-list *ngFor="let adult of adults">
+    <ion-input type="text"></ion-input>
+    <button block (click)="scanBarcode(adult)" [id]="adult">
+      <ion-icon name="md-barcode"></ion-icon>
+    </button>
+  </ion-list>
 </ion-content>
