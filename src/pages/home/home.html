@@ -13,4 +13,11 @@
       <ion-icon name="md-barcode"></ion-icon>
     </button>
   </ion-list>
+
+  <div *ngIf="results">
+    <p>Barcode Text: {{results.text}}</p>
+    <p>Format: {{results.format}}</p>
+    <p>Cancelled Status: {{results.cancelled}}</p>
+  </div>
 </ion-content>
+
