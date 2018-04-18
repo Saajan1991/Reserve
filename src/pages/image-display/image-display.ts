@@ -40,8 +40,8 @@ export class ImageDisplayPage {
     console.log('ionViewDidLoad ImageDisplayPage');
   }
 
-  async scanBarcode() {
-
+  async scanBarcode(id) {
+    alert(id);
     this.options = {
       prompt: 'Scan a barcode to see the results'
     };
@@ -49,6 +49,7 @@ export class ImageDisplayPage {
 
     //this.results = await this.barcode.scan();
     console.log(this.results);
+
   }
 
 }
