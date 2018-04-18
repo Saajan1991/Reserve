@@ -33,7 +33,6 @@ export class DetailPage {
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true
     }
-    alert("camera option");
 
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI

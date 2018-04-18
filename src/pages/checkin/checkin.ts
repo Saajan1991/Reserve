@@ -21,35 +21,35 @@ export class CheckinPage {
   }
 
   //increase number of adults
-  private incrementAdult (){
+  private incrementAdult() {
     this.currentNumberOfAdults++;
   }
 
   // decrese number of adults
-  private decrementAdult (){
-    if(this.currentNumberOfAdults > 0){
+  private decrementAdult() {
+    if (this.currentNumberOfAdults > 0) {
       this.currentNumberOfAdults--;
     }
   }
 
   // increase number of kids
-  private incrementKid (){
+  private incrementKid() {
     this.currentNumberOfKids++;
   }
 
   // decrease number of kids
-  private decrementKid (){
-    if(this.currentNumberOfKids > 0){
+  private decrementKid() {
+    if (this.currentNumberOfKids > 0) {
       this.currentNumberOfKids--;
     }
   }
 
-  public nextPage(){
-    if(this.currentNumberOfAdults < 1){
+  public nextPage() {
+    if (this.currentNumberOfAdults < 1) {
       alert("There should be at least one Adult");
     }
     else {
-      this.navCtrl.push(DetailPage, {adults : this.currentNumberOfAdults, kids : this.currentNumberOfKids });
+      this.navCtrl.push(DetailPage, { adults: this.currentNumberOfAdults, kids: this.currentNumberOfKids });
       // this.navCtrl.push(HomePage, {adults : this.currentNumberOfAdults, kids : this.currentNumberOfKids });
     }
   }
