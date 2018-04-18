@@ -27,8 +27,8 @@ export class DetailPage {
     const options: CameraOptions = {
       quality: 100,
       // use file uri to avoid memory issues
-      destinationType:this.camera.DestinationType.FILE_URI,
-      //destinationType: this.camera.DestinationType.DATA_URL,
+      // destinationType:this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       //encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true
