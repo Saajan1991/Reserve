@@ -19,9 +19,9 @@ export class HomePage {
 
   async scanBarcode(id) {
     alert(id);
-    // this.options = {
-    //   prompt: 'Scan a barcode to see the results'
-    // };
+    this.options = {
+      prompt: 'Scan a barcode to see the results'
+    };
     // this.results = await this.barcode.scan(this.options);
 
     //this.results = await this.barcode.scan();
