@@ -14,6 +14,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
     this.adults = Array(3).fill(0).map((x, i) => i);
+
   }
 
 

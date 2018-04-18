@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <ion-list *ngFor="let adult of adults">
-    <ion-input type="text" value={{results.text}}></ion-input>
+    <ion-input type="text"></ion-input>
     <button block (click)="scanBarcode(adult)" [id]="adult">
       <ion-icon name="md-barcode"></ion-icon>
     </button>
