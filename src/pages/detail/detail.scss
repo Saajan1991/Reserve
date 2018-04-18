@@ -10,10 +10,15 @@ page-detail {
   }
   #adult-block,
   #kid-block {
-    display: inline-flex;
+    display: block;
   }
-  #content {
+  
+  ion-content {
     text-align: center;
+  }
+
+  ion-label {
+    font-size: 3em;
   }
 }
 

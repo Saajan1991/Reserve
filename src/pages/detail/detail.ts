@@ -26,19 +26,19 @@ export class DetailPage {
   takePhoto() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      // use file uri to avoid memory issues
+      destinationType:this.camera.DestinationType.FILE_URI,
+      //destinationType: this.camera.DestinationType.DATA_URL,
       //encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
     }
     alert("camera option");
 
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      // let base64Image = 'data:image/jpeg;base64,' + imageData;
-      // alert(base64Image);
       this.base64image = 'data:image/jpeg;base64,' + imageData;
-      alert("test");
       this.navCtrl.push(ImageDisplayPage, { image: this.base64image, adults: this.TotalNumberOfAdults, kids: this.TotalNumberOfKids });
     }, (err) => {
       // Handle error

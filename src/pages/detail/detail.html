@@ -9,14 +9,15 @@
 <ion-content padding>
   <div id="adult-block">
     <ion-label>Adults</ion-label>
-    {{TotalNumberOfAdults}}
+    <h2>
+      <span>{{TotalNumberOfAdults}}</span>
+    </h2>
   </div>
   <div id="kid-block">
     <ion-label>Kids</ion-label>
-    {{TotalNumberOfKids}}
+    <h2>
+      <span>{{TotalNumberOfKids}}</span>
+    </h2>
   </div>
-
-  <ion-item>
-    <button ion-button (click)="takePhoto()">Take a Photo</button>
-  </ion-item>
+  <button ion-button (click)="takePhoto()">Take a Photo</button>
 </ion-content>
