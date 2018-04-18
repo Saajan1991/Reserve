@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 
 @Component({
   selector: 'page-image-display',
@@ -14,7 +15,10 @@ export class ImageDisplayPage {
   adults = [];
   kids = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  options: BarcodeScannerOptions;
+  private results: {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
     this.base64Image = navParams.get('image');
     // this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
     this.TotalNumberOfAdults = navParams.get('adults');
@@ -35,4 +39,16 @@ export class ImageDisplayPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ImageDisplayPage');
   }
+
+  async scanBarcode() {
+
+    this.options = {
+      prompt: 'Scan a barcode to see the results'
+    };
+    this.results = await this.barcode.scan(this.options);
+
+    //this.results = await this.barcode.scan();
+    console.log(this.results);
+  }
+
 }

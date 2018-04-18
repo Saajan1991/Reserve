@@ -84,4 +84,8 @@
     <plugin name="cordova-plugin-camera" spec="^4.0.2" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="~4.5.4" />
+    <allow-navigation href="http://192.168.0.106:8100" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.1">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
+    </plugin>
 </widget>
