@@ -16,21 +16,38 @@
       <ion-col col-xs-12 col-md-12>
         <ion-label>Adults</ion-label>
         <ion-list *ngFor="let adult of adults">
-          <ion-input text-input-md type="text" [id]="'adulttext'+ adult"></ion-input>
-          <button block (click)="scanBarcodeAdult(adult)">
-            <ion-icon name="md-barcode"></ion-icon>
-          </button>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-11>
+                <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+              </ion-col>
+              <ion-col>
+                <button block (click)="scanBarcodeAdult(adult)">
+                  <ion-icon name="md-barcode"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-list>
+        <!-- end of adult text box list -->
 
         <ion-label>Kids</ion-label>
         <ion-list *ngFor="let kid of kids">
-          <ion-input type="text" [id]="'kidtext'+ kid"></ion-input>
-          <button block (click)="scanBarcodeKid()">
-            <ion-icon name="md-barcode"></ion-icon>
-          </button>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-11>
+                <ion-input type="text" [id]="'kidtext'+ kid"></ion-input>
+              </ion-col>
+              <ion-col>
+                <button block (click)="scanBarcodeKid()">
+                  <ion-icon name="md-barcode"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-list>
-      </ion-col>
 
+      </ion-col>
     </ion-row>
   </ion-grid>
 
