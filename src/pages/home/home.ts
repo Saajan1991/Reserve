@@ -34,7 +34,8 @@ export class HomePage {
       format: 'EAN_13'
     };
     
-    document.querySelector('#'+id).innerHTML = this.results.text;
+
+    document.querySelector('#text'+id).innerHTML = this.results.text;
     //this.results = await this.barcode.scan();
     console.log(this.results);
 
