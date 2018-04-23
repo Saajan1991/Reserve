@@ -16,7 +16,7 @@
       <ion-col col-xs-12 col-md-12>
         <ion-label>Adults</ion-label>
         <ion-list *ngFor="let adult of adults">
-          <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+          <ion-input text-input-md type="text" [id]="'adulttext'+ adult"></ion-input>
           <button block (click)="scanBarcodeAdult(adult)">
             <ion-icon name="md-barcode"></ion-icon>
           </button>
