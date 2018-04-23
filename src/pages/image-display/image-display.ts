@@ -15,8 +15,13 @@ export class ImageDisplayPage {
   adults = [];
   kids = [];
 
+
   options: BarcodeScannerOptions;
-  private results: {};
+  private results: {
+    text: string,
+    cancelled: boolean,
+    format: string
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
     this.base64Image = navParams.get('image');
@@ -40,16 +45,16 @@ export class ImageDisplayPage {
     console.log('ionViewDidLoad ImageDisplayPage');
   }
 
-  async scanBarcode(id) {
-    alert(id);
-    // this.options = {
-    //   prompt: 'Scan a barcode to see the results'
-    // };
-    // this.results = await this.barcode.scan(this.options);
+  async scanBarcodeAdult(id) {
+    this.options = {
+      prompt: 'Scan a barcode to see the results'
+    };
+    this.results = await this.barcode.scan(this.options);
 
-    //this.results = await this.barcode.scan();
-    // console.log(this.results);
-
+    document.querySelector('#adulttext' + id).innerHTML = this.results.text;
   }
 
+  async scanBarcodeKid(id){
+    
+  }
 }
