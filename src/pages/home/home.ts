@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 
 @Component({
   selector: 'page-home',
@@ -8,31 +7,10 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
 })
 export class HomePage {
 
-  options: BarcodeScannerOptions;
-  public results: {
-    text: string,
-    cancelled: boolean,
-    format: string
-  };
-  adults = [];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
-    this.adults = Array(3).fill(0).map((x, i) => i);
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
-  async scanBarcode(id) {
-    alert(id);
-    this.options = {
-      prompt: 'Scan a barcode to see the results'
-    };
-    // this.results = await this.barcode.scan(this.options);
-    this.results = {
-      text: "1234",
-      cancelled: true,
-      format: "Ed"
-    }
-
-    document.querySelector('#text'+id).innerHTML = this.results.text;
-  }
-}
+  
+} 

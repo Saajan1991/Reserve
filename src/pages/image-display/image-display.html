@@ -54,6 +54,8 @@
   </ion-grid>
 
   <button ion-button (click)="submit()">Submit</button>
+
+  <ion-item *ngFor="let label of labels">{{label.description}}</ion-item>
 </ion-content>
 
 

@@ -14,6 +14,7 @@ export class ImageDisplayPage {
   TotalNumberOfKids = 0;
   adults = [];
   kids = [];
+  labels;
 
 
   options: BarcodeScannerOptions;
@@ -30,6 +31,7 @@ export class ImageDisplayPage {
     this.TotalNumberOfKids = navParams.get('kids');
     this.adult(this.TotalNumberOfAdults);
     this.kid(this.TotalNumberOfKids);
+    this.labels = navParams.get('labels');
 
   }
 
@@ -54,7 +56,7 @@ export class ImageDisplayPage {
     document.querySelector('#adulttext' + id).innerHTML = this.results.text;
   }
 
-  async scanBarcodeKid(id){
-    
+  async scanBarcodeKid(id) {
+
   }
 }

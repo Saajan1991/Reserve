@@ -8,30 +8,5 @@
 
 <ion-content padding>
 
-
-
-
-  <ion-list *ngFor="let adult of adults">
-
-    <ion-grid>
-      <ion-row>
-        <ion-col col-11> 
-          <ion-input class="input" type="text" [id]="'text'+ adult"></ion-input>
-        </ion-col>
-        <ion-col col-1>
-          <button block (click)="scanBarcode(adult)">
-            <ion-icon name="md-barcode"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-
-  </ion-list>
-
-  <div *ngIf="results">
-    <p>Barcode Text: {{results.text}}</p>
-    <p>Format: {{results.format}}</p>
-    <p>Cancelled Status: {{results.cancelled}}</p>
-  </div>
+Home Page
 </ion-content>
