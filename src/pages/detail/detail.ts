@@ -48,10 +48,29 @@ export class DetailPage {
       correctOrientation: true
     }
 
+
+    // this.vision.getFaces("people").subscribe((result) => {
+    //   alert("Success get face");
+    //   this.items = JSON.parse(JSON.stringify(result));
+    //   this.labels = this.items.responses[0].faceAnnotations;
+    //   alert(this.labels);
+    //   if (this.items != undefined) {
+    //     alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
+    //     this.labels = this.items.responses[0].faceAnnotations;
+    //   }
+    //   else {
+    //     alert("Face Not Detected");
+    //   }
+    //   alert(this.labels + "item to display");
+    // }, err => {
+    //   alert(err);
+    // });
+
+
     //open camera in device
     this.camera.getPicture(options).then((imageData) => {
-      this.base64image = 'data:image/jpeg;base64,' + imageData;
-      let downloadUrl = this.upload(this.base64image);
+      let imageDataResult = 'data:image/jpeg;base64,' + imageData;
+      let downloadUrl = this.upload(imageDataResult);
 
     }, err => {
       alert(err);
@@ -59,27 +78,29 @@ export class DetailPage {
   }
 
   upload(imageDataResult) {
+    alert(imageDataResult);
     let storageRef = firebase.storage().ref();
     this.filename = Math.floor(Date.now() / 1000);
     alert("Filename " + this.filename);
     const imageRef = storageRef.child(`images/${this.filename}.jpg`);
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
-      this.vision.getFaces(this.filename).subscribe((result) => {
-        alert("Success get face");
-        this.items = JSON.parse(JSON.stringify(result));
-        this.labels = this.items.responses[0].faceAnnotations;
-        alert(this.labels);
-        if (this.items != undefined) {
-          alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
-          this.labels = this.items.responses[0].faceAnnotations;
-        }
-        else {
-          alert("Face Not Detected");
-        }
-        alert(this.labels + "item to display");
-      }, err => {
-        alert(err);
-      });
+      alert("upload Success");
+      // this.vision.getFaces(this.filename).subscribe((result) => {
+      //   alert("Success get face");
+      //   this.items = JSON.parse(JSON.stringify(result));
+      //   this.labels = this.items.responses[0].faceAnnotations;
+      //   alert(this.labels);
+      //   if (this.items != undefined) {
+      //     alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
+      //     this.labels = this.items.responses[0].faceAnnotations;
+      //   }
+      //   else {
+      //     alert("Face Not Detected");
+      //   }
+      //   alert(this.labels + "item to display");
+      // }, err => {
+      //   alert(err);
+      // });
 
       // alert("label");
     }).catch(function (err) {
