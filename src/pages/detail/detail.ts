@@ -49,22 +49,7 @@ export class DetailPage {
     }
 
 
-    // this.vision.getFaces("people").subscribe((result) => {
-    //   alert("Success get face");
-    //   this.items = JSON.parse(JSON.stringify(result));
-    //   this.labels = this.items.responses[0].faceAnnotations;
-    //   alert(this.labels);
-    //   if (this.items != undefined) {
-    //     alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
-    //     this.labels = this.items.responses[0].faceAnnotations;
-    //   }
-    //   else {
-    //     alert("Face Not Detected");
-    //   }
-    //   alert(this.labels + "item to display");
-    // }, err => {
-    //   alert(err);
-    // });
+
 
     //open camera in device
     this.camera.getPicture(options).then((imageData) => {
@@ -76,16 +61,41 @@ export class DetailPage {
     });
   }
 
+
+  public storageRef;
   upload(imageDataResult) {
     alert(imageDataResult);
-    let storageRef = firebase.storage().ref();
-    alert(storageRef);
+
+    try {
+      this.storageRef = firebase.storage().ref();
+      alert(this.storageRef);
+    }
+    catch (e) {
+      alert(e);
+    }
 
     this.filename = Math.floor(Date.now() / 1000);
     alert("Filename " + this.filename);
-    const imageRef = storageRef.child(`images/${this.filename}.jpg`);
+    const imageRef = this.storageRef.child(`images/${this.filename}.jpg`);
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
       alert("upload Success");
+
+      this.vision.getFaces("people").subscribe((result) => {
+        alert("Success get face");
+        this.items = JSON.parse(JSON.stringify(result));
+        this.labels = this.items.responses[0].faceAnnotations;
+        alert(this.labels);
+        if (this.items != undefined) {
+          alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
+          this.labels = this.items.responses[0].faceAnnotations;
+        }
+        else {
+          alert("Face Not Detected");
+        }
+        alert(this.labels + "item to display");
+      }, err => {
+        alert(err);
+      });
       // this.vision.getFaces(this.filename).subscribe((result) => {
       //   alert("Success get face");
       //   this.items = JSON.parse(JSON.stringify(result));
