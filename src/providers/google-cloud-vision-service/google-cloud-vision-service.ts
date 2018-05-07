@@ -37,4 +37,32 @@ export class GoogleCloudVisionServiceProvider {
     return response;
   }
 
+  getFaces(file) {
+    let fileName = file + ".jpg";
+    let body = {
+      "requests": [
+        {
+          "image": {
+            "source": {
+              "gcsImageUri": "gs://strange-flame-202622.appspot.com/images/" + fileName
+            }
+          },
+          "features": [
+            {
+              "type": "FACE_DETECTION"
+            }
+          ]
+        }
+      ]
+    };
+    let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
+    // if (response) {
+    //   alert("response from google");
+    // }
+    // else {
+    //   alert("Error");
+    // }
+    return response;
+  }
+
 }
