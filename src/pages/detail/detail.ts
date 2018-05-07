@@ -13,8 +13,8 @@ import firebase from 'firebase';
 export class DetailPage {
 
   downloadURL: any;
-  filename: number;
-  items1: any;
+  filename;
+  items1: { responses: {} };
   TotalNumberOfAdults = 0;
   TotalNumberOfKids = 0;
 
@@ -138,6 +138,7 @@ alert(filename + "faceDetectyion");
   upload(imageDataResult) {
     alert("Upload" + imageDataResult);
     let storageRef = firebase.storage().ref();
+    alert("Storage ref " + storageRef);
 
     // Create a timestamp as filename
     this.filename = Math.floor(Date.now() / 1000);
@@ -147,6 +148,7 @@ alert(filename + "faceDetectyion");
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`images/${this.filename}.jpg`);
 
+    alert("Image ref " + imageRef);
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
       alert("Save Success");
       // Do something here when the data is succesfully uploaded!
