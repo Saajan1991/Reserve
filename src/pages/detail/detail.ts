@@ -22,6 +22,8 @@ export class DetailPage {
 
   filename;
 
+  public storageRef;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -49,12 +51,17 @@ export class DetailPage {
     }
 
 
-
-
     //open camera in device
     this.camera.getPicture(options).then((imageData) => {
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
       let downloadUrl = this.upload(imageDataResult);
+      //send data to imageDisplayPage
+      this.navCtrl.push(ImageDisplayPage, {
+        image: this.base64image,
+        adults: this.TotalNumberOfAdults,
+        kids: this.TotalNumberOfKids,
+        labels: this.labels
+      });
 
     }, err => {
       alert(err);
@@ -62,7 +69,7 @@ export class DetailPage {
   }
 
 
-  public storageRef;
+  
   upload(imageDataResult) {
     alert(imageDataResult);
 
@@ -80,7 +87,7 @@ export class DetailPage {
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
       alert("upload Success");
 
-      this.vision.getFaces("people").subscribe((result) => {
+      this.vision.getFaces(this.filename).subscribe((result) => {
         alert("Success get face");
         this.items = JSON.parse(JSON.stringify(result));
         this.labels = this.items.responses[0].faceAnnotations;
