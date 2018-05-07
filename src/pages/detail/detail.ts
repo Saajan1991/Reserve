@@ -72,7 +72,7 @@ export class DetailPage {
 
     //open camera in device
     this.camera.getPicture(options).then((imageData) => {
-      
+
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
       let downloadURL = this.upload(imageDataResult);
 
@@ -112,9 +112,9 @@ export class DetailPage {
 
   //google vision api to get faces
   private faceDetection(filename) {
-
+alert(filename + "faceDetectyion");
     this.vision.getFaces(filename).subscribe((result) => {
-
+      alert(result);
       this.items = JSON.parse(JSON.stringify(result));
 
       this.items1 = this.items.responses[0].faceAnnotations;
@@ -136,18 +136,19 @@ export class DetailPage {
 
   //upload file to firebase
   upload(imageDataResult) {
-
+    alert("Upload" + imageDataResult);
     let storageRef = firebase.storage().ref();
 
     // Create a timestamp as filename
     this.filename = Math.floor(Date.now() / 1000);
-
+    alert(this.filename);
     // this.filename = "HelloImage";
 
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`images/${this.filename}.jpg`);
 
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
+      alert("Save Success");
       // Do something here when the data is succesfully uploaded!
       this.faceDetection(this.filename);
 

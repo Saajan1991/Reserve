@@ -39,6 +39,7 @@ export class GoogleCloudVisionServiceProvider {
 
   getFaces(file) {
     let fileName = file + ".jpg";
+    alert(fileName);
     let body = {
       "requests": [
         {
@@ -56,12 +57,12 @@ export class GoogleCloudVisionServiceProvider {
       ]
     };
     let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
-    // if (response) {
-    //   alert("response from google");
-    // }
-    // else {
-    //   alert("Error");
-    // }
+    if (response) {
+      alert("response from google");
+    }
+    else {
+      alert("Error");
+    }
     return response;
   }
 
