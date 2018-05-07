@@ -20,8 +20,9 @@ import { environment } from '../environment';
 import { GoogleCloudVisionServiceProvider } from '../providers/google-cloud-vision-service/google-cloud-vision-service';
 import { HttpClientModule } from '@angular/common/http';
 
+import * as firebase from 'firebase';
 
-
+firebase.initializeApp(environment.firebaseConfig)
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     DetailPage,
     TabsPage,
     ImageDisplayPage,
+    
   ],
   imports: [
     BrowserModule,

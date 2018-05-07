@@ -66,7 +66,6 @@ export class DetailPage {
     //   alert(err);
     // });
 
-
     //open camera in device
     this.camera.getPicture(options).then((imageData) => {
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
@@ -80,6 +79,8 @@ export class DetailPage {
   upload(imageDataResult) {
     alert(imageDataResult);
     let storageRef = firebase.storage().ref();
+    alert(storageRef);
+
     this.filename = Math.floor(Date.now() / 1000);
     alert("Filename " + this.filename);
     const imageRef = storageRef.child(`images/${this.filename}.jpg`);
