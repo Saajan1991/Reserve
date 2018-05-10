@@ -63,7 +63,9 @@
   <ion-item *ngFor="let label of labels">{{label.description}}</ion-item>
 
   <img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" alt="">
-  
+
+  <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml">
+  </div>
 </ion-content>
 
 

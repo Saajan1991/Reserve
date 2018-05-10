@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageDisplayPage } from '../image-display/image-display';
 import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-vision-service/google-cloud-vision-service';
 import firebase from 'firebase';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'page-detail',
@@ -11,6 +12,8 @@ import firebase from 'firebase';
 })
 export class DetailPage {
 
+  htmlToAdd: any;
+  htmlToDisplay: any;
   downloadURL: any;
   TotalNumberOfAdults = 0;
   TotalNumberOfKids = 0;
@@ -28,7 +31,8 @@ export class DetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
-    private vision: GoogleCloudVisionServiceProvider) {
+    private vision: GoogleCloudVisionServiceProvider,
+    protected _sanitizer: DomSanitizer) {
     this.TotalNumberOfAdults = navParams.get('adults');
     this.TotalNumberOfKids = navParams.get('kids');
   }
@@ -53,7 +57,7 @@ export class DetailPage {
     this.camera.getPicture(options).then((imageData) => {
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
       let downloadUrl = this.upload(imageDataResult);
-      
+
     }, err => {
       alert(err);
     });
@@ -61,8 +65,6 @@ export class DetailPage {
 
 
   public upload(imageDataResult) {
-    alert(imageDataResult);
-
     try {
       this.storageRef = firebase.storage().ref();
       alert(this.storageRef);
@@ -72,19 +74,34 @@ export class DetailPage {
     }
 
     this.filename = Math.floor(Date.now() / 1000);
-    alert("Filename " + this.filename);
     const imageRef = this.storageRef.child(`images/${this.filename}.jpg`);
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
       alert("upload Success");
 
       this.vision.getFaces(this.filename).subscribe((result) => {
-        alert("Success get face");
         this.items = JSON.parse(JSON.stringify(result));
         this.faces = this.items.responses[0].faceAnnotations;
-        alert(this.faces);
         if (this.items != undefined) {
           alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
           this.faces = this.items.responses[0].faceAnnotations;
+
+          let faces = this.items.responses[0].faceAnnotations;
+
+          var a, b, c, d;
+
+          for (let face of faces) {
+            let faceVertices = face.boundingPoly.vertices;
+            a = faceVertices[0];
+            if (a.x == undefined) {
+              a.x = 0;
+            }
+            let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
+            //bypass html trust issue
+            this.htmlToAdd = this.safeHtml(html);
+
+            //adding all images to one for view
+            this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
+          }
         }
         else {
           alert("Face Not Detected");
@@ -102,9 +119,15 @@ export class DetailPage {
       image: imageDataResult,
       adults: this.TotalNumberOfAdults,
       kids: this.TotalNumberOfKids,
-      faces: this.faces
+      faces: this.faces,
+      html: this.htmlToDisplay
     });
     return this.downloadURL;
+  }
+
+  //function for bypass Html Trust
+  safeHtml(html) {
+    return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 }
 

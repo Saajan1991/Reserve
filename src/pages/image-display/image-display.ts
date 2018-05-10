@@ -31,8 +31,7 @@ export class ImageDisplayPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private barcode: BarcodeScanner,
-    protected _sanitizer: DomSanitizer) {
+    private barcode: BarcodeScanner) {
     this.base64Image = navParams.get('image');
     // this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
     this.TotalNumberOfAdults = navParams.get('adults');
@@ -40,6 +39,8 @@ export class ImageDisplayPage {
     this.adult(this.TotalNumberOfAdults);
     this.kid(this.TotalNumberOfKids);
     this.faces = navParams.get('faces');
+    this.htmlToDisplay = navParams.get('htmlToDisplay');
+    alert(this.htmlToDisplay);
 
   }
 
@@ -67,4 +68,6 @@ export class ImageDisplayPage {
   async scanBarcodeKid(id) {
 
   }
+
+  
 }
