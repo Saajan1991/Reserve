@@ -22,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import * as firebase from 'firebase';
 
+import { SafeHtmlPipe } from '../safeHtml';
+
 firebase.initializeApp(environment.firebaseConfig)
 
 @NgModule({
@@ -33,7 +35,7 @@ firebase.initializeApp(environment.firebaseConfig)
     DetailPage,
     TabsPage,
     ImageDisplayPage,
-    
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
