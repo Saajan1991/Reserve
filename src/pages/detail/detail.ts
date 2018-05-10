@@ -39,7 +39,6 @@ export class DetailPage {
 
 
   takePhoto() {
-
     const options: CameraOptions = {
       quality: 100,
       targetHeight: 500,
@@ -50,27 +49,19 @@ export class DetailPage {
       correctOrientation: true
     }
 
-
     //open camera in device
     this.camera.getPicture(options).then((imageData) => {
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
       let downloadUrl = this.upload(imageDataResult);
-      //send data to imageDisplayPage
-      this.navCtrl.push(ImageDisplayPage, {
-        image: this.base64image,
-        adults: this.TotalNumberOfAdults,
-        kids: this.TotalNumberOfKids,
-        labels: this.labels
-      });
-
+      
+      
     }, err => {
       alert(err);
     });
   }
 
 
-  
-  upload(imageDataResult) {
+  public upload(imageDataResult) {
     alert(imageDataResult);
 
     try {
@@ -103,32 +94,20 @@ export class DetailPage {
       }, err => {
         alert(err);
       });
-      // this.vision.getFaces(this.filename).subscribe((result) => {
-      //   alert("Success get face");
-      //   this.items = JSON.parse(JSON.stringify(result));
-      //   this.labels = this.items.responses[0].faceAnnotations;
-      //   alert(this.labels);
-      //   if (this.items != undefined) {
-      //     alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
-      //     this.labels = this.items.responses[0].faceAnnotations;
-      //   }
-      //   else {
-      //     alert("Face Not Detected");
-      //   }
-      //   alert(this.labels + "item to display");
-      // }, err => {
-      //   alert(err);
-      // });
-
-      // alert("label");
     }).catch(function (err) {
-      return err
+      return err;
+    });
+
+    //send data to imageDisplayPage
+    this.navCtrl.push(ImageDisplayPage, {
+      image: imageDataResult,
+      adults: this.TotalNumberOfAdults,
+      kids: this.TotalNumberOfKids,
+      labels: this.labels
     });
     return this.downloadURL;
   }
-
 }
-
 
 
 
@@ -207,5 +186,3 @@ export class DetailPage {
 //   }
 
 // }
-
-

@@ -8,8 +8,8 @@
   <ion-grid>
     <ion-row>
       <ion-col col-xs-12 col-md-12 text-center>
-        <!-- <img [src]="base64Image" *ngIf="base64Image" /> -->
-        <ion-img [src]=imageDataResult alt="" align="middle"></ion-img>
+        <img [src]="base64Image" *ngIf="base64Image" />
+        <!-- <ion-img [src]=imageDataResult alt="" align="middle"></ion-img> -->
       </ion-col>
     </ion-row>
     <ion-row>
@@ -20,7 +20,11 @@
         <ion-list *ngFor="let adult of adults">
           <ion-grid>
             <ion-row>
-              <ion-col col-11>
+              <ion-col col-3></ion-col>
+              <ion-col col-4>
+                <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+              </ion-col>
+              <ion-col col-4>
                 <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
               </ion-col>
               <ion-col col-1>

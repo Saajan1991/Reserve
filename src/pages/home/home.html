@@ -1,12 +1,74 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title>Display</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-xs-12 col-md-12 text-center>
+        <!-- <img [src]="base64Image" *ngIf="base64Image" /> -->
+        <!-- <ion-img [src]=imageDataResult alt="" align="middle"></ion-img> -->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
 
-Home Page
+        <ion-label>Adults</ion-label>
+        {{labels}}
+        <!-- <ion-list *ngFor="let adult of adults"> -->
+        <ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2>
+                <img src="https://image.flaticon.com/icons/svg/147/147144.svg" alt="">
+              </ion-col>
+              <ion-col col-4>
+                <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+              </ion-col>
+              <ion-col col-4>
+                <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+              </ion-col>
+              <ion-col col-1>
+                <button block (click)="scanBarcodeAdult(adult)">
+                  <ion-icon name="md-barcode"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-list>
+        <!-- end of adult text box list -->
+
+        <ion-label>Kids</ion-label>
+        <ion-list *ngFor="let kid of kids">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-11>
+                <ion-input type="text" [id]="'kidtext'+ kid"></ion-input>
+              </ion-col>
+              <ion-col col-1>
+                <button block (click)="scanBarcodeKid()">
+                  <ion-icon name="md-barcode"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-list>
+        <!-- end of kid text box list -->
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <button ion-button (click)="submit()">Submit</button>
+
+  <!-- <ion-item *ngFor="let label of labels">{{label.description}}</ion-item> -->
 </ion-content>
+
+
+<!-- <div *ngIf="results">
+    <p>Barcode Text: {{results.text}}</p>
+    <p>Format: {{results.format}}</p>
+    <p>Cancelled Status: {{results.cancelled}}</p>
+  </div> -->
