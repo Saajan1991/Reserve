@@ -98,10 +98,20 @@ export class DetailPage {
             let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
             //bypass html trust issue
             this.htmlToAdd = this.safeHtml(html);
-
+            alert("html to add" + this.htmlToAdd);
             //adding all images to one for view
             this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
+            alert("html to Display" + this.htmlToDisplay);
+
           }
+          //send data to imageDisplayPage
+          this.navCtrl.push(ImageDisplayPage, {
+            image: imageDataResult,
+            adults: this.TotalNumberOfAdults,
+            kids: this.TotalNumberOfKids,
+            faces: this.faces,
+            html: this.htmlToDisplay
+          });
         }
         else {
           alert("Face Not Detected");
@@ -114,14 +124,6 @@ export class DetailPage {
       return err;
     });
 
-    //send data to imageDisplayPage
-    this.navCtrl.push(ImageDisplayPage, {
-      image: imageDataResult,
-      adults: this.TotalNumberOfAdults,
-      kids: this.TotalNumberOfKids,
-      faces: this.faces,
-      html: this.htmlToDisplay
-    });
     return this.downloadURL;
   }
 
