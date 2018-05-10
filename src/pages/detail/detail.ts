@@ -57,7 +57,6 @@ export class DetailPage {
     this.camera.getPicture(options).then((imageData) => {
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
       let downloadUrl = this.upload(imageDataResult);
-
     }, err => {
       alert(err);
     });

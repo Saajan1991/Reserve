@@ -10,13 +10,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ImageDisplayPage {
 
+  items: any;
   public base64Image: string;
 
   TotalNumberOfAdults = 0;
   TotalNumberOfKids = 0;
   adults = [];
   kids = [];
-  faces;
+  faces: { response: {} };
 
   htmlToAdd;
   htmlToDisplay: String = "";
@@ -39,21 +40,22 @@ export class ImageDisplayPage {
     this.TotalNumberOfKids = navParams.get('kids');
     this.adult(this.TotalNumberOfAdults);
     this.kid(this.TotalNumberOfKids);
-    this.faces = navParams.get('faces');
-    this.htmlToDisplay = navParams.get('htmlToDisplay');
-    alert("tfaces" + this.faces)
-    alert("thml to display image" + this.htmlToDisplay);
+    this.items = navParams.get('faces');
+    alert("faces" + this.items)
 
-    if (this.faces != undefined) {
-      alert("Total Face Detected: " + this.faces.responses[0].faceAnnotations.length);
-      this.faces = this.faces.responses[0].faceAnnotations;
+    if (this.items != undefined) {
+      alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
+      this.faces = this.items.responses[0].faceAnnotations;
 
-      let f1 = this.faces.responses[0].faceAnnotations;
+      alert("Face" + this.faces)
+
+      let f1 = this.items.responses[0].faceAnnotations;
 
       var a;
 
       for (let face of f1) {
         let faceVertices = face.boundingPoly.vertices;
+        alert("Vertices" + faceVertices[0]);
         a = faceVertices[0];
         if (a.x == undefined) {
           a.x = 0;
@@ -61,11 +63,12 @@ export class ImageDisplayPage {
         let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
         //bypass html trust issue
         this.htmlToAdd = this.safeHtml(html);
+        alert("this.htm" + this.htmlToAdd);
         //adding all images to one for view
         this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
         alert("Html to display " + this.htmlToDisplay);
       }
-      
+
     }
     else {
       alert("Face Not Detected");
@@ -79,7 +82,7 @@ export class ImageDisplayPage {
   }
 
 
-  
+
   adult(adultNumber) {
     this.adults = Array(adultNumber).fill(0).map((x, i) => i);
   }
@@ -105,5 +108,5 @@ export class ImageDisplayPage {
 
   }
 
-  
+
 }
