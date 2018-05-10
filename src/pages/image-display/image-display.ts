@@ -40,7 +40,8 @@ export class ImageDisplayPage {
     this.kid(this.TotalNumberOfKids);
     this.faces = navParams.get('faces');
     this.htmlToDisplay = navParams.get('htmlToDisplay');
-    alert(this.htmlToDisplay);
+    alert("tfaces" + this.faces)
+    alert("thml to display image" + this.htmlToDisplay);
 
   }
 
