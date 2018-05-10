@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+//import Dom sanitizer for html input using innerHtml
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'page-image-display',
@@ -14,7 +16,10 @@ export class ImageDisplayPage {
   TotalNumberOfKids = 0;
   adults = [];
   kids = [];
-  labels;
+  faces;
+
+  htmlToAdd;
+  htmlToDisplay: String = "";
 
 
   options: BarcodeScannerOptions;
@@ -24,14 +29,17 @@ export class ImageDisplayPage {
     format: string
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private barcode: BarcodeScanner,
+    protected _sanitizer: DomSanitizer) {
     this.base64Image = navParams.get('image');
     // this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
     this.TotalNumberOfAdults = navParams.get('adults');
     this.TotalNumberOfKids = navParams.get('kids');
     this.adult(this.TotalNumberOfAdults);
     this.kid(this.TotalNumberOfKids);
-    this.labels = navParams.get('labels');
+    this.faces = navParams.get('faces');
 
   }
 

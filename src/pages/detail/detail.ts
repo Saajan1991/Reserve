@@ -17,7 +17,7 @@ export class DetailPage {
 
   public base64image: string;
 
-  labels: { response: {} };
+  faces: { response: {} };
   items;
 
   filename;
@@ -54,7 +54,6 @@ export class DetailPage {
       let imageDataResult = 'data:image/jpeg;base64,' + imageData;
       let downloadUrl = this.upload(imageDataResult);
       
-      
     }, err => {
       alert(err);
     });
@@ -81,16 +80,16 @@ export class DetailPage {
       this.vision.getFaces(this.filename).subscribe((result) => {
         alert("Success get face");
         this.items = JSON.parse(JSON.stringify(result));
-        this.labels = this.items.responses[0].faceAnnotations;
-        alert(this.labels);
+        this.faces = this.items.responses[0].faceAnnotations;
+        alert(this.faces);
         if (this.items != undefined) {
           alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
-          this.labels = this.items.responses[0].faceAnnotations;
+          this.faces = this.items.responses[0].faceAnnotations;
         }
         else {
           alert("Face Not Detected");
         }
-        alert(this.labels + "item to display");
+        alert(this.faces + "item to display");
       }, err => {
         alert(err);
       });
@@ -103,7 +102,7 @@ export class DetailPage {
       image: imageDataResult,
       adults: this.TotalNumberOfAdults,
       kids: this.TotalNumberOfKids,
-      labels: this.labels
+      faces: this.faces
     });
     return this.downloadURL;
   }
