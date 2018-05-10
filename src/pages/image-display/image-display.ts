@@ -31,7 +31,8 @@ export class ImageDisplayPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private barcode: BarcodeScanner) {
+    private barcode: BarcodeScanner,
+    protected _sanitizer: DomSanitizer) {
     this.base64Image = navParams.get('image');
     // this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
     this.TotalNumberOfAdults = navParams.get('adults');
@@ -43,8 +44,42 @@ export class ImageDisplayPage {
     alert("tfaces" + this.faces)
     alert("thml to display image" + this.htmlToDisplay);
 
+    if (this.faces != undefined) {
+      alert("Total Face Detected: " + this.faces.responses[0].faceAnnotations.length);
+      this.faces = this.faces.responses[0].faceAnnotations;
+
+      let f1 = this.faces.responses[0].faceAnnotations;
+
+      var a;
+
+      for (let face of f1) {
+        let faceVertices = face.boundingPoly.vertices;
+        a = faceVertices[0];
+        if (a.x == undefined) {
+          a.x = 0;
+        }
+        let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
+        //bypass html trust issue
+        this.htmlToAdd = this.safeHtml(html);
+        //adding all images to one for view
+        this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
+        alert("Html to display " + this.htmlToDisplay);
+      }
+      
+    }
+    else {
+      alert("Face Not Detected");
+    }
+
   }
 
+  //function for bypass Html Trust
+  safeHtml(html) {
+    return this._sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+
+  
   adult(adultNumber) {
     this.adults = Array(adultNumber).fill(0).map((x, i) => i);
   }
