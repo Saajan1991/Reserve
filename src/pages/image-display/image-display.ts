@@ -61,8 +61,8 @@ export class ImageDisplayPage {
         // let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
         let html = '<img class="face" src="' + 
         this.base64Image + '" style="object-fit: none; object-position: -' + 
-        a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + 
-        '></input><input type=' + "text" + '></input>'
+        a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><ion-input type=' + "text" + 
+        '></ion-input><ion-input type=' + "text" + '></ion-input>'
         // let textbox = '<input type=' + "text" + '></input>';
         //bypass html trust issue
         this.htmlToAdd = this.safeHtml(html);
