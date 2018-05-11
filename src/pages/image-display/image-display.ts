@@ -43,6 +43,7 @@ export class ImageDisplayPage {
     this.items = navParams.get('faces');
 
     if (this.items != undefined) {
+      //number of faces detected by api
       this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
       alert("Total Face Detected: " + this.numberOfFaces);
       this.faces = this.items.responses[0].faceAnnotations;
@@ -59,10 +60,9 @@ export class ImageDisplayPage {
           a.x = 0;
         }
         // let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
-        let html = '<img class="face" src="' + 
-        this.base64Image + '" style="object-fit: none; object-position: -' + 
-        a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><ion-input type=' + "text" + 
-        '></ion-input><ion-input type=' + "text" + '></ion-input>'
+        let html = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + 
+        a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + '></input>' + 
+        '<input type=' + "text" + '></input>'
         // let textbox = '<input type=' + "text" + '></input>';
         //bypass html trust issue
         this.htmlToAdd = this.safeHtml(html);
@@ -75,6 +75,7 @@ export class ImageDisplayPage {
     }
 
   }
+
 
   //function for bypass Html Trust
   safeHtml(html) {
