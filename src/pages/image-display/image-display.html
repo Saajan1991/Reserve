@@ -6,9 +6,18 @@
 
 <ion-content padding>
   <img [src]="base64Image" *ngIf="base64Image" /> 
-      {{numberOfFaces}} People Recognised 
-      Entry Created for {{TotalNumberOfAdults + TotalNumberOfKids}} People
+  <ion-item>
+    <ion-label>
+        {{numberOfFaces}} People Recognised 
+    </ion-label>
+  </ion-item>
 
+  <ion-item>
+      <ion-label>
+          Entry Created for {{TotalNumberOfAdults + TotalNumberOfKids}} People
+      </ion-label>
+    </ion-item>
+      
   <ion-slides>
     <ion-slide>
         <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
