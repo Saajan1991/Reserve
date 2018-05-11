@@ -63,20 +63,23 @@ export class DetailPage {
   }
 
 
+  //funtion to upload image 
+  //inlcudes face detection
   public upload(imageDataResult) {
     try {
       this.storageRef = firebase.storage().ref();
-      alert(this.storageRef);
     }
     catch (e) {
       alert(e);
     }
 
+    //generate name for file based on date
     this.filename = Math.floor(Date.now() / 1000);
     const imageRef = this.storageRef.child(`images/${this.filename}.jpg`);
     imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
       alert("upload Success");
 
+      //vision api to detect faces
       this.vision.getFaces(this.filename).subscribe((result) => {
         this.items = JSON.parse(JSON.stringify(result));
         this.faces = this.items.responses[0].faceAnnotations;
@@ -88,8 +91,6 @@ export class DetailPage {
           kids: this.TotalNumberOfKids,
           faces: this.items
         });
-
-        alert(this.faces + "item to display");
       }, err => {
         alert(err);
       });

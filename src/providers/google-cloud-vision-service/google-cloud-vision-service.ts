@@ -13,8 +13,8 @@ export class GoogleCloudVisionServiceProvider {
   }
 
   getFaces(file) {
-    // let fileName = file + "people.jpg";
-    let fileName = "people.jpg";
+    let fileName = file + ".jpg";
+    // let fileName = "people.jpg";
     alert(fileName);
     let body = {
       "requests": [

@@ -35,19 +35,15 @@ export class ImageDisplayPage {
     private barcode: BarcodeScanner,
     protected _sanitizer: DomSanitizer) {
     this.base64Image = navParams.get('image');
-    // this.base64Image = "http://blog.inf.ed.ac.uk/atate/files/2015/11/img-avatars-new-300x207.png";
     this.TotalNumberOfAdults = navParams.get('adults');
     this.TotalNumberOfKids = navParams.get('kids');
     this.adult(this.TotalNumberOfAdults);
     this.kid(this.TotalNumberOfKids);
     this.items = navParams.get('faces');
-    alert("faces" + this.items)
 
     if (this.items != undefined) {
       alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
       this.faces = this.items.responses[0].faceAnnotations;
-
-      alert("Face" + this.faces)
 
       let f1 = this.items.responses[0].faceAnnotations;
 
@@ -60,15 +56,13 @@ export class ImageDisplayPage {
         if (a.x == undefined) {
           a.x = 0;
         }
-        let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
+        // let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
+        let html = '<img class="person1" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
         //bypass html trust issue
         this.htmlToAdd = this.safeHtml(html);
-        alert("this.htm" + this.htmlToAdd);
         //adding all images to one for view
         this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
-        alert("Html to display " + this.htmlToDisplay);
       }
-
     }
     else {
       alert("Face Not Detected");
