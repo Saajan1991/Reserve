@@ -54,13 +54,12 @@ export class ImageDisplayPage {
 
       for (let face of f1) {
         let faceVertices = face.boundingPoly.vertices;
-        alert("Vertices" + faceVertices[0]);
         a = faceVertices[0];
         if (a.x == undefined) {
           a.x = 0;
         }
-        // let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
-        let html = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + 
+        let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
+        let html1 = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + 
         a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + '></input>' + 
         '<input type=' + "text" + '></input>'
         // let textbox = '<input type=' + "text" + '></input>';
