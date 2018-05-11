@@ -5,12 +5,21 @@
 </ion-header>
 
 <ion-content padding>
-  <img [src]="base64Image" *ngIf="base64Image" />
+  <img [src]="base64Image" *ngIf="base64Image" /> 
+  <ion-text>
+      {{numberOfFaces}} People Recognised 
+  </ion-text>
+  <ion-text>
+      Entry Created for {{TotalNumberOfAdults + TotalNumberOfKids}} People
+  </ion-text>
 
-  {{numberOfFaces}} People Recognised
-  Entry Created for {{TotalNumberOfAdults + TotalNumberOfKids}} People
+  <ion-slides>
+    <ion-slide>
+        <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
+    </ion-slide>
+  </ion-slides>
 
-
+  
 
   <button ion-button (click)="submit()">Next</button>
 
