@@ -15,11 +15,9 @@
     <ion-row>
       <ion-col>
 
-        <ion-list *ngFor = "let facenumber of faces">
-          <!-- {{facenumber.detectionConfidence}} -->
-          <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
-        </ion-list>
+        <!-- {{facenumber.detectionConfidence}} -->
 
+          <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
         <!-- <ion-label>Adults</ion-label>
         <ion-list *ngFor="let adult of adults">
           <ion-grid>
@@ -70,7 +68,7 @@
 
   <!-- <img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" alt=""> -->
 
-  
+
 </ion-content>
 
 
