@@ -53,28 +53,13 @@ export class DetailPage {
       correctOrientation: true
     }
 
-    this.vision.getFaces(this.filename).subscribe((result) => {
-      this.items = JSON.parse(JSON.stringify(result));
-      this.faces = this.items.responses[0].faceAnnotations;
-
-      //send data to imageDisplayPage
-      this.navCtrl.push(ImageDisplayPage, {
-        // image: imageDataResult,
-        adults: this.TotalNumberOfAdults,
-        kids: this.TotalNumberOfKids,
-        faces: this.items
-      });
+    //open camera in device
+    this.camera.getPicture(options).then((imageData) => {
+      let imageDataResult = 'data:image/jpeg;base64,' + imageData;
+      let downloadUrl = this.upload(imageDataResult);
     }, err => {
       alert(err);
     });
-
-    //open camera in device
-    // this.camera.getPicture(options).then((imageData) => {
-    //   let imageDataResult = 'data:image/jpeg;base64,' + imageData;
-    //   let downloadUrl = this.upload(imageDataResult);
-    // }, err => {
-    //   alert(err);
-    // });
   }
 
 

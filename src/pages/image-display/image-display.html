@@ -68,36 +68,7 @@
                 </ion-label>
               </ion-item>
 
-
-              <div [innerHtml] = "htmlToDisplay | safeHtml"></div>
-            
-                  <!-- <img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -794px -98px; width: 200px; height: 200px;"> -->
-               
-
-
-              <ion-slides pager="true" parallax="true" padding>
-
-                <ion-slide>
-                  <img src="http://www.allwhitebackground.com/images/3/3809.jpg">
-                  <h1>Welcome to my app!</h1>
-                </ion-slide>
-
-                <ion-slide>
-                  <img src="http://www.allwhitebackground.com/images/3/3809.jpg">
-                  <h1>All of the features</h1>
-                  <p>Here's what you can do with the app...</p>
-                </ion-slide>
-
-                <ion-slide>
-                  <img src="http://www.allwhitebackground.com/images/3/3809.jpg">
-                  <h1>Get started now!</h1>
-                  <button ion-button outline small (click)="navHome()">
-                    Start using the app
-                  </button>
-                </ion-slide>
-
-              </ion-slides>
-
+              <div [innerHtml]="htmlToDisplay | safeHtml"></div>
 
             </ion-content>
           </ion-slide>
