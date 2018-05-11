@@ -16,7 +16,8 @@
       <ion-col>
 
         <ion-list *ngFor = "let facenumber of faces">
-          {{facenumber.detectionConfidence}}
+          <!-- {{facenumber.detectionConfidence}} -->
+          <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
         </ion-list>
 
         <!-- <ion-label>Adults</ion-label>
