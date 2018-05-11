@@ -59,12 +59,15 @@ export class ImageDisplayPage {
           a.x = 0;
         }
         // let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
-        let html = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
-        let textbox = '<ion-input type=' + "text" + '></ion-input>';
+        let html = '<img class="face" src="' + 
+        this.base64Image + '" style="object-fit: none; object-position: -' + 
+        a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + 
+        '></input><input type=' + "text" + '></input>'
+        // let textbox = '<input type=' + "text" + '></input>';
         //bypass html trust issue
         this.htmlToAdd = this.safeHtml(html);
         //adding all images to one for view
-        this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity + textbox;
+        this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
       }
     }
     else {
