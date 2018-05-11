@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Display</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-xs-12 col-md-12 text-center>
+          <!-- <img [src]="base64Image" *ngIf="base64Image" /> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+  
+          <!-- {{facenumber.detectionConfidence}} -->
+  
+            <!-- <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div> -->
+          <!-- <ion-label>Adults</ion-label>
+          <ion-list *ngFor="let adult of adults">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-3>
+                  <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
+                </ion-col>
+                <ion-col col-4>
+                  <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+                </ion-col>
+                <ion-col col-4>
+                  <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
+                </ion-col>
+                <ion-col col-1>
+                  <button block (click)="scanBarcodeAdult(adult)">
+                    <ion-icon name="md-barcode"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-list> -->
+          <!-- end of adult text box list -->
+  
+          <ion-label>Kids</ion-label>
+          <ion-list *ngFor="let kid of kids">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-11>
+                  <ion-input type="text" [id]="'kidtext'+ kid"></ion-input>
+                </ion-col>
+                <ion-col col-1>
+                  <button block (click)="scanBarcodeKid()">
+                    <ion-icon name="md-barcode"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-list>
+          <!-- end of kid text box list -->
+  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <button ion-button (click)="submit()">Submit</button>
+  
+    <!-- <ion-item *ngFor="let label of labels">{{label.description}}</ion-item> -->
+  
+    <!-- <img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" alt=""> -->
+  
+  
+  
+    
+  </ion-content>
+  
+  
+  
+  <!-- <div *ngIf="results">
+    <p>Barcode Text: {{results.text}}</p>
+    <p>Format: {{results.format}}</p>
+    <p>Cancelled Status: {{results.cancelled}}</p>
+  </div> -->
