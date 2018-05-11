@@ -15,8 +15,11 @@
     <ion-row>
       <ion-col>
 
-        <ion-label>Adults</ion-label>
-        {{labels}}
+        <ion-list *ngFor = "let facenumber of faces">
+          {{facenumber.detectionConfidence}}
+        </ion-list>
+
+        <!-- <ion-label>Adults</ion-label>
         <ion-list *ngFor="let adult of adults">
           <ion-grid>
             <ion-row>
@@ -36,7 +39,7 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-        </ion-list>
+        </ion-list> -->
         <!-- end of adult text box list -->
 
         <ion-label>Kids</ion-label>

@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ImageDisplayPage {
 
+  numberOfFaces: any;
   items: any;
   public base64Image: string;
 
@@ -42,7 +43,8 @@ export class ImageDisplayPage {
     this.items = navParams.get('faces');
 
     if (this.items != undefined) {
-      alert("Total Face Detected: " + this.items.responses[0].faceAnnotations.length);
+      this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
+      alert("Total Face Detected: " + this.numberOfFaces);
       this.faces = this.items.responses[0].faceAnnotations;
 
       let f1 = this.items.responses[0].faceAnnotations;
