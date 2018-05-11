@@ -20,7 +20,9 @@
         <ion-list *ngFor="let adult of adults">
           <ion-grid>
             <ion-row>
-              <ion-col col-3></ion-col>
+              <ion-col col-3>
+                <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml"></div>
+              </ion-col>
               <ion-col col-4>
                 <ion-input type="text" [id]="'adulttext'+ adult"></ion-input>
               </ion-col>
@@ -60,12 +62,11 @@
 
   <button ion-button (click)="submit()">Submit</button>
 
-  <ion-item *ngFor="let label of labels">{{label.description}}</ion-item>
+  <!-- <ion-item *ngFor="let label of labels">{{label.description}}</ion-item> -->
 
-  <img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" alt="">
+  <!-- <img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" alt=""> -->
 
-  <div id="imageChange" [innerHtml]="htmlToDisplay | safeHtml">
-  </div>
+  
 </ion-content>
 
 
