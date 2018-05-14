@@ -7,8 +7,34 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  slides = {
+    "vertices": [
+      {
+        "x": 932,
+        "y": 313
+      },
+      {
+        "x": 1028,
+        "y": 313
+      },
+      {
+        "x": 1028,
+        "y": 425
+      },
+      {
+        "x": 932,
+        "y": 425
+      }
+    ]
+  };
+  slidesPerView = 5;
 
+  
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.slides.vertices);
   }
+
+
 } 

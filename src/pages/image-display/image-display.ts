@@ -20,8 +20,11 @@ export class ImageDisplayPage {
   kids = [];
   faces: { response: {} };
 
+  slidesPerView = 3;
+
   htmlToAdd;
   htmlToDisplay: String = "";
+  a: any;
 
 
   options: BarcodeScannerOptions;
@@ -42,6 +45,7 @@ export class ImageDisplayPage {
     this.kid(this.TotalNumberOfKids);
     this.items = navParams.get('faces');
 
+    
     if (this.items != undefined) {
       //number of faces detected by api
       this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
@@ -50,16 +54,17 @@ export class ImageDisplayPage {
 
       let f1 = this.items.responses[0].faceAnnotations;
 
-      var a;
+      // var a;
 
       for (let face of f1) {
         let faceVertices = face.boundingPoly.vertices;
         alert("Vertices" + faceVertices[0]);
-        a = faceVertices[0];
-        if (a.x == undefined) {
-          a.x = 0;
+        this.a = faceVertices[0];
+        if (this.a.x == undefined) {
+          this.a.x = 0;
         }
-        let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;">'
+
+        let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + this.a.x + 'px -' + this.a.y + 'px; width: 200px; height: 200px;">'
         // let html = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + 
         // a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + '></input>' + 
         // '<input type=' + "text" + '></input>'

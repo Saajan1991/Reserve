@@ -25,6 +25,8 @@ export class DetailPage {
 
   filename;
 
+  slidesPerView = 3;
+
   public storageRef;
 
   constructor(

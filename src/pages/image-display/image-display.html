@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <img [src]="base64Image" *ngIf="base64Image" />
+  <!-- <img [src]="base64Image" *ngIf="base64Image" /> -->
   <ion-item>
     <ion-label>
       {{numberOfFaces}} People Recognised
@@ -18,4 +18,17 @@
     </ion-label>
   </ion-item>
   <div [innerHtml]="htmlToDisplay | safeHtml"></div>
+  <ion-item>
+    <!-- <ion-list *ngFor = "let face of faces"> -->
+      <!-- <ion-image [src]="base64Image" style = "object-fit: none; object-position: -' + face.x + 'px -' + face.y + 'px; width: 200px; height: 200px;"></ion-image> -->
+    <!-- </ion-list> -->
+
+    <ion-slides no-padding [slidesPerView]="slidesPerView">
+      <ion-slide  *ngFor="let face of faces">
+        <img src="http://www.allwhitebackground.com/images/3/3809.jpg" alt="">
+        <!-- <div [innerHtml]="htmlToDisplay | safeHtml"></div> -->
+      </ion-slide>
+    </ion-slides>
+
+  </ion-item>
 </ion-content>
