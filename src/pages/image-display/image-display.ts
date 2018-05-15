@@ -51,7 +51,7 @@ export class ImageDisplayPage {
       //number of faces detected by api
       this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
       alert("Total Face Detected: " + this.numberOfFaces);
-      // this.faces = this.items.responses[0].faceAnnotations;
+      this.faces = this.items.responses[0].faceAnnotations;
 
       // let f1 = this.items.responses[0].faceAnnotations;
 
@@ -116,7 +116,7 @@ export class ImageDisplayPage {
     //send data to imageDisplayPage
     this.navCtrl.push(FaceDetailPage, {
       image: this.base64Image,
-      faces: this.items
+      faces: this.faces
     });
   }
 

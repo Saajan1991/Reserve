@@ -8,7 +8,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FaceDetailPage {
 
-  faces;
+  // faces;
+  faces: { response: {} };
 
   slidesPerView = 1;
   a;
