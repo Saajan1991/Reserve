@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 //import Dom sanitizer for html input using innerHtml
 import { DomSanitizer } from '@angular/platform-browser';
+import { FaceDetailPage } from '../face-detail/face-detail';
 
 @Component({
   selector: 'page-image-display',
@@ -50,30 +51,30 @@ export class ImageDisplayPage {
       //number of faces detected by api
       this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
       alert("Total Face Detected: " + this.numberOfFaces);
-      this.faces = this.items.responses[0].faceAnnotations;
+      // this.faces = this.items.responses[0].faceAnnotations;
 
-      let f1 = this.items.responses[0].faceAnnotations;
+      // let f1 = this.items.responses[0].faceAnnotations;
 
-      // var a;
+      // // var a;
 
-      for (let face of f1) {
-        let faceVertices = face.boundingPoly.vertices;
-        alert("Vertices" + faceVertices[0]);
-        this.a = faceVertices[0];
-        if (this.a.x == undefined) {
-          this.a.x = 0;
-        }
+      // for (let face of f1) {
+      //   let faceVertices = face.boundingPoly.vertices;
+      //   alert("Vertices" + faceVertices[0]);
+      //   this.a = faceVertices[0];
+      //   if (this.a.x == undefined) {
+      //     this.a.x = 0;
+      //   }
 
-        let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + this.a.x + 'px -' + this.a.y + 'px; width: 200px; height: 200px;">'
-        // let html = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + 
-        // a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + '></input>' + 
-        // '<input type=' + "text" + '></input>'
-        // let textbox = '<input type=' + "text" + '></input>';
-        //bypass html trust issue
-        this.htmlToAdd = this.safeHtml(html);
-        //adding all images to one for view
-        this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
-      }
+      //   let html = '<img class="person1" src="http://www.allwhitebackground.com/images/3/3809.jpg" style="object-fit: none; object-position: -' + this.a.x + 'px -' + this.a.y + 'px; width: 200px; height: 200px;">'
+      //   // let html = '<img class="face" src="' + this.base64Image + '" style="object-fit: none; object-position: -' + 
+      //   // a.x + 'px -' + a.y + 'px; width: 200px; height: 200px;"><input type=' + "text" + '></input>' + 
+      //   // '<input type=' + "text" + '></input>'
+      //   // let textbox = '<input type=' + "text" + '></input>';
+      //   //bypass html trust issue
+      //   this.htmlToAdd = this.safeHtml(html);
+      //   //adding all images to one for view
+      //   this.htmlToDisplay = this.htmlToDisplay + this.htmlToAdd.changingThisBreaksApplicationSecurity;
+      // }
     }
     else {
       alert("Face Not Detected");
@@ -111,5 +112,12 @@ export class ImageDisplayPage {
 
   }
 
+  next(){
+    //send data to imageDisplayPage
+    this.navCtrl.push(FaceDetailPage, {
+      image: this.base64Image,
+      faces: this.items
+    });
+  }
 
 }

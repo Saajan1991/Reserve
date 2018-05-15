@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import * as firebase from 'firebase';
 
 import { SafeHtmlPipe } from '../safeHtml';
+import { FaceDetailPage } from '../pages/face-detail/face-detail';
+import { TestPage } from '../pages/test/test';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -35,7 +37,9 @@ firebase.initializeApp(environment.firebaseConfig)
     DetailPage,
     TabsPage,
     ImageDisplayPage,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    TestPage,
+    FaceDetailPage
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ firebase.initializeApp(environment.firebaseConfig)
     DetailPage,
     CheckinPage,
     ImageDisplayPage,
+    TestPage,
+    FaceDetailPage
   ],
   providers: [
     StatusBar,

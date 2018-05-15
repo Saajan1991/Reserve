@@ -25,8 +25,6 @@ export class DetailPage {
 
   filename;
 
-  slidesPerView = 3;
-
   public storageRef;
 
   constructor(
@@ -42,7 +40,6 @@ export class DetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
   }
-
 
   takePhoto() {
     const options: CameraOptions = {

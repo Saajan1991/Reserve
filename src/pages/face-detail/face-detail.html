@@ -1,8 +1,11 @@
 <ion-header>
+
   <ion-navbar>
-    <ion-title>Display</ion-title>
+    <ion-title>face-detail</ion-title>
   </ion-navbar>
+
 </ion-header>
+
 <ion-content>
   <ion-slides no-padding [slidesPerView]="slidesPerView">
     <ion-slide *ngFor="let face of faces">
@@ -11,6 +14,7 @@
       <ion-input type="text" placeholder="First Name"></ion-input>
       <ion-label>Last Name</ion-label>
       <ion-input type="text" placeholder="Last Name"></ion-input>
+      <button ion-button (click)="barcode()">Barcode</button>
     </ion-slide>
   </ion-slides>
 </ion-content>
