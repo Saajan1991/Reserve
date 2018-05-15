@@ -1,14 +1,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>face-detail</ion-title>
+    <ion-title>Face Detail Page</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
+  <ion-label>Input Details Below</ion-label>
   <ion-slides no-padding [slidesPerView]="slidesPerView">
     <ion-slide *ngFor="let face of faces">
+      {{face.style}}
       <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style">
       <ion-label>First Name</ion-label>
       <ion-input type="text" placeholder="First Name"></ion-input>
