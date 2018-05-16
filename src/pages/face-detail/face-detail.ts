@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
 
 
 @Component({
@@ -8,42 +9,52 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FaceDetailPage {
 
-  faces: { response: {} };
+  faces: { response: {} };  // get faces from google api in this format
   items;
 
-  slidesPerView = 1;
+  options: BarcodeScannerOptions;
+  //result for barcode scan
+  private results: {
+    text: string,
+    cancelled: boolean,
+    format: string
+  };
+
+  slidesPerView = 1; //number of slides displayed per page
   a;
-  i = 0;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  i = 0; //for incrementing value in style
+  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
     this.items = navParams.get('faces');
     let imageData = navParams.get('image');
     this.faces = this.items.responses[0].faceAnnotations;
-
-    alert("Faces");
 
     let f1 = this.items.responses[0].faceAnnotations;
 
     for (let face of f1) {
       let faceVertices = face.boundingPoly.vertices;
-      this.a = faceVertices[0];
+      this.a = faceVertices[0]; //get the first vertices of face
       if (this.a.x == undefined) {
         this.a.x = 0;
       }
 
+      //define style to strip the image
       let styles = {
         'object-fit': 'none',
         'object-position': '-' + this.a.x + 'px -' + this.a.y + 'px',
         "width": "200px",
         "height": "200px"
       };
+      //adding style to faces
       this.faces[this.i].style = styles;
       this.i++;
     }
-    alert(this.faces[0].style);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FaceDetailPage');
+  //function to scan barcode
+  async scanBarcodeAdult(id) {
+    this.options = { prompt: 'Scan a barcode to see the results' };
+    this.results = await this.barcode.scan(this.options);
+    // document.querySelector('#adulttext' + id).innerHTML = this.results.text;
   }
 
 }

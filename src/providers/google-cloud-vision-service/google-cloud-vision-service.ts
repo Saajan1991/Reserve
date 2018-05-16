@@ -9,13 +9,13 @@ export class GoogleCloudVisionServiceProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello GoogleCloudVisionServiceProvider Provider');
-
   }
 
   getFaces(file) {
     // let fileName = file + ".jpg";
     let fileName = "people.jpg";
-    alert(fileName);
+    // alert(fileName);
+    //format to send request to google api
     let body = {
       "requests": [
         {
@@ -32,16 +32,17 @@ export class GoogleCloudVisionServiceProvider {
         }
       ]
     };
+    //http post request to google api using API Key and request json
     let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
     if (response) {
-      alert("response from google");
+      // alert("response from google");
     }
     else {
       alert("Error");
     }
     return response;
   }
-  
+
   // getLabels(base64Image) {
   //   let body = {
   //     "requests": [
