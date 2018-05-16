@@ -27,9 +27,11 @@ export class FaceDetailPage {
     this.items = navParams.get('faces');
     let imageData = navParams.get('image');
     this.faces = this.items.responses[0].faceAnnotations;
+    // this.faceVertices();
+  }
 
+  faceVertices() {
     let f1 = this.items.responses[0].faceAnnotations;
-
     for (let face of f1) {
       let faceVertices = face.boundingPoly.vertices;
       this.a = faceVertices[0]; //get the first vertices of face
@@ -51,7 +53,7 @@ export class FaceDetailPage {
   }
 
   //function to scan barcode
-  async scanBarcodeAdult(id) {
+  async scanBarcode(id) {
     this.options = { prompt: 'Scan a barcode to see the results' };
     this.results = await this.barcode.scan(this.options);
     // document.querySelector('#adulttext' + id).innerHTML = this.results.text;
