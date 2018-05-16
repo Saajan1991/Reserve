@@ -29,9 +29,11 @@ export class FaceDetailPage {
     let imageData = navParams.get('image');
 
     this.faceVertices();
+    alert("function");
   }
 
   faceVertices() {
+    alert("insidefunction");
     let f1 = this.items.responses[0].faceAnnotations;
     alert(f1);
     for (let face of f1) {
