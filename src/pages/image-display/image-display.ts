@@ -61,6 +61,7 @@ export class ImageDisplayPage {
   }
 
   next(){
+    alert("button clicked");
     //send data to imageDisplayPage
     this.navCtrl.push(FaceDetailPage, {
       image: this.base64Image,
