@@ -27,8 +27,8 @@ export class FaceDetailPage {
     alert("hello face detail page");
     this.items = navParams.get('faces');
     let imageData = navParams.get('image');
-    this.faces = this.items.responses[0].faceAnnotations;
-    alert(this.faces);
+    // this.faces = this.items.responses[0].faceAnnotations;
+    // alert(this.faces);
     // this.faceVertices();
   }
 
