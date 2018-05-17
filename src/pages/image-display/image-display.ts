@@ -65,7 +65,7 @@ export class ImageDisplayPage {
     //send data to imageDisplayPage
     this.navCtrl.push(FaceDetailPage, {
       image: this.base64Image,
-      faces: this.faces
+      faces: this.items
     });
   }
 
