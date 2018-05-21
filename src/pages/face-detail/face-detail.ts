@@ -12,6 +12,7 @@ import firebase from 'firebase';
 export class FaceDetailPage {
   @ViewChild(Slides) slides: Slides;
 
+  public imageData: string;
   faceStorageArray: any;
   faceData: any;
   faces: { response: {} };  // get faces from google api in this format
@@ -30,8 +31,7 @@ export class FaceDetailPage {
   i = 0; //for incrementing value in style
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner, formBuilder: FormBuilder) {
     this.items = navParams.get('faces');
-    let imageData = navParams.get('image');
-    
+    this.imageData = navParams.get('image');
 
     //creating form
     this.faceData = formBuilder.group({
