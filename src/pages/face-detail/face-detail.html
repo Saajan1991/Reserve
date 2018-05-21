@@ -11,13 +11,16 @@
   Hello
   <ion-slides no-padding [slidesPerView]="slidesPerView">
     <ion-slide *ngFor="let face of faces">
-      <!-- <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style"> -->
-      <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg">
+      <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style">
+      <!-- <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg"> -->
       <ion-label>First Name</ion-label>
       <ion-input type="text" placeholder="First Name"></ion-input>
       <ion-label>Last Name</ion-label>
       <ion-input type="text" placeholder="Last Name"></ion-input>
-      <button ion-button (click)="scanBarcode()">Barcode</button>
+      <button ion-button #face ion-button (click)="scanBarcode(face)">Barcode</button>
+    </ion-slide>
+    <ion-slide>
+      <button ion-button (click)= "save()"></button>
     </ion-slide>
   </ion-slides>
 </ion-content>

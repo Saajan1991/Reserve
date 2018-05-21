@@ -27,19 +27,14 @@ export class FaceDetailPage {
     alert("hello face detail page");
     this.items = navParams.get('faces');
     let imageData = navParams.get('image');
-
     this.faceVertices();
-    alert("function");
   }
 
   faceVertices() {
-    alert("insidefunction");
     let f1 = this.items.responses[0].faceAnnotations;
-    alert(f1);
     for (let face of f1) {
       let faceVertices = face.boundingPoly.vertices;
       this.a = faceVertices[0]; //get the first vertices of face
-      alert(this.a);
       if (this.a.x == undefined) {
         this.a.x = 0;
       }
@@ -53,7 +48,6 @@ export class FaceDetailPage {
       };
       //adding style to faces
       this.faces = this.items.responses[0].faceAnnotations;
-      alert(this.faces);
       this.faces[this.i].style = styles;
       this.i++;
     }
@@ -61,9 +55,16 @@ export class FaceDetailPage {
 
   //function to scan barcode
   async scanBarcode(id) {
-    this.options = { prompt: 'Scan a barcode to see the results' };
+    this.options = { prompt: 'Scan the barcode' };
     this.results = await this.barcode.scan(this.options);
+    alert(this.results);
+
+    id.color = "primary";
     // document.querySelector('#adulttext' + id).innerHTML = this.results.text;
+  }
+
+  save(){
+    
   }
 
 }

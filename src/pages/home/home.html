@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-slides no-padding [slidesPerView]="slidesPerView">
+  <!-- <ion-slides no-padding [slidesPerView]="slidesPerView">
     <ion-slide *ngFor="let face of faces">
       <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style">
       <ion-label>First Name</ion-label>
@@ -12,8 +12,83 @@
       <ion-label>Last Name</ion-label>
       <ion-input type="text" placeholder="Last Name"></ion-input>
     </ion-slide>
+  </ion-slides> -->
+  <!-- <button #first ion-button  (click)="next(first, 0)">Next</button> -->
+  <!-- <button ion-button (click)="save()">Save</button> -->
+
+
+  <!-- <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Todo</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" block>Add Todo</button>
+  </form> -->
+
+  <!-- <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Todo</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item> -->
+  <!-- <button ion-button type="submit" [disabled]="!todo.valid">Submit</button> -->
+  <!-- <button ion-button type="submit">Submit</button>
+  </form> -->
+
+  <!-- <form [formGroup]="face" (ngSubmit)="logForm()">
+    <ion-slides>
+      <ion-slide>
+        <ion-label>First Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+        <ion-label>Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+        <ion-label>Barcode</ion-label>
+        <ion-input type="text" formControlName="barcode"></ion-input>
+      </ion-slide>
+      <ion-slide>
+        <ion-label>First Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+        <ion-label>Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+        <ion-label>Barcode</ion-label>
+        <ion-input type="text" formControlName="barcode"></ion-input>
+      </ion-slide>
+      <ion-slide>
+        <ion-label>First Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+        <ion-label>Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+        <ion-label>Barcode</ion-label>
+        <ion-input type="text" formControlName="barcode"></ion-input>
+      </ion-slide>
+    </ion-slides>
+    <button ion-button type="submit">Submit</button>
+  </form> -->
+
+  <ion-slides>
+    <ion-slide *ngFor="let face of faces; let i = index">
+      <form [formGroup]="faceData" (ngSubmit)="submitForm(face, i)">
+        <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style">
+        <ion-label>First Name</ion-label>
+        <ion-input type="text" [attr.data-index]="i" formControlName="firstName"></ion-input>
+        <ion-label>Last Name</ion-label>
+        <ion-input type="text" [attr.data-index]="i" formControlName="lastName"></ion-input>
+        <ion-label>Barcode</ion-label>
+        <ion-input type="text" [attr.data-index]="i" formControlName="barcode"></ion-input>
+        <button ion-button type="submit">Submit</button>
+      </form>
+    </ion-slide>
   </ion-slides>
-  <button ion-button (click)="next()">Next</button>
+
 </ion-content>
+
+
 
 <!-- <div [innerHtml]="htmlToDisplay | safeHtml"></div> -->
