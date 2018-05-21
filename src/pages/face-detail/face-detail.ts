@@ -91,7 +91,7 @@ export class FaceDetailPage {
       this.slides.slideNext();
     }
 
-    alert(this.items.length);
+    alert(this.faces.response[0].length);
     alert(this.faceStorageArray.length);
     //check number of face detected and number of forms saved
     if (this.items.length == this.faceStorageArray.length) {
