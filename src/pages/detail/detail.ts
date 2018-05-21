@@ -80,10 +80,11 @@ export class DetailPage {
 
       //vision api to detect faces
       this.vision.getFaces(this.filename).subscribe((result) => {
+        alert(result);
         this.items = JSON.parse(JSON.stringify(result));
         this.faces = this.items.responses[0].faceAnnotations;
         var numberOfFaces = this.items.responses[0].faceAnnotations.length;
-      alert("Total Face Detected1: " + numberOfFaces);
+        alert("Total Face Detected1: " + numberOfFaces);
 
         //send data to imageDisplayPage
         this.navCtrl.push(ImageDisplayPage, {

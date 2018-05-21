@@ -41,6 +41,7 @@ export class HomePage {
     this.vision.getFaces("people").subscribe((result) => {
       this.items = JSON.parse(JSON.stringify(result));
       this.faces = this.items.responses[0].faceAnnotations;
+      alert(this.faces.length);
 
       let f1 = this.items.responses[0].faceAnnotations;
 
