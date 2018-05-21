@@ -82,6 +82,8 @@ export class DetailPage {
       this.vision.getFaces(this.filename).subscribe((result) => {
         this.items = JSON.parse(JSON.stringify(result));
         this.faces = this.items.responses[0].faceAnnotations;
+        var numberOfFaces = this.items.responses[0].faceAnnotations.length;
+      alert("Total Face Detected1: " + numberOfFaces);
 
         //send data to imageDisplayPage
         this.navCtrl.push(ImageDisplayPage, {
