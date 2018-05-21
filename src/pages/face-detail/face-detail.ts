@@ -83,15 +83,19 @@ export class FaceDetailPage {
     let faceData = this.faceData.value;
     alert("faceData" + faceData);
     if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
+      alert("data filled");
       let data = {
         "firstName": faceData.firstName,
         "lastName": faceData.lastName,
         "barcode": faceData.barcode,
         "faceVertices": face.boundingPoly.vertices
       };
+      alert("push data");
       this.faceStorageArray.push(data);
+      alert("next");
       this.slides.slideNext();
     }
+    alert("nextttttt");
 
     //check number of face detected and number of forms saved
     if (this.items.length == this.faceStorageArray.length) {
