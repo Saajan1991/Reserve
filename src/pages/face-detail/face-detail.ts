@@ -78,7 +78,10 @@ export class FaceDetailPage {
   }
 
   submitForm(face, id) {
+    alert(id);
+    alert("form submit");
     let faceData = this.faceData.value;
+    alert("faceData" + faceData);
     if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,
@@ -92,6 +95,7 @@ export class FaceDetailPage {
 
     //check number of face detected and number of forms saved
     if (this.items.length == this.faceStorageArray.length) {
+      alert("Hello");
       var success = this.database();
       if (success == true) {
         alert("Data Save Successful");
@@ -101,6 +105,7 @@ export class FaceDetailPage {
 
   //firebase database to store data
   database() {
+    alert("database");
     try {
       var storageId = Math.floor(Date.now() / 1000);  //generate number for unique storage
       var ref = firebase.database().ref("event");     //reference to database folder
