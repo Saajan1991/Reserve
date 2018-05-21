@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides [slidesPerView]="slidesPerView">
+  <ion-slides>
     <ion-slide *ngFor="let face of faces; let i = index">
       <form [formGroup]="faceData" (ngSubmit)="submitForm(face, i)">
         <!-- <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style"> -->

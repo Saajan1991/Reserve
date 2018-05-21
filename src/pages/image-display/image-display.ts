@@ -20,8 +20,6 @@ export class ImageDisplayPage {
   kids = [];
   faces: { response: {} };
 
-  slidesPerView = 3;
-
   htmlToAdd;
   htmlToDisplay: String = "";
   a: any;
@@ -39,7 +37,7 @@ export class ImageDisplayPage {
     if (this.items != undefined) {
       //number of faces detected by api
       this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
-      alert("Total Face Detected: " + this.numberOfFaces);
+      // alert("Total Face Detected: " + this.numberOfFaces);
       this.faces = this.items.responses[0].faceAnnotations;
     }
     else {
@@ -61,7 +59,7 @@ export class ImageDisplayPage {
   }
 
   next(){
-    alert("button clicked");
+    // alert("button clicked");
     //send data to imageDisplayPage
     this.navCtrl.push(FaceDetailPage, {
       image: this.base64Image,
