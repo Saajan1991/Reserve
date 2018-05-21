@@ -59,7 +59,7 @@ export class HomePage {
           "width": "200px",
           "height": "200px"
         };
-        
+
         this.faces[this.i].style = styles; //adding style to array
         this.i++;
       }
@@ -94,8 +94,6 @@ export class HomePage {
         alert("Data Save Successful");
       }
     }
-
-
   }
 
   slideChanged(form) {
@@ -118,8 +116,5 @@ export class HomePage {
     catch (e) {
       console.log(e);
     }
-
-
-
   }
 } 

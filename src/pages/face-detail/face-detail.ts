@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
+import { FormBuilder, Validators } from '@angular/forms';
+import firebase from 'firebase';
 
 
 @Component({
@@ -8,7 +10,10 @@ import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-sca
   templateUrl: 'face-detail.html',
 })
 export class FaceDetailPage {
+  @ViewChild(Slides) slides: Slides;
 
+  faceStorageArray: any;
+  faceData: any;
   faces: { response: {} };  // get faces from google api in this format
   items;
 
@@ -23,15 +28,26 @@ export class FaceDetailPage {
   slidesPerView = 1; //number of slides displayed per page
   a;
   i = 0; //for incrementing value in style
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner, formBuilder: FormBuilder) {
     alert("hello face detail page");
     this.items = navParams.get('faces');
     let imageData = navParams.get('image');
+    
+
+    //creating form
+    this.faceData = formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: [''],
+      barcode: ['']
+    });
+
     this.faceVertices();
   }
 
   faceVertices() {
     let f1 = this.items.responses[0].faceAnnotations;
+
+    //lopping through faces to get vertices
     for (let face of f1) {
       let faceVertices = face.boundingPoly.vertices;
       this.a = faceVertices[0]; //get the first vertices of face
@@ -46,9 +62,8 @@ export class FaceDetailPage {
         "width": "200px",
         "height": "200px"
       };
-      //adding style to faces
       this.faces = this.items.responses[0].faceAnnotations;
-      this.faces[this.i].style = styles;
+      this.faces[this.i].style = styles; //adding style to array
       this.i++;
     }
   }
@@ -63,8 +78,41 @@ export class FaceDetailPage {
     // document.querySelector('#adulttext' + id).innerHTML = this.results.text;
   }
 
-  save(){
-    
+  submitForm(face, id) {
+    let faceData = this.faceData.value;
+    if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
+      let data = {
+        "firstName": faceData.firstName,
+        "lastName": faceData.lastName,
+        "barcode": faceData.barcode,
+        "faceVertices": face.boundingPoly.vertices
+      };
+      this.faceStorageArray.push(data);
+      this.slides.slideNext();
+    }
+
+    //check number of face detected and number of forms saved
+    if (this.items.length == this.faceStorageArray.length) {
+      var success = this.database();
+      if (success == true) {
+        alert("Data Save Successful");
+      }
+    }
+  }
+
+  //firebase database to store data
+  database() {
+    try {
+      var storageId = Math.floor(Date.now() / 1000);  //generate number for unique storage
+      var ref = firebase.database().ref("event");     //reference to database folder
+      const imageRef = ref.child(`images/${storageId}`);
+      //save data to firebase 
+      imageRef.set(this.faceStorageArray);
+      return true;
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
 }

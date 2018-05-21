@@ -12,8 +12,8 @@ export class GoogleCloudVisionServiceProvider {
   }
 
   getFaces(file) {
-    // let fileName = file + ".jpg";
-    let fileName = "people.jpg";
+    let fileName = file + ".jpg";
+    // let fileName = "people.jpg";
     // alert(fileName);
     //format to send request to google api
     let body = {
