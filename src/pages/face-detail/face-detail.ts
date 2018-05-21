@@ -88,10 +88,11 @@ export class FaceDetailPage {
         "faceVertices": face.boundingPoly.vertices
       };
       this.faceStorageArray.push(data);
-      alert("next");
       this.slides.slideNext();
     }
 
+    alert(this.items.length);
+    alert(this.faceStorageArray.length);
     //check number of face detected and number of forms saved
     if (this.items.length == this.faceStorageArray.length) {
       alert("Hello");
@@ -111,6 +112,7 @@ export class FaceDetailPage {
       const imageRef = ref.child(`images/${storageId}`);
       //save data to firebase 
       imageRef.set(this.faceStorageArray);
+      alert("Success");
       return true;
     }
     catch (e) {
