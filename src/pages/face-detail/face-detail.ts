@@ -29,7 +29,6 @@ export class FaceDetailPage {
   a;
   i = 0; //for incrementing value in style
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner, formBuilder: FormBuilder) {
-    alert("hello face detail page");
     this.items = navParams.get('faces');
     let imageData = navParams.get('image');
     

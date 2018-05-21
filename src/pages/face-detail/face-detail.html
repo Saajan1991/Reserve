@@ -10,7 +10,8 @@
   <ion-slides [slidesPerView]="slidesPerView">
     <ion-slide *ngFor="let face of faces; let i = index">
       <form [formGroup]="faceData" (ngSubmit)="submitForm(face, i)">
-        <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style">
+        <!-- <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style"> -->
+        <img class="face" [src]="imageData" [ngStyle]="face.style">
         <ion-label>First Name</ion-label>
         <ion-input type="text" [attr.data-index]="i" formControlName="firstName"></ion-input>
         <ion-label>Last Name</ion-label>
