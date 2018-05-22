@@ -20,7 +20,7 @@ export class FaceDetailPage {
 
   options: BarcodeScannerOptions;
   //result for barcode scan
-  private results: {
+  private barcodeResults: {
     text: string,
     cancelled: boolean,
     format: string
@@ -70,15 +70,16 @@ export class FaceDetailPage {
   //function to scan barcode
   async scanBarcode(id) {
     this.options = { prompt: 'Scan the barcode' };
-    this.results = await this.barcode.scan(this.options);
-    alert(this.results.text);
+    this.barcodeResults = await this.barcode.scan(this.options);
+    alert(this.barcodeResults.text);
 
     // id.color = "primary";
-    document.querySelector('barcode' + id).innerHTML = this.results.text;
+    document.querySelector('#barcode' + id).innerHTML = this.barcodeResults.text;
   }
 
   submitForm(face, id) {
     let faceData = this.faceData.value;
+    faceData.barcode = this.barcodeResults.text;
     if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,

@@ -118,4 +118,9 @@ export class HomePage {
       console.log(e);
     }
   }
+
+  scanBarcode(id) {
+    alert(id);
+    document.querySelector('#barcode' + id).innerHTML = "985265858";
+  }
 } 
