@@ -1,27 +1,53 @@
-<ion-header>
+<!-- <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style"> -->
+<!-- <button ion-button #face ion-button (click)="scanBarcode(face)">Barcode</button> -->
 
+<ion-header>
   <ion-navbar>
     <ion-title>Face Detail Page</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 <ion-content>
-  
   <ion-slides>
     <ion-slide *ngFor="let face of faces; let i = index">
       <form [formGroup]="faceData" (ngSubmit)="submitForm(face, i)">
-        <img class="face" [src]="imageData" [ngStyle]="face.style">
-        <ion-label>First Name</ion-label>
-        <ion-input type="text" [attr.data-index]="i" formControlName="firstName"></ion-input>
-        <ion-label>Last Name</ion-label>
-        <ion-input type="text" [attr.data-index]="i" formControlName="lastName"></ion-input>
-        <ion-label>Barcode</ion-label>
-        <ion-input type="text" [attr.data-index]="i" formControlName="barcode"></ion-input>
-        <button ion-button type="submit">Submit</button>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img class="face" [src]="imageData" [ngStyle]="face.style">
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-3>
+              <ion-label>First Name</ion-label>
+            </ion-col>
+            <ion-col col-9>
+              <ion-input type="text" [attr.data-index]="i" formControlName="firstName"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-3>
+              <ion-label>Last Name</ion-label>
+            </ion-col>
+            <ion-col col-9>
+              <ion-input type="text" [attr.data-index]="i" formControlName="lastName"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-3>
+              <ion-label>Barcode Name</ion-label>
+            </ion-col>
+            <ion-col col-9>
+              <ion-input type="text" [attr.data-index]="i" formControlName="barcode"></ion-input>
+            </ion-col>
+          </ion-row>
+          
+          <button ion-button type="submit">Submit</button>
+        </ion-grid>
       </form>
     </ion-slide>
   </ion-slides>
+
 </ion-content>
-<!-- <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg" [ngStyle]="face.style"> -->
-<!-- <button ion-button #face ion-button (click)="scanBarcode(face)">Barcode</button> -->

@@ -2,7 +2,7 @@ page-home {
   ion-input {
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
     margin: 13px 8px;
     padding: 3px;
     font-size: 1em;
@@ -34,6 +34,10 @@ page-home {
   }
   .swiper-slide {
     align-items: normal;
+  }
+
+  ion-label{
+    display: flex;
   }
 }
 
