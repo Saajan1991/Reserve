@@ -90,27 +90,27 @@ export class FaceDetailPage {
       this.slides.slideNext();
     }
 
-    alert(this.faceStorageArray.length);
+    // alert(this.faceStorageArray.length);
     //check number of face detected and number of forms saved
     if (this.items.responses[0].faceAnnotations.length == this.faceStorageArray.length) {
       alert("Hello");
       var success = this.database();
       if (success == true) {
-        alert("Data Save Successful");
+        // alert("Data Save Successful");
       }
     }
   }
 
   //firebase database to store data
   database() {
-    alert("database");
+    // alert("database");
     try {
       var storageId = Math.floor(Date.now() / 1000);  //generate number for unique storage
       var ref = firebase.database().ref("event");     //reference to database folder
       const imageRef = ref.child(`images/${storageId}`);
       //save data to firebase 
       imageRef.set(this.faceStorageArray);
-      alert("Success");
+      // alert("Success");
       return true;
     }
     catch (e) {

@@ -3,8 +3,8 @@ page-face-detail {
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 90%;
-    margin: 13px 8px;
-    padding: 3px;
+    // margin: 13px 8px;
+    padding: 5px;
     font-size: 1em;
   }
   .text-input {
@@ -13,11 +13,10 @@ page-face-detail {
   ion-label {
     margin: 2px;
   }
-  .swiper-wrapper {
-    overflow-y: scroll;
-  }
+  
   .swiper-slide {
     align-items: normal;
+    overflow-y: scroll;
   }
   ion-label {
     display: flex;
