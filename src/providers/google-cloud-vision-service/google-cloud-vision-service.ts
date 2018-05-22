@@ -11,6 +11,7 @@ export class GoogleCloudVisionServiceProvider {
     console.log('Hello GoogleCloudVisionServiceProvider Provider');
   }
 
+  //face detection
   getFaces(file) {
     let fileName = file + ".jpg";
     // let fileName = "people.jpg";
@@ -33,16 +34,16 @@ export class GoogleCloudVisionServiceProvider {
       ]
     };
     //http post request to google api using API Key and request json
-    let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
-    if (response) {
-      // alert("response from google");
+    try{
+      let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
+      return response;
     }
-    else {
-      alert("Error");
+    catch(e){
+      console.log(e);
     }
-    return response;
   }
 
+  //label detection google api
   // getLabels(base64Image) {
   //   let body = {
   //     "requests": [

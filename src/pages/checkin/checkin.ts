@@ -49,8 +49,8 @@ export class CheckinPage {
       alert("There should be at least one Adult");
     }
     else {
+      //send data to Detail Page
       this.navCtrl.push(DetailPage, { adults: this.currentNumberOfAdults, kids: this.currentNumberOfKids });
-      // this.navCtrl.push(HomePage, {adults : this.currentNumberOfAdults, kids : this.currentNumberOfKids });
     }
   }
 

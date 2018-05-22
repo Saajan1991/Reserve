@@ -11,6 +11,7 @@
   <div id="content">
     <!-- Adult form -->
     <div id="adult-block">
+
       <button ion-button clear icon-only (click)="decrementAdult()">
         <ion-icon name="remove-circle" color="danger"></ion-icon>
       </button>
@@ -29,10 +30,13 @@
       <button ion-button clear icon-only (click)="decrementKid()">
         <ion-icon name="remove-circle" color="danger"></ion-icon>
       </button>
+
       <ion-label>Kids</ion-label>
+
       <button ion-button clear icon-only (click)="incrementKid()">
         <ion-icon name="add-circle" color="secondary"></ion-icon>
       </button>
+
     </div>
     <ion-input type="text" text-center value="{{currentNumberOfKids}}" disabled></ion-input>
 

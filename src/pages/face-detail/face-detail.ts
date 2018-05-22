@@ -94,13 +94,14 @@ export class FaceDetailPage {
         "barcode": faceData.barcode,
         "faceVertices": face.boundingPoly.vertices
       };
-      
+
       this.faceStorageArray.push(data);
-      //empty faceData for next slide
+     
+      this.slides.slideNext();
+       //empty faceData for next slide
       this.faceData.firstName = '';
       this.faceData.lastName = '';
       this.faceData.barcode = '';
-      this.slides.slideNext();
     }
 
     // alert(this.faceStorageArray.length);
