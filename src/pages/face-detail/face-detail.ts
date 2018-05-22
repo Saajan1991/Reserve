@@ -80,6 +80,7 @@ export class FaceDetailPage {
   submitForm(face, id) {
     let faceData = this.faceData.value;
     faceData.barcode = this.barcodeResults.text;
+    alert(faceData.barcode);
     if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,
