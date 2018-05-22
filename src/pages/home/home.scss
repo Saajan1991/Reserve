@@ -11,7 +11,6 @@ page-home {
     width: 300px;
     height: 300px;
   }
-  
   .text-input {
     margin: 0px;
   }
@@ -27,10 +26,14 @@ page-home {
     object-position: -794px -98px;
     width: 200px;
     height: 200px;
-  }
-  
-
-  // .slide-zoom{
+  } // .slide-zoom{
   //   height:100%;
   //   }
+  .swiper-wrapper {
+    overflow: scroll;
+  }
+  .swiper-slide {
+    align-items: normal;
+  }
 }
+

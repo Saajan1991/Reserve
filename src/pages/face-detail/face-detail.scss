@@ -10,9 +10,14 @@ page-face-detail {
   .text-input {
     margin: 0px;
   }
-
-  ion-label{
+  ion-label {
     margin: 2px;
+  }
+  .swiper-wrapper {
+    overflow: scroll;
+  }
+  .swiper-slide {
+    align-items: normal;
   }
 }
 
