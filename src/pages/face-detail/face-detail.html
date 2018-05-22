@@ -37,14 +37,17 @@
 
           <ion-row>
             <ion-col col-3>
-              <input type="button" ion-button (click)="scanBarcode(i)" value="Barcode">
+              <input type="button" ion-button (click)="scanBarcode(i)" value="Barcode"><ion-icon name="add"></ion-icon>
             </ion-col>
             <ion-col col-9>
               <ion-input type="text" readonly [id]="'barcode'+i" [attr.data-index]="i" formControlName="barcode"></ion-input>
             </ion-col>
           </ion-row>
 
-          <button ion-button type="submit">Submit</button>
+          <ion-col col-3></ion-col>
+          <ion-col col-9>
+            <button ion-button type="submit">Submit</button>
+          </ion-col>
         </ion-grid>
       </form>
     </ion-slide>

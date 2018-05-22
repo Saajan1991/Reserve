@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, ToastController, Toast } from 'ionic-angular';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
 import { FormBuilder, Validators } from '@angular/forms';
 import firebase from 'firebase';
@@ -29,7 +29,13 @@ export class FaceDetailPage {
   slidesPerView = 1; //number of slides displayed per page
   a;
   i = 0; //for incrementing value in style
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner, formBuilder: FormBuilder) {
+
+  //constructor
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private barcode: BarcodeScanner,
+    formBuilder: FormBuilder,
+    private toastCtrl: ToastController) {
     this.items = navParams.get('faces');
     this.imageData = navParams.get('image');
 
@@ -80,7 +86,7 @@ export class FaceDetailPage {
   submitForm(face, id) {
     let faceData = this.faceData.value;
     faceData.barcode = this.barcodeResults.text;
-    alert(faceData.barcode);
+    // alert(faceData.barcode);
     if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,
@@ -88,16 +94,27 @@ export class FaceDetailPage {
         "barcode": faceData.barcode,
         "faceVertices": face.boundingPoly.vertices
       };
+      
       this.faceStorageArray.push(data);
+      //empty faceData for next slide
+      this.faceData.firstName = '';
+      this.faceData.lastName = '';
+      this.faceData.barcode = '';
       this.slides.slideNext();
     }
 
     // alert(this.faceStorageArray.length);
     //check number of face detected and number of forms saved
     if (this.items.responses[0].faceAnnotations.length == this.faceStorageArray.length) {
-      alert("Hello");
+      // alert("Hello");
       var success = this.database();
       if (success == true) {
+        let toast = this.toastCtrl.create({
+          message: "Data Save Successful",
+          duration: 2000,
+          position: 'bottom'
+        });
+        toast.present();
         // alert("Data Save Successful");
       }
     }

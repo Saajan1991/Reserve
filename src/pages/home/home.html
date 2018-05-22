@@ -24,22 +24,23 @@
           </ion-row>
 
           <ion-row>
-              <ion-col col-3>
-                <ion-label>Last Name</ion-label>
-              </ion-col>
-              <ion-col col-9>
-                  <ion-input type="text" [attr.data-index]="i" formControlName="lastName"></ion-input>
-              </ion-col>
-            </ion-row>
+            <ion-col col-3>
+              <ion-label>Last Name</ion-label>
+            </ion-col>
+            <ion-col col-9>
+              <ion-input type="text" [attr.data-index]="i" formControlName="lastName"></ion-input>
+            </ion-col>
+          </ion-row>
 
-            <ion-row>
-                <ion-col col-3>
-                  <input type="button" ion-button (click)="scanBarcode(i)" value="Barcode">
-                </ion-col>
-                <ion-col col-9>
-                    <ion-input type="text" readonly [id]="'barcode'+i" [attr.data-index]="i" formControlName="barcode"></ion-input>
-                </ion-col>
-              </ion-row>
+          <ion-row>
+            <ion-col col-3>
+                <!-- <input type="button" ion-button (click)="scanBarcode(i)" value="Barcode"> -->
+                <ion-icon name="barcode" (click)="scanBarcode(i)" ></ion-icon>
+            </ion-col>
+            <ion-col col-9>
+              <ion-input type="text" readonly [id]="'barcode'+i" [attr.data-index]="i" formControlName="barcode"></ion-input>
+            </ion-col>
+          </ion-row>
 
 
           <button ion-button type="submit">Submit</button>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides } from 'ionic-angular';
+import { NavController, NavParams, Slides, ToastController } from 'ionic-angular';
 
 import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-vision-service/google-cloud-vision-service';
 import { TestPage } from '../test/test';
@@ -28,7 +28,7 @@ export class HomePage {
   faceData;
   faceStorageArray = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public vision: GoogleCloudVisionServiceProvider, formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, public navParams: NavParams, public vision: GoogleCloudVisionServiceProvider, formBuilder: FormBuilder) {
 
     //creating form
     this.faceData = formBuilder.group({
@@ -122,5 +122,11 @@ export class HomePage {
   scanBarcode(id) {
     alert(id);
     document.querySelector('#barcode' + id).innerHTML = "985265858";
-  }
-} 
+    let toast = this.toastCtrl.create({
+      message: "Data Save Successful",
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present();
+  } 
+}
