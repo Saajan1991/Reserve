@@ -71,10 +71,10 @@ export class FaceDetailPage {
   async scanBarcode(id) {
     this.options = { prompt: 'Scan the barcode' };
     this.results = await this.barcode.scan(this.options);
-    alert(this.results);
+    alert(this.results.text);
 
-    id.color = "primary";
-    // document.querySelector('#adulttext' + id).innerHTML = this.results.text;
+    // id.color = "primary";
+    document.querySelector('barcode' + id).innerHTML = this.results.text;
   }
 
   submitForm(face, id) {
