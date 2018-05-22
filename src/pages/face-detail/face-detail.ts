@@ -78,9 +78,7 @@ export class FaceDetailPage {
   }
 
   submitForm(face, id) {
-    alert(this.items.responses[0].faceAnnotations.length);
     let faceData = this.faceData.value;
-    alert("faceData" + faceData);
     if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,
@@ -94,7 +92,7 @@ export class FaceDetailPage {
 
     alert(this.faceStorageArray.length);
     //check number of face detected and number of forms saved
-    if (this.faces.response[0].length == this.faceStorageArray.length) {
+    if (this.items.responses[0].faceAnnotations.length == this.faceStorageArray.length) {
       alert("Hello");
       var success = this.database();
       if (success == true) {
