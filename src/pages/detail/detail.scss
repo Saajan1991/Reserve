@@ -2,21 +2,18 @@ page-detail {
   ion-content {
     margin-top: 10%;
   }
-  ion-input {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 20%;
-    left: 40%;
-  }
+  // ion-input {
+  //   border: 1px solid #ccc;
+  //   border-radius: 5px;
+  //   width: 20%;
+  //   left: 40%;
+  // }
   ion-icon {
     font-size: 30px;
   }
   #adult-block,
   #kid-block {
     display: block;
-  }
-  ion-content {
-    text-align: center;
   }
   ion-label {
     font-size: 3em;
@@ -26,15 +23,13 @@ page-detail {
     // height: 3em;
     font-size: 2em;
     top: 35%;
-
   }
-
   .content{
+    text-align: center;
     float: right;
   }
-
   .icon {
-    font-size: 4rem;
+    // font-size: 4rem;
   }
 }
 
