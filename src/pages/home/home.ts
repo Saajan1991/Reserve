@@ -38,34 +38,34 @@ export class HomePage {
     });
 
     //facedetection
-    this.vision.getFaces("people").subscribe((result) => {
-      this.items = JSON.parse(JSON.stringify(result));
-      this.faces = this.items.responses[0].faceAnnotations;
-      alert(this.faces.length);
+    // this.vision.getFaces("people").subscribe((result) => {
+    //   this.items = JSON.parse(JSON.stringify(result));
+    //   this.faces = this.items.responses[0].faceAnnotations;
+    //   alert(this.faces.length);
 
-      let f1 = this.items.responses[0].faceAnnotations;
+    //   let f1 = this.items.responses[0].faceAnnotations;
 
-      //lopping through faces to get vertices
-      for (let face of f1) {
-        let faceVertices = face.boundingPoly.vertices;
-        this.a = faceVertices[0];
-        if (this.a.x == undefined) {
-          this.a.x = 0;
-        }
+    //   //lopping through faces to get vertices
+    //   for (let face of f1) {
+    //     let faceVertices = face.boundingPoly.vertices;
+    //     this.a = faceVertices[0];
+    //     if (this.a.x == undefined) {
+    //       this.a.x = 0;
+    //     }
 
-        //styling image to stripe
-        let styles = {
-          'object-fit': 'none',
-          'object-position': '-' + this.a.x + 'px -' + this.a.y + 'px',
-          "width": "200px",
-          "height": "200px"
-        };
+    //     //styling image to stripe
+    //     let styles = {
+    //       'object-fit': 'none',
+    //       'object-position': '-' + this.a.x + 'px -' + this.a.y + 'px',
+    //       "width": "200px",
+    //       "height": "200px"
+    //     };
 
-        this.faces[this.i].style = styles; //adding style to array
-        this.i++;
-      }
-      console.log(this.items);
-    });
+    //     this.faces[this.i].style = styles; //adding style to array
+    //     this.i++;
+    //   }
+    //   console.log(this.items);
+    // });
   }
 
 
