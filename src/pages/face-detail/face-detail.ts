@@ -77,7 +77,7 @@ export class FaceDetailPage {
   async scanBarcode(id) {
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
-    // alert(this.barcodeResults.text);
+    alert(this.barcodeResults.text);
 
     // id.color = "primary";
     document.querySelector('#barcode' + id).innerHTML = this.barcodeResults.text;

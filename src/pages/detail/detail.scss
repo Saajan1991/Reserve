@@ -1,13 +1,7 @@
 page-detail {
   ion-content {
     margin-top: 10%;
-  }
-  // ion-input {
-  //   border: 1px solid #ccc;
-  //   border-radius: 5px;
-  //   width: 20%;
-  //   left: 40%;
-  // }
+  } 
   ion-icon {
     font-size: 30px;
   }
@@ -15,21 +9,25 @@ page-detail {
   #kid-block {
     display: block;
   }
+
+  #kid-block {
+    margin-top: 10%;
+  }
   ion-label {
-    font-size: 3em;
+    font-size: 2em;
+    // width: 200px;
   }
   .cameraButton {
     float: left;
-    // height: 3em;
-    font-size: 2em;
-    top: 35%;
+    height: 3em;
+    width: 50%;
+    font-size: 5em;
+    // top: 10%;
+    left: 10%;
   }
-  .content{
+  .content {
     text-align: center;
-    float: right;
-  }
-  .icon {
-    // font-size: 4rem;
+    // float: right;
   }
 }
 
