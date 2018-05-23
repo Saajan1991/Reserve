@@ -7,19 +7,34 @@
 </ion-header>
 
 <ion-content padding>
-  <div id="adult-block">
-    <ion-label>Adults</ion-label>
-    <h2>
-      <span>{{TotalNumberOfAdults}}</span>
-    </h2>
-  </div>
-  <div id="kid-block">
-    <ion-label>Kids</ion-label>
-    <h2>
-      <span>{{TotalNumberOfKids}}</span>
-    </h2>
-  </div>
-  <button ion-button (click)="takePhoto()">
-      <ion-icon name="camera"></ion-icon>
-  </button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="content">
+          <div id="adult-block">
+            <ion-label>Adults</ion-label>
+            <h2>
+              <span>{{TotalNumberOfAdults}}</span>
+            </h2>
+          </div>
+          <div id="kid-block">
+            <ion-label>Kids</ion-label>
+            <h2>
+              <span>{{TotalNumberOfKids}}</span>
+            </h2>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button large round class="cameraButton" (click)="takePhoto()">
+          <ion-icon name="ios-camera-outline"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

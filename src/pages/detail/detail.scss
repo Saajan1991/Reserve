@@ -21,5 +21,20 @@ page-detail {
   ion-label {
     font-size: 3em;
   }
+  .cameraButton {
+    float: left;
+    // height: 3em;
+    font-size: 2em;
+    top: 35%;
+
+  }
+
+  .content{
+    float: right;
+  }
+
+  .icon {
+    font-size: 4rem;
+  }
 }
 
