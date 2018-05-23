@@ -12,9 +12,9 @@ page-home {
     width: 300px;
     height: 300px;
   }
-  .text-input {
-    margin: 0px;
-  }
+  // .text-input {
+  //   // margin: 0px;
+  // }
   ion-icon {
     font-size: 2em;
     margin-top: 5px;
@@ -27,7 +27,8 @@ page-home {
     object-position: -794px -98px;
     width: 200px;
     height: 200px;
-  } // .slide-zoom{
+  } 
+  // .slide-zoom{
   //   height:100%;
   //   }
   // .swiper-wrapper {
@@ -40,6 +41,15 @@ page-home {
 
   ion-label{
     display: flex;
+  }
+
+  ion-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+    padding: 5px;
+    font-size: 1em;
+    margin-top: 10px;
   }
 }
 

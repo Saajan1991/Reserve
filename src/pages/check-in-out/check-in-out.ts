@@ -28,4 +28,9 @@ export class CheckInOutPage {
   checkOut() {
     // this.navCtrl.push(CheckOutPage);
   }
+
+  //find people
+  find(){
+    //this.navCtrl.push(ProfilePage);
+  }
 }

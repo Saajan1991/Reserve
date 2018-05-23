@@ -42,7 +42,8 @@ export class FaceDetailPage {
     //creating form
     this.faceData = formBuilder.group({
       firstName: ['', Validators.required],
-      lastName: [''],
+      gender: [''],
+      age: [''],
       barcode: ['']
     });
 
@@ -87,10 +88,11 @@ export class FaceDetailPage {
     let faceData = this.faceData.value;
     faceData.barcode = this.barcodeResults.text;
     // alert(faceData.barcode);
-    if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
+    if (faceData.firstName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,
-        "lastName": faceData.lastName,
+        "gender": faceData.gender,
+        "age": faceData.age,
         "barcode": faceData.barcode,
         "faceVertices": face.boundingPoly.vertices
       };
@@ -98,10 +100,6 @@ export class FaceDetailPage {
       this.faceStorageArray.push(data);
      
       this.slides.slideNext();
-       //empty faceData for next slide
-      this.faceData.firstName = '';
-      this.faceData.lastName = '';
-      // this.faceData.barcode = '';
     }
 
     // alert(this.faceStorageArray.length);

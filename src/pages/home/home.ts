@@ -33,7 +33,8 @@ export class HomePage {
     //creating form
     this.faceData = formBuilder.group({
       firstName: ['', Validators.required],
-      lastName: [''],
+      gender: [''],
+      age: [''],
       barcode: ['']
     });
 
@@ -77,16 +78,17 @@ export class HomePage {
 
   submitForm(face, id) {
     let faceData = this.faceData.value;
-    if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
+    // if (faceData.firstName != '' && faceData.lastName != '' && faceData.barcode != '') {
       let data = {
         "firstName": faceData.firstName,
-        "lastName": faceData.lastName,
+        "gender": faceData.gender,
+        "age": faceData.age,
         "barcode": faceData.barcode,
         "faceVertices": face.boundingPoly.vertices
       };
       this.faceStorageArray.push(data);
       this.slides.slideNext();
-    }
+    // }
 
     //check number of face detected and number of forms saved
     if (this.faces.length == this.faceStorageArray.length) {
