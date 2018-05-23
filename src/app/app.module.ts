@@ -25,6 +25,7 @@ import * as firebase from 'firebase';
 import { SafeHtmlPipe } from '../safeHtml';
 import { FaceDetailPage } from '../pages/face-detail/face-detail';
 import { TestPage } from '../pages/test/test';
+import { CheckInOutPage } from '../pages/check-in-out/check-in-out';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -39,7 +40,8 @@ firebase.initializeApp(environment.firebaseConfig)
     ImageDisplayPage,
     SafeHtmlPipe,
     TestPage,
-    FaceDetailPage
+    FaceDetailPage,
+    CheckInOutPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ firebase.initializeApp(environment.firebaseConfig)
     CheckinPage,
     ImageDisplayPage,
     TestPage,
-    FaceDetailPage
+    FaceDetailPage,
+    CheckInOutPage
   ],
   providers: [
     StatusBar,
