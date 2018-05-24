@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Slides, ToastController, Toast } f
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
 import { FormBuilder, Validators } from '@angular/forms';
 import firebase from 'firebase';
+import { CheckinPage } from '../checkin/checkin';
 
 
 @Component({
@@ -78,7 +79,7 @@ export class FaceDetailPage {
   async scanBarcode(id) {
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
-    alert(this.barcodeResults.text);
+    // alert(this.barcodeResults.text);
 
     // id.color = "primary";
     document.querySelector('#barcode' + id).innerHTML = this.barcodeResults.text;
@@ -115,6 +116,7 @@ export class FaceDetailPage {
         });
         toast.present();
         // alert("Data Save Successful");
+        this.navCtrl.push(CheckinPage);
       }
     }
   }
@@ -124,7 +126,7 @@ export class FaceDetailPage {
     // alert("database");
     try {
       var storageId = Math.floor(Date.now() / 1000);  //generate number for unique storage
-      var ref = firebase.database().ref("event");     //reference to database folder
+      var ref = firebase.database().ref("visits/event");     //reference to database folder
       const imageRef = ref.child(`images/${storageId}`);
       //save data to firebase 
       imageRef.set(this.faceStorageArray);

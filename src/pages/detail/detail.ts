@@ -52,14 +52,22 @@ export class DetailPage {
       correctOrientation: true
     }
 
-    //open camera in device
-    this.camera.getPicture(options).then((imageData) => {
-      let imageDataResult = 'data:image/jpeg;base64,' + imageData;
-      // let downloadUrl = this.upload(imageDataResult);
-      this.upload(imageDataResult);
-    }, err => {
-      alert(err);
-    });
+    try {
+      //open camera in device
+      this.camera.getPicture(options).then((imageData) => {
+        let imageDataResult = 'data:image/jpeg;base64,' + imageData;
+        // let downloadUrl = this.upload(imageDataResult);
+        this.upload(imageDataResult);
+      }, err => {
+        alert(err);
+        // if(err == "cordova_not_available"){
+        //   let imageDataResult = 
+        // }
+      });
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
 
