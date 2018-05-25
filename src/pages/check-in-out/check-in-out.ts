@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CheckinPage } from '../checkin/checkin';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { CheckoutPage } from '../checkout/checkout';
+import { FindPage } from '../find/find';
+import { EventPage } from '../event/event';
 
 @Component({
   selector: 'page-check-in-out',
@@ -29,14 +32,15 @@ export class CheckInOutPage {
 
   //go to check out page
   checkOut() {
-    this.scanBarcode();
-    // this.navCtrl.push(CheckOutPage);
+    // this.scanBarcode();
+    this.navCtrl.push(CheckoutPage);
   }
 
   //find people
   find(){
-    this.scanBarcode();
-    //this.navCtrl.push(ProfilePage);
+    // this.scanBarcode();
+    this.navCtrl.push(FindPage);
+    // this.navCtrl.push(EventPage);
   }
 
   //function to scan barcode

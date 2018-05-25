@@ -1,0 +1,27 @@
+<ion-menu [content]="content" side="right">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose (click)="openEvent(tabs[0])">
+        Event
+      </button>
+      <!-- <button ion-item (click)="openEvent()">
+                Event
+            </button>
+            <button ion-item (click)="openEvent()">
+                Event
+            </button>
+            <button ion-item (click)="openEvent()">
+                Event
+            </button> -->
+      <button ion-item menuClose (click)="Settings()">
+        Settings
+      </button>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>

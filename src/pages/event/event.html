@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Event</ion-title>
+    <!-- <button ion-button  (click)="addEvent()">
+      <ion-icon item-right name="add"></ion-icon>
+    </button> -->
+
+    <ion-buttons end class="addIcon" (click)="addEvent()">
+      <button ion-button icon-only color="royal">
+        <ion-icon item-right name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  List of Events
+  <ion-list *ngFor="let event of list">
+    {{event}}
+  </ion-list>
+
+  <ion-buttons>
+    <button ion-button (click)="back()">Back</button>
+  </ion-buttons>
+</ion-content>

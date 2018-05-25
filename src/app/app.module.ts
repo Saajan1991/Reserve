@@ -26,6 +26,10 @@ import { SafeHtmlPipe } from '../safeHtml';
 import { FaceDetailPage } from '../pages/face-detail/face-detail';
 import { TestPage } from '../pages/test/test';
 import { CheckInOutPage } from '../pages/check-in-out/check-in-out';
+import { CheckoutPage } from '../pages/checkout/checkout';
+import { FindPage } from '../pages/find/find';
+import { EventPage } from '../pages/event/event';
+import { AddEventPage } from '../pages/add-event/add-event';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -41,7 +45,11 @@ firebase.initializeApp(environment.firebaseConfig)
     SafeHtmlPipe,
     TestPage,
     FaceDetailPage,
-    CheckInOutPage
+    CheckInOutPage,
+    CheckoutPage,
+    EventPage,
+    FindPage,
+    AddEventPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +70,11 @@ firebase.initializeApp(environment.firebaseConfig)
     ImageDisplayPage,
     TestPage,
     FaceDetailPage,
-    CheckInOutPage
+    CheckInOutPage,
+    CheckoutPage,
+    EventPage,
+    FindPage,
+    AddEventPage
   ],
   providers: [
     StatusBar,

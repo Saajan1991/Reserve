@@ -31,6 +31,7 @@ export class FaceDetailPage {
   a;
   i = 0; //for incrementing value in style
 
+
   //constructor
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -99,7 +100,7 @@ export class FaceDetailPage {
       };
 
       this.faceStorageArray.push(data);
-     
+
       this.slides.slideNext();
     }
 
@@ -137,5 +138,6 @@ export class FaceDetailPage {
       console.log(e);
     }
   }
+
 
 }

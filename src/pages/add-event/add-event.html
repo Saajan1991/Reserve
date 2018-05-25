@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Event</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="eventData" (ngSubmit)="submit()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Event Name</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="text" formControlName="eventName"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Start</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="date" formControlName="start"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Finish</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="date" formControlName="finish"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button type="submit">Submit</button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

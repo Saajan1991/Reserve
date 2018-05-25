@@ -5,6 +5,8 @@ import { HomePage } from '../home/home';
 import { CheckinPage } from '../checkin/checkin';
 import { CheckInOutPage } from '../check-in-out/check-in-out';
 
+import { MenuController } from 'ionic-angular';
+
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -14,7 +16,8 @@ export class TabsPage {
   tab2Root = CheckInOutPage;
   tab3Root = ContactPage;
 
-  constructor() {
+  constructor(public menuCtrl: MenuController) {
 
   }
+
 }

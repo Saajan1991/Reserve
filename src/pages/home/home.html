@@ -1,77 +1,11 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar #content>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Display</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-
-Home Page
-  <!-- <form [formGroup]="faceData" (ngSubmit)="submitForm(face, i)">
-
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="face" src="http://www.allwhitebackground.com/images/3/3809.jpg">
-        </ion-col>
-
-        <ion-col>
-          <ion-row>
-            <ion-col col-3>
-              <ion-label>First Name</ion-label>
-            </ion-col>
-            <ion-col col-9>
-              <ion-input type="text" [attr.data-index]="i" formControlName="firstName"></ion-input>
-            </ion-col>
-          </ion-row>
-
-
-          <ion-row>
-              <ion-col col-3>
-                <ion-label>Gender</ion-label>
-              </ion-col>
-              <ion-col col-9>
-
-                <ion-select formControlName="gender">
-                  <ion-option value="female">Female</ion-option>
-                  <ion-option value="male">Male</ion-option>
-                </ion-select>
-
-              </ion-col>
-            </ion-row>
-
-
-            <ion-row>
-              <ion-col col-3>
-                <ion-label>Age</ion-label>
-              </ion-col>
-              <ion-col col-9>
-                <ion-select formControlName="age">
-                  <ion-option value="0-4">0-4</ion-option>
-                  <ion-option value="4-9">4-9</ion-option>
-                  <ion-option value="10-14">10-14</ion-option>
-                </ion-select>
-
-              </ion-col>
-            </ion-row>
-
-
-          <ion-row>
-            <ion-col col-3>
-              <ion-icon name="barcode" (click)="scanBarcode(i)"></ion-icon>
-            </ion-col>
-            <ion-col col-9>
-              <ion-input type="text" readonly [id]="'barcode'+i" [attr.data-index]="i" formControlName="barcode"></ion-input>
-            </ion-col>
-          </ion-row>
-
-          <button ion-button type="submit">Submit</button>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form> -->
-
-
-  
-
+  Home Page
 </ion-content>
