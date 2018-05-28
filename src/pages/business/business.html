@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>business</ion-title>
+
+    <ion-buttons end class="addIcon" (click)="addBusiness()">
+      <button ion-button icon-only color="royal">
+        <ion-icon item-right name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-label>List of business</ion-label>
+  <ion-list *ngFor="let business of lists">
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img [src]="logo">
+      </ion-thumbnail>
+      <h2 (click)="businessDetails(business)">{{business}}</h2>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

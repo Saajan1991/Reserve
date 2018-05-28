@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Venue Detail</ion-title>
+
+    <ion-buttons end class="cross" (click)="dismiss()">
+      <button ion-button icon-only color="royal">
+        <ion-icon item-right name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- <ion-avatar item-start (click)="uploadLogo()">
+    <img [src]="logo">
+  </ion-avatar> -->
+
+  <div class="inputText">
+    <h2>{{venueName}}</h2>
+  </div>
+
+  <ion-buttons>
+    <div>
+      <button ion-button (click)="listEvents()">
+        Venues
+      </button>
+    </div>
+    <div>
+      <button ion-button (click)="settings()">
+        Settings
+      </button>
+    </div>
+  </ion-buttons>
+</ion-content>

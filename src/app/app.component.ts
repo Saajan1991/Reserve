@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { EventPage } from '../pages/event/event';
+import { BusinessPage } from '../pages/business/business';
 
 
 
@@ -27,10 +28,15 @@ export class MyApp {
   }
 
   openEvent() {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.push(EventPage);
-    // this.nav.getActiveChildNav().select(EventPage)
+  }
+
+  openBusiness(){
+    this.nav.push(BusinessPage);
+  }
+
+  openVenues(){
+    this.nav.push(BusinessPage);
   }
 
   // openSetting() {

@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Business</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-avatar item-start (click)="uploadLogo()">
+    <img src="https://www.freelogodesign.org/img/logo-ex-7.png">
+  </ion-avatar>
+
+
+  <div class="inputText">
+    <ion-label>Business Name</ion-label>
+    <ion-input type="text" placeholder="Business Name"></ion-input>
+  </div>
+
+  <ion-buttons>
+    <div class="submit">
+      <button ion-button (click)="submit()">
+        Sumit
+      </button>
+    </div>
+  </ion-buttons>
+</ion-content>

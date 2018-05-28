@@ -10,21 +10,14 @@ import firebase from 'firebase';
   templateUrl: 'event.html',
 })
 export class EventPage {
-  events;
+  // events;
   list = ["Event1", "Event2", "Event3"];
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
-    // let db = this.database();
-    var ref = firebase.database().ref("events");
-    // Attach an asynchronous callback to read the data at our posts reference
-    ref.once('value', function (snapshot){
-      let events = [];
-      snapshot.forEach(snap => {
-        events.push(snap.val());
-        return false;
-      });
-      console.log(events);
-      this.events = events;
+    this.getEvents(function (err, result) {
+      console.log(result);
+      let events = result;
     });
+
 
     // ref.on("value", function (snapshot) {
     //   var events = snapshot.val();
@@ -34,6 +27,18 @@ export class EventPage {
     //   console.log("The read failed: " + errorObject.code);
     // });
     // console.log("hello");
+  }
+
+  //get event with callback
+  getEvents(callback) {
+    var ref = firebase.database().ref("events");
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.once('value', function (snapshot) {
+      let events = snapshot.val();
+      callback(null, events);
+    }, function (error) {
+      callback(error);
+    });
   }
 
   ionViewDidLoad() {

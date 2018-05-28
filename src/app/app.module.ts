@@ -30,6 +30,12 @@ import { CheckoutPage } from '../pages/checkout/checkout';
 import { FindPage } from '../pages/find/find';
 import { EventPage } from '../pages/event/event';
 import { AddEventPage } from '../pages/add-event/add-event';
+import { ApiProvider } from '../providers/api/api';
+import { BusinessPage } from '../pages/business/business';
+import { AddBusinessPage } from '../pages/add-business/add-business';
+import { BusinessDetailPage } from '../pages/business-detail/business-detail';
+import { VenuePage } from '../pages/venue/venue';
+import { VenueDetailPage } from '../pages/venue-detail/venue-detail';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -49,7 +55,12 @@ firebase.initializeApp(environment.firebaseConfig)
     CheckoutPage,
     EventPage,
     FindPage,
-    AddEventPage
+    AddEventPage,
+    BusinessPage,
+    AddBusinessPage,
+    BusinessDetailPage,
+    VenuePage,
+    VenueDetailPage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +85,12 @@ firebase.initializeApp(environment.firebaseConfig)
     CheckoutPage,
     EventPage,
     FindPage,
-    AddEventPage
+    AddEventPage,
+    BusinessPage,
+    AddBusinessPage,
+    BusinessDetailPage,
+    VenuePage,
+    VenueDetailPage
   ],
   providers: [
     StatusBar,
@@ -82,7 +98,8 @@ firebase.initializeApp(environment.firebaseConfig)
     Camera,
     BarcodeScanner,
     GoogleCloudVisionServiceProvider,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ApiProvider
   ]
 })
 export class AppModule { }

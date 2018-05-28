@@ -1,0 +1,28 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Venue</ion-title>
+  
+      <ion-buttons end class="addIcon" (click)="addVenue()">
+        <button ion-button icon-only color="royal">
+          <ion-icon item-right name="add-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-label>List of Venues</ion-label>
+    <ion-list *ngFor="let venue of lists">
+  
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img [src]="logo">
+        </ion-thumbnail>
+        <h2 (click)="venueDetails(venue)">{{venue}}</h2>
+      </ion-item>
+  
+    </ion-list>
+  </ion-content>

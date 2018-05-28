@@ -1,0 +1,30 @@
+page-add-business {
+  ion-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+  }
+//   .VenuesButton,
+//   .SettingsButton,
+//   .inputText {
+//     text-align: center;
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: block;
+//   }
+  button {
+    width: 50%;
+  }
+  ion-content {
+    text-align: center;
+  }
+
+  ion-avatar{
+      width: 20%;
+      margin: auto;
+  }
+}
+
