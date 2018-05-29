@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { VenuePage } from '../venue/venue';
+import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -9,13 +10,25 @@ import { VenuePage } from '../venue/venue';
 })
 export class BusinessDetailPage {
 
+  venueList: any;
+  businessName: any;
   logo;
-  businessName;
+  businessId;
+  businessDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl : ViewController, private modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
+    private api: ApiProvider) {
     //get data from nav params
-    this.logo = navParams.get('logo');
-    this.businessName = navParams.get('businessName');
+    this.businessId = navParams.get('businessId');
+    this.api.getBusinessById(this.businessId).subscribe((result => {
+      this.businessDetail = JSON.parse(JSON.stringify(result));
+      console.log(this.businessDetail.business);
+      this.logo = this.businessDetail.business.logo;
+      this.businessName = this.businessDetail.business.name;
+    }));
   }
 
   ionViewDidLoad() {
@@ -23,17 +36,15 @@ export class BusinessDetailPage {
   }
 
   //dismiss modal
-  dismiss(){
+  dismiss() {
     this.viewCtrl.dismiss();
   }
 
-  listVenues(){
-    console.log("list venues");
+  listVenues(id) {
     let addVenueModal = this.modalCtrl.create(VenuePage, {
-      businessName: this.businessName,
+      businessId: this.businessId,
       logo: this.logo
     });
     addVenueModal.present();
-
-    }
+  }
 }

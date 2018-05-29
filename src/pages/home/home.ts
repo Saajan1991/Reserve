@@ -14,7 +14,7 @@ import { ApiProvider } from '../../providers/api/api';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+businessList;
   constructor(public navCtrl: NavController,
     private api: ApiProvider,
     private toastCtrl: ToastController,
@@ -24,11 +24,15 @@ export class HomePage {
 
   login() {
     // this.api.login();
+    this.api.login();
+  }
 
-    this.api.login().subscribe((result)=> {
-      let res = JSON.parse(JSON.stringify(result));
-      console.log(result);
-
-    });
+  list(){
+    let a = this.api.getBusiness();
+    a.subscribe((result => {
+      this.businessList = JSON.parse(JSON.stringify(result)).businesses;
+      let list = result;
+      console.log(this.businessList.businesses);
+    }));
   }
 }

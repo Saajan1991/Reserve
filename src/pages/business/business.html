@@ -15,13 +15,13 @@
 
 <ion-content padding>
   <ion-label>List of business</ion-label>
-  <ion-list *ngFor="let business of lists">
+  <ion-list *ngFor="let business of businessList">
 
     <ion-item>
       <ion-thumbnail item-start>
-        <img [src]="logo">
+        <img src="{{business.logo}}">
       </ion-thumbnail>
-      <h2 (click)="businessDetails(business)">{{business}}</h2>
+      <h2 (click)="businessDetails(business.id)">{{business.name}}</h2>
     </ion-item>
 
   </ion-list>

@@ -9,4 +9,11 @@
 <ion-content>
   Home Page
   <button ion-button (click)="login()">Login</button>
+
+  <button ion-button (click)="list()">List</button>
+
+  <ion-list *ngFor = "let business of businessList">
+    <ion-item>{{business.name}}</ion-item>
+   
+  </ion-list>
 </ion-content>
