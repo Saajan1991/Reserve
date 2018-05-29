@@ -18,18 +18,30 @@
   <!-- <ion-avatar item-start (click)="uploadLogo()">
     <img [src]="logo">
   </ion-avatar> -->
-    <div>
-      <ion-label>Name</ion-label>
-      <h2>{{venueName}}</h2>
-    </div>
-    <div>
-      <ion-label>People Capacity</ion-label>
-      <h2>{{capacity}}</h2>
-    </div>
-    <div>
-      <ion-label>Area</ion-label>
-      <h2>{{area}}</h2>
-    </div>
+  <div>
+    <ion-label>Name</ion-label>
+    <h2>{{venueName}}</h2>
+  </div>
+  <div>
+    <ion-label>People Capacity</ion-label>
+    <h2>{{capacity}}</h2>
+  </div>
+  <div>
+    <ion-label>Area</ion-label>
+    <h2>{{area}}</h2>
+  </div>
 
 
+  <ion-buttons>
+    <div>
+      <button ion-button (click)="getEvents()">
+        Events
+      </button>
+    </div>
+    <div>
+      <button ion-button (click)="settings()">
+        Settings
+      </button>
+    </div>
+  </ion-buttons>
 </ion-content>

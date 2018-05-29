@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
+import { EventPage } from '../event/event';
 
 
 @IonicPage()
@@ -10,19 +11,25 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class VenueDetailPage {
 
+  businessId: any;
+  venueId: any;
+  eventId: any;
   area: any;
   capacity: any;
   venueName: any;
   venueDetail;
+
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private api: ApiProvider) {
-    let venueId = this.navParams.get('venueId');
-    let businessId = this.navParams.get("businessId");
+    this.venueId = this.navParams.get('venueId');
+    this.businessId = this.navParams.get("businessId");
 
     try {
-      let a = this.getVenueDetail(businessId, venueId);
+      let a = this.getVenueDetail(this.businessId, this.venueId);
       console.log(a);
     } catch (error) {
 
@@ -41,9 +48,19 @@ export class VenueDetailPage {
       this.venueName = this.venueDetail.name;
       this.capacity = this.venueDetail.ppl_capacity;
       this.area = this.venueDetail.sqm_capacity;
+      this.eventId = this.venueDetail.id;
       console.log(this.venueDetail.name);
       return this.venueDetail;
     }));
+  }
+
+  getEvents() {
+    let addEventModal = this.modalCtrl.create(EventPage, {
+      venueId: this.venueId,
+      businessId: this.businessId
+    });
+    addEventModal.present();
+
   }
 
   dismiss() {

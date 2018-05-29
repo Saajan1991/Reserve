@@ -14,6 +14,7 @@ import { ApiProvider } from '../../providers/api/api';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  eventList: any;
 businessList;
   constructor(public navCtrl: NavController,
     private api: ApiProvider,
@@ -28,11 +29,11 @@ businessList;
   }
 
   list(){
-    let a = this.api.getBusiness();
+    let a = this.api.getEvent(1, 1);
     a.subscribe((result => {
-      this.businessList = JSON.parse(JSON.stringify(result)).businesses;
-      let list = result;
-      console.log(this.businessList.businesses);
+      this.eventList = JSON.parse(JSON.stringify(result)).events;
+      console.log(result);
+      return this.eventList;
     }));
   }
 }

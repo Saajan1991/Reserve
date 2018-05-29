@@ -43,6 +43,7 @@ export class BusinessPage {
       this.businessList = JSON.parse(JSON.stringify(result)).businesses;
       let list = result;
       console.log(this.businessList);
+      alert(this.businessList);
     }));
   }
 }

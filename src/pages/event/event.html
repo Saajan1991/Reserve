@@ -12,17 +12,14 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  List of Events
-  <div *ngIf="events">
-    <ion-list *ngFor="let event of events">
-      {{event.eventName}}
+    <ion-label>List of events</ion-label>
+
+    <ion-list *ngFor="let event of eventList">
+  
+      <ion-item>
+        <h2>{{event.name}}</h2>
+      </ion-item>
+  
     </ion-list>
-  </div>
-
-
-  <ion-buttons>
-    <button ion-button (click)="back()">Back</button>
-  </ion-buttons>
-</ion-content>
+  </ion-content>

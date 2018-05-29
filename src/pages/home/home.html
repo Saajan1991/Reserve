@@ -16,4 +16,21 @@
     <ion-item>{{business.name}}</ion-item>
    
   </ion-list>
+
+  <ion-content padding>
+      <ion-label>List of events</ion-label>
+  
+      <!-- <ion-list>
+        <h2>Event 1</h2>
+        <h2>Event 2</h2>
+        <h2>Event 3</h2>
+      </ion-list> -->
+      <ion-list *ngFor="let event of eventList">
+    
+        <ion-item>
+          <h2>{{event.name}}</h2>
+        </ion-item>
+    
+      </ion-list>
+    </ion-content>
 </ion-content>
