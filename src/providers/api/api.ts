@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ApiProvider {
 
   authorization;
-  access_token;
+  public access_token;
 
   constructor(public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
@@ -24,9 +24,10 @@ export class ApiProvider {
       this.authorization = JSON.parse(JSON.stringify(result));
       this.access_token = this.authorization.access_token;
       console.log(this.authorization.access_token);
+      alert("login success");
+      alert(this.access_token);
     }));
-    alert("login success");
-    alert(this.access_token);
+
     return a;
   }
 
@@ -79,7 +80,7 @@ export class ApiProvider {
         'Authorization': "Bearer " + this.access_token
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId +"/venues/" + venueId + "/events", httpOptions);
+    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events", httpOptions);
     return response;
   }
 
@@ -89,7 +90,7 @@ export class ApiProvider {
         'Authorization': "Bearer " + this.access_token
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId +"/venues/" + venueId + "/events/" + eventId, httpOptions);
+    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId, httpOptions);
     return response;
   }
 
