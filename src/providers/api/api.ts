@@ -95,4 +95,28 @@ export class ApiProvider {
     return response;
   }
 
+  //function to store venue
+  storeVenue(businessId){
+    let data = {
+      name: "Venue Forest",
+      sqm_capacity: "1234.56",
+      ppl_capacity: "500"
+    };
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + this.access_token
+      })
+    };
+    let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues", data, httpOptions);
+    return response;
+  }
+
+  storeBusiness(){
+
+  }
+
+  storeEvent(){
+
+  }
+
 }

@@ -101,23 +101,23 @@ export class EventPage {
 
   }
 
-ionViewDidLoad() {
-  console.log('ionViewDidLoad EventPage');
-}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EventPage');
+  }
 
-addEvent() {
-  let addEventModal = this.modalCtrl.create(AddEventPage);
-  addEventModal.present();
-}
+  addEvent() {
+    let addEventModal = this.modalCtrl.create(AddEventPage);
+    addEventModal.present();
+  }
 
 
-getEvents(businessId, venueId){
-  let a = this.api.getEvent(businessId, venueId);
-  a.subscribe((result => {
-    this.eventList = JSON.parse(JSON.stringify(result)).events;
-    console.log(result);
-    return this.eventList;
-  }));
-}
+  getEvents(businessId, venueId) {
+    let a = this.api.getEvent(businessId, venueId);
+    a.subscribe((result => {
+      this.eventList = JSON.parse(JSON.stringify(result)).events;
+      console.log(result);
+      return this.eventList;
+    }));
+  }
 
 }
