@@ -24,6 +24,7 @@ export class ApiProvider {
       this.authorization = JSON.parse(JSON.stringify(result));
       this.access_token = this.authorization.access_token;
       console.log(this.authorization.access_token);
+      alert(result);
       alert("login success");
       alert(this.access_token);
     }));
