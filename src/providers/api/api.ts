@@ -44,7 +44,7 @@ export class ApiProvider {
         () => {
           this.loading.dismiss();
         });
-    return false;
+    return true;
     // if (this.loginCheck == true) {
     //   return true;
     // }
