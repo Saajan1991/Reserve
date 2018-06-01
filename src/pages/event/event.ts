@@ -77,6 +77,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { TabsPage } from '../tabs/tabs';
 import { AddEventPage } from '../add-event/add-event';
 import { ApiProvider } from '../../providers/api/api';
+import { EventDetailPage } from '../event-detail/event-detail';
 
 @IonicPage({
   name: 'page-event',
@@ -93,7 +94,10 @@ export class EventPage {
   businessId;
   venueId;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, private api: ApiProvider) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    private api: ApiProvider) {
     this.businessId = navParams.get('businessId');
     this.venueId = navParams.get('venueId');
 
@@ -106,7 +110,10 @@ export class EventPage {
   }
 
   addEvent() {
-    let addEventModal = this.modalCtrl.create(AddEventPage);
+    let addEventModal = this.modalCtrl.create(AddEventPage, {
+      businessId: this.businessId,
+      venueId: this.venueId,
+    });
     addEventModal.present();
   }
 
@@ -120,4 +127,12 @@ export class EventPage {
     }));
   }
 
+  eventDetails(id) {
+    let eventDetail = this.modalCtrl.create(EventDetailPage, {
+      businessId: this.businessId,
+      venueId: this.venueId,
+      eventId: id
+    });
+    eventDetail.present();
+  }
 }

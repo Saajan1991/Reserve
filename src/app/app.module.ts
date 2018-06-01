@@ -36,6 +36,10 @@ import { AddBusinessPage } from '../pages/add-business/add-business';
 import { BusinessDetailPage } from '../pages/business-detail/business-detail';
 import { VenuePage } from '../pages/venue/venue';
 import { VenueDetailPage } from '../pages/venue-detail/venue-detail';
+import { AddVenuePage } from '../pages/add-venue/add-venue';
+import { MenuPage } from '../pages/menu/menu';
+import { LoginPage } from '../pages/login/login';
+import { EventDetailPage } from '../pages/event-detail/event-detail';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -60,7 +64,11 @@ firebase.initializeApp(environment.firebaseConfig)
     AddBusinessPage,
     BusinessDetailPage,
     VenuePage,
-    VenueDetailPage
+    VenueDetailPage,
+    AddVenuePage,
+    MenuPage,
+    LoginPage,
+    EventDetailPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +98,11 @@ firebase.initializeApp(environment.firebaseConfig)
     AddBusinessPage,
     BusinessDetailPage,
     VenuePage,
-    VenueDetailPage
+    VenueDetailPage,
+    AddVenuePage,
+    MenuPage,
+    LoginPage,
+    EventDetailPage
   ],
   providers: [
     StatusBar,

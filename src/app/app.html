@@ -1,4 +1,4 @@
-<ion-menu [content]="content" side="right">
+<!-- <ion-menu [content]="content" side="left">
     <ion-header>
         <ion-toolbar>
             <ion-title>Menu</ion-title>
@@ -6,20 +6,11 @@
     </ion-header>
     <ion-content>
         <ion-list>
-            <button ion-item menuClose (click)="openEvent()">
-                Event
+            <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+                <ion-icon item-left [name]="p.icon"></ion-icon>
+                {{p.title}}
             </button>
-            <button ion-item menuClose (click)="openBusiness()">
-                Business
-            </button>
-            <button ion-item menuClose (click)="openVenues()">
-                Venues
-            </button>
-            <button ion-item menuClose (click)="Settings()">
-                Settings
-            </button>
-
         </ion-list>
     </ion-content>
-</ion-menu>
+</ion-menu> -->
 <ion-nav #content [root]="rootPage"></ion-nav>

@@ -41,10 +41,14 @@ export class BusinessDetailPage {
   }
 
   listVenues(id) {
-    let addVenueModal = this.modalCtrl.create(VenuePage, {
+    this.navCtrl.push(VenuePage, {
       businessId: this.businessId,
       logo: this.logo
     });
-    addVenueModal.present();
+    // let addVenueModal = this.modalCtrl.create(VenuePage, {
+    //   businessId: this.businessId,
+    //   logo: this.logo
+    // });
+    // addVenueModal.present();
   }
 }

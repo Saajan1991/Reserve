@@ -17,7 +17,7 @@
 
     <ion-list *ngFor="let event of eventList">
   
-      <ion-item>
+      <ion-item (click)="eventDetails(event.id)"> 
         <h2>{{event.name}}</h2>
       </ion-item>
   

@@ -37,10 +37,10 @@ businessList;
     }));
   }
 
-  storeVenue(){
-    this.api.storeVenue(1).subscribe((result => {
-     let response = result;
-     let jsonResponse = JSON.parse(JSON.stringify(result));
-    }));
-  }
+  // storeVenue(){
+  //   this.api.storeVenue(1).subscribe((result => {
+  //    let response = result;
+  //    let jsonResponse = JSON.parse(JSON.stringify(result));
+  //   }));
+  // }
 }

@@ -2,13 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { VenueDetailPage } from '../venue-detail/venue-detail';
 import { ApiProvider } from '../../providers/api/api';
-
-/**
- * Generated class for the VenuePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AddVenuePage } from '../add-venue/add-venue';
 
 @IonicPage()
 @Component({
@@ -39,6 +33,10 @@ export class VenuePage {
   //add venue
   addVenue(){
     //code to add venue to the list
+    let addEventModal = this.modalCtrl.create(AddVenuePage, {
+      businessId: this.businessId
+    });
+    addEventModal.present();
   }
 
   //view venue details
@@ -61,8 +59,18 @@ export class VenuePage {
     }));
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
+  //call api to store venue
+  storeVenue(){
+    let data = {
+      name: "Venue Forest",
+      sqm_capacity: "1234.56",
+      ppl_capacity: "500"
+    };
+
+    this.api.storeVenue(this.businessId, data).subscribe((result => {
+     let response = result;
+     let jsonResponse = JSON.parse(JSON.stringify(result));
+    }));
   }
 
 }

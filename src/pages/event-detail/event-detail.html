@@ -1,8 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Business Detail</ion-title>
-
+    <ion-title>Event Detail</ion-title>
     <ion-buttons end class="cross" (click)="dismiss()">
       <button ion-button icon-only color="royal">
         <ion-icon item-right name="close"></ion-icon>
@@ -14,19 +13,23 @@
 
 
 <ion-content padding>
-
-  <ion-avatar item-start>
-    <img [src]="logo">
-  </ion-avatar>
-
-  <div class="inputText">
-    <h2>{{businessName}}</h2>
+  <div>
+    <ion-label>Event Name</ion-label>
+    <h2>{{eventName}}</h2>
+  </div>
+  <div>
+    <ion-label>Start Date</ion-label>
+    <h2>{{eventStart}}</h2>
+  </div>
+  <div>
+    <ion-label>Finish Date</ion-label>
+    <h2>{{eventFinish}}</h2>
   </div>
 
   <ion-buttons>
     <div>
-      <button ion-button (click)="listVenues(businessId)">
-        Venues
+      <button ion-button (click)="getEvents()">
+        Events
       </button>
     </div>
     <div>
@@ -35,4 +38,5 @@
       </button>
     </div>
   </ion-buttons>
+
 </ion-content>

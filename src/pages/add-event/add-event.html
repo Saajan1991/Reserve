@@ -2,13 +2,18 @@
 
   <ion-navbar>
     <ion-title>Add Event</ion-title>
+    <ion-buttons end class="cross" (click)="dismiss()">
+      <button ion-button icon-only color="royal">
+        <ion-icon item-right name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <form [formGroup]="eventData" (ngSubmit)="submit()">
+  <form [formGroup]="eventData" (ngSubmit)="submitForm()">
     <ion-grid>
       <ion-row>
         <ion-col>

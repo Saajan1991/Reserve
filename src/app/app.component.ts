@@ -3,9 +3,8 @@ import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from '../pages/tabs/tabs';
-import { EventPage } from '../pages/event/event';
-import { BusinessPage } from '../pages/business/business';
+// import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 
 
@@ -16,7 +15,8 @@ export class MyApp {
 
   @ViewChild(Nav) nav: NavController;
 
-  rootPage: any = TabsPage;
+  rootPage: any = LoginPage;
+  pages;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -25,23 +25,15 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    // this.pages = [
+    //   { title: 'Business', component: BusinessPage, index: 0, icon: 'none', hide: false },
+    //   { title: 'Setting', component: TabsPage, index: 1, icon: 'setting', hide: false },
+    // ];
   }
 
-  openEvent() {
-    this.nav.push(EventPage);
-  }
-
-  openBusiness(){
-    this.nav.push(BusinessPage);
-  }
-
-  openVenues(){
-    this.nav.push(BusinessPage);
-  }
-
-  // openSetting() {
-  //   // Reset the content nav to have just this page
-  //   // we wouldn't want the back button to show in this scenario
-  //   this.nav.setRoot(SettingPage);
+  // openPage(page) {
+  //   this.nav.push(page.component, { index: page.index });
   // }
+
 }

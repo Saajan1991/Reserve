@@ -55,12 +55,15 @@ export class VenueDetailPage {
   }
 
   getEvents() {
-    let addEventModal = this.modalCtrl.create(EventPage, {
+    this.navCtrl.push(EventPage, {
       venueId: this.venueId,
       businessId: this.businessId
     });
-    addEventModal.present();
-
+    // let addEventModal = this.modalCtrl.create(EventPage, {
+    //   venueId: this.venueId,
+    //   businessId: this.businessId
+    // });
+    // addEventModal.present();
   }
 
   dismiss() {

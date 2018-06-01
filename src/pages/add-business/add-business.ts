@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ApiProvider } from '../../providers/api/api';
+import { BusinessPage } from '../business/business';
 
 @IonicPage()
 @Component({
@@ -8,26 +11,53 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddBusinessPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  BusinessData;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private viewCtrl: ViewController,
+    private api: ApiProvider) {
+    this.BusinessData = formBuilder.group({
+      businessName: ['', Validators.required]
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddBusinessPage');
   }
 
-
   //uploading logo
-  uploadLogo(){
+  uploadLogo() {
     console.log("Update logo");
   }
 
-  // list venue button
-  listVenues(){
-    console.log("Venue list");
+
+  //submit for with data
+  submitForm() {
+    let BusinessData = this.BusinessData.value;
+    let data = {
+      name: BusinessData.businessName,
+      user_id: 1
+    };
+    this.storeBusinessData(data);
   }
 
-  //setting button
-  settings(){
 
+  //store business data 
+  storeBusinessData(data) {
+    this.api.storeBusiness(data).subscribe((result => {
+      let response = result;
+      let jsonResponse = JSON.parse(JSON.stringify(result));
+      // this.dismiss();
+      this.navCtrl.push(BusinessPage);
+    }));
   }
+
+  //dismiss the modal
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
 }

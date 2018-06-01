@@ -4,7 +4,7 @@ import { AddBusinessPage } from '../add-business/add-business';
 import { BusinessDetailPage } from '../business-detail/business-detail';
 import { ApiProvider } from '../../providers/api/api';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-business',
   templateUrl: 'business.html',
@@ -43,7 +43,7 @@ export class BusinessPage {
       this.businessList = JSON.parse(JSON.stringify(result)).businesses;
       let list = result;
       console.log(this.businessList);
-      alert(this.businessList);
+      // alert(this.businessList);
     }));
   }
 }
