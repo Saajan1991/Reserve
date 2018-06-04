@@ -1,6 +1,6 @@
 {
   "name": "reservation",
-  "app_id": "3e1cf7c9",
+  "app_id": "36d0cc4d",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
