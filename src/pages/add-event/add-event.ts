@@ -92,6 +92,8 @@ export class AddEventPage {
   businessId;
   venueId;
 
+  days;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     formBuilder: FormBuilder,
@@ -101,11 +103,101 @@ export class AddEventPage {
     this.businessId = navParams.get('businessId');
     this.venueId = navParams.get('venueId');
 
+    this.days =  [
+      {
+        'day': 'Sunday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Monday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Tuesday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Wednesday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Thursday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Friday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Saturday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      }
+    ];
+
+
     //creating form
     this.eventData = formBuilder.group({
       eventName: ['', Validators.required],
       start: [''],
-      finish: ['']
+      finish: [''],
+      days: [
+        {
+          'day': 'Sunday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+        {
+          'day': 'Monday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+        {
+          'day': 'Tuesday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+        {
+          'day': 'Wednesday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+        {
+          'day': 'Thursday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+        {
+          'day': 'Friday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+        {
+          'day': 'Saturday',
+          'status': false,
+          'startTime': '',
+          'finishTime': ''
+        },
+      ]
     });
   }
 
@@ -123,6 +215,20 @@ export class AddEventPage {
       finish: eventData.finish
     };
     this.storeEventData(data);
+
+    // let data = this.days;
+    // let arrayTime = [];
+    // for (let d of data) {
+    //   if (d.startTime == "" || d.finishTime == "") {
+    //     arrayTime.push("null");
+    //   }
+    //   else {
+    //     arrayTime.push(d.startTime + '-' + d.finishTime);
+    //   }
+    // }
+    // // console.log(arrayTime);
+    // var dataString = arrayTime.toString();
+    // console.log(dataString);
   }
 
 
@@ -144,9 +250,11 @@ export class AddEventPage {
     this.viewCtrl.dismiss();
   }
 
-
-
-
-
-
+  dayJsondata = [];
+  changeDay(day) {
+    console.log(day);
+    if (day.status == true) {
+      // this.showTimeInput = true;
+    }
+  }
 }

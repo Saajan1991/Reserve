@@ -15,12 +15,60 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class HomePage {
   eventList: any;
-businessList;
+
+  days;
+  dayStatus: boolean;
+  businessList;
   constructor(public navCtrl: NavController,
     private api: ApiProvider,
     private toastCtrl: ToastController,
     public navParams: NavParams,
     formBuilder: FormBuilder) {
+    // this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    this.days = [
+      {
+        'day': 'Sunday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Monday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Tuesday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Wednesday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Thursday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Friday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+      {
+        'day': 'Saturday',
+        'status': false,
+        'startTime': '',
+        'finishTime': ''
+      },
+    ];
   }
 
   login() {
@@ -28,7 +76,7 @@ businessList;
     this.api.login();
   }
 
-  list(){
+  list() {
     let a = this.api.getEvent(1, 1);
     a.subscribe((result => {
       this.eventList = JSON.parse(JSON.stringify(result)).events;
@@ -37,10 +85,30 @@ businessList;
     }));
   }
 
-  // storeVenue(){
-  //   this.api.storeVenue(1).subscribe((result => {
-  //    let response = result;
-  //    let jsonResponse = JSON.parse(JSON.stringify(result));
-  //   }));
-  // }
+  dayJsondata = [];
+  changeDay(day) {
+    console.log(day);
+    if (day.status == true) {
+      // this.showTimeInput = true;
+    }
+  }
+
+  submit() {
+    let data = this.days;
+    let arrayTime = [];
+    for (let d of data) {
+      if (d.startTime == "" || d.finishTime == "") {
+        arrayTime.push("null");
+      }
+      else {
+        arrayTime.push(d.startTime + '-' + d.finishTime);
+      }
+    }
+    // console.log(arrayTime);
+    var dataString = arrayTime.toString();
+    console.log(dataString);
+  }
+
+  
+
 }

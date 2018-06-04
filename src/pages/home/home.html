@@ -13,25 +13,46 @@
   <button ion-button (click)="list()">List</button>
   <button ion-button (click)="storeVenue()">Store</button>
 
-  <ion-list *ngFor = "let business of businessList">
+  <ion-list *ngFor="let business of businessList">
     <ion-item>{{business.name}}</ion-item>
-   
+
   </ion-list>
 
   <ion-content padding>
-      <ion-label>List of events</ion-label>
-  
-      <!-- <ion-list>
+    <ion-label>List of events</ion-label>
+
+    <!-- <ion-list>
         <h2>Event 1</h2>
         <h2>Event 2</h2>
         <h2>Event 3</h2>
       </ion-list> -->
-      <ion-list *ngFor="let event of eventList">
-    
-        <ion-item>
-          <h2>{{event.name}}</h2>
-        </ion-item>
-    
-      </ion-list>
-    </ion-content>
-</ion-content>
+    <ion-list *ngFor="let event of eventList">
+
+      <ion-item>
+        <h2>{{event.name}}</h2>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngFor="let day of days" inset>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>{{day.day}}</ion-label>
+              <ion-checkbox [(ngModel)]="day.status" (ionChange)="changeDay(day)"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-datetime displayFormat="h:mm A" *ngIf="day.status" [(ngModel)]="day.startTime"></ion-datetime>
+          </ion-col>
+          <ion-col>
+            <ion-datetime displayFormat="h:mm A" *ngIf="day.status" [(ngModel)]="day.finishTime"></ion-datetime>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    <ion-input type="submit" (click)="submit()">Submit</ion-input>
+
+  </ion-content>

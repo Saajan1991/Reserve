@@ -24,18 +24,17 @@ export class ApiProvider {
       email: "test@mailinator.com",
       password: "123456"
     };
-    let apiAddress = "https://accesscheck.herokuapp.com/api/auth/login";
+    let apiAddress = "https://accesscheck-pr-4.herokuapp.com/api/auth/login";
 
     this.loading.present();
 
     let a = this.http.post(apiAddress, data)
       .subscribe((
         result => {
-          let loginCheck = false;
           this.authorization = JSON.parse(JSON.stringify(result));
           this.access_token = this.authorization.access_token;
           console.log(this.authorization.access_token);
-          loginCheck = true;
+          this.loginCheck = true;
           return true;
         }),
         error => {
@@ -44,6 +43,7 @@ export class ApiProvider {
         () => {
           this.loading.dismiss();
         });
+    // this.loading.dismiss();
     return true;
     // if (this.loginCheck == true) {
     //   return true;

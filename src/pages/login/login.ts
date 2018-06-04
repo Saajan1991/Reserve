@@ -28,7 +28,14 @@ export class LoginPage {
   login() {
 
     let loginCheck = this.api.login();
-    this.navCtrl.push(TabsPage);
+
+    if(loginCheck == true){
+      this.navCtrl.push(TabsPage);
+    }
+    else{
+      //
+    }
+    
 
     // console.log(loginCheck);
 

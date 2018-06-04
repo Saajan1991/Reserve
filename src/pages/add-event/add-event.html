@@ -43,6 +43,33 @@
       </ion-row>
 
       <ion-row>
+        <ion-col>Days</ion-col>
+      </ion-row>
+      <ion-col>
+        <ion-list *ngFor="let day of days" inset>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label>{{day.day}}</ion-label>
+                  <!-- formControlName="day.status" -->
+                  <ion-checkbox  (ionChange)="changeDay(day)"></ion-checkbox>
+                </ion-item>
+              </ion-col>
+
+              <ion-col>
+                <ion-datetime displayFormat="h:mm A" *ngIf="day.status" formControlName="day.startTime"></ion-datetime>
+              </ion-col>
+              <ion-col>
+                <ion-datetime displayFormat="h:mm A" *ngIf="day.status" formControlName="day.finishTime"></ion-datetime>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-list>
+      </ion-col>
+
+
+      <ion-row>
         <ion-col>
         </ion-col>
         <ion-col>
