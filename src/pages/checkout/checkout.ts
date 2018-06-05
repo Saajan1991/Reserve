@@ -14,7 +14,7 @@ export class CheckoutPage {
     console.log(barcode);
     alert("alert " + barcode);
     alert("heello");
-  }
+  }                          
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutPage');

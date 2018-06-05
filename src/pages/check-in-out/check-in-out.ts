@@ -20,7 +20,7 @@ export class CheckInOutPage {
     format: string
   };
 
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
   }
 
@@ -35,15 +35,16 @@ export class CheckInOutPage {
 
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
-    alert("barcode Result1" + this.barcodeResults.text);
+    let barcodeText = this.barcodeResults.text;
+    alert("barcode Result 1" + barcodeText);
     this.navCtrl.push(CheckoutPage, {
-      barcodeResult: this.barcodeResults.text
+      barcodeResult: barcodeText
     });
-    alert("barcode Result2")
+    alert("barcode Result 2")
   }
 
   //find people using barcode
-  find(){
+  find() {
     this.scanBarcode().then(result => {
       this.navCtrl.push(FindPage, {
         barcodeResult: this.barcodeResults
