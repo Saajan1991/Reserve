@@ -31,12 +31,12 @@ export class CheckInOutPage {
   }
 
   //go to check out page
-  checkOut() {
-    // this.scanBarcode();
-    this.scanBarcode().then(result => {
-      this.navCtrl.push(CheckoutPage, {
-        barcodeResult: this.barcodeResults
-      });
+  async checkOut() {
+
+    this.options = { prompt: 'Scan the barcode' };
+    this.barcodeResults = await this.barcode.scan(this.options);
+    this.navCtrl.push(CheckoutPage, {
+      barcodeResult: this.barcodeResults
     });
   }
 

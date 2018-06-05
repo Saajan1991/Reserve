@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav, MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { BusinessPage } from '../business/business';
+import { LoginPage } from '../login/login';
 
 // @IonicPage()
 @Component({
@@ -16,6 +17,7 @@ export class MenuPage {
     this.pages = [
       { title: 'Business', pageName: BusinessPage, index: 0, icon: 'none', hide: false },
       { title: 'Setting', pageName: BusinessPage, index: 1, icon: 'settings', hide: false },
+      { title: 'Log Out', pageName: LoginPage, index: 2, icon: 'none', hide: false }
       // { title: 'Special', pageName: 'SpecialPage', icon: 'shuffle' }
     ];
 

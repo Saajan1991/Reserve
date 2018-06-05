@@ -12,8 +12,8 @@ export class CheckoutPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     let barcode = this.navParams.get('barcodeResults');
     console.log(barcode);
-    alert(barcode);
-    alert(barcode.text);
+    alert("alert " + barcode);
+    alert("alert2 " + barcode.text);
   }
 
   ionViewDidLoad() {
