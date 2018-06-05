@@ -34,10 +34,12 @@ export class CheckInOutPage {
   async checkOut() {
 
     this.options = { prompt: 'Scan the barcode' };
-    this.barcodeResults = await this.barcode.scan(this.options);
+    let barcodeResults = await this.barcode.scan(this.options);
+    alert("barcode Result1")
     this.navCtrl.push(CheckoutPage, {
-      barcodeResult: this.barcodeResults
+      barcodeResult: barcodeResults
     });
+    alert("barcode Result2")
   }
 
   //find people using barcode
