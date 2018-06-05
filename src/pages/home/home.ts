@@ -20,6 +20,7 @@ export class HomePage {
   items: any;
   filename: number;
   eventList: any;
+  public storageRef;
 
   days;
   dayStatus: boolean;
@@ -131,7 +132,12 @@ export class HomePage {
       //open camera in device
       this.camera.getPicture(options).then((imageData) => {
         let imageDataResult = 'data:image/jpeg;base64,' + imageData;
-        this.upload(imageDataResult);
+        // this.upload(imageDataResult);
+        this.vision.getLabels(imageDataResult).subscribe((result) => {
+          this.items = JSON.parse(JSON.stringify(result));
+          let label = this.items[0].labelAnnotation;
+          alert(this.items);
+        });
       }, err => {
         alert(err);
       });
@@ -140,44 +146,4 @@ export class HomePage {
       console.log(e);
     }
   }
-
-  public upload(imageDataResult) {
-    try {
-      // this.storageRef = firebase.storage().ref();
-      //generate name for file based on date
-      this.filename = Math.floor(Date.now() / 1000);
-      // const imageRef = this.storageRef.child(`images/${this.filename}.jpg`);
-      // imageRef.putString(imageDataResult, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
-      //   let toast = this.toastCtrl.create({
-      //     message: "Upload Success",
-      //     duration: 2000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      // alert("upload Success");
-
-      //vision api to detect faces
-      this.vision.getLabels(this.filename).subscribe((result) => {
-        this.items = JSON.parse(JSON.stringify(result));
-        this.faces = this.items.responses[0].faceAnnotations;
-
-        //send data to imageDisplayPage
-        // this.navCtrl.push(ImageDisplayPage, {
-        //   image: imageDataResult,
-        //   adults: this.TotalNumberOfAdults,
-        //   kids: this.TotalNumberOfKids,
-        //   faces: this.items
-        // });
-      }, err => {
-        alert(err);
-      });
-      // return this.downloadURL;
-    }
-    catch (e) {
-      alert(e);
-    }
-  }
-
-
-
 }
