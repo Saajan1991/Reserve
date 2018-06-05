@@ -8,31 +8,6 @@
 </ion-header>
 <ion-content>
   Home Page
-  <button ion-button (click)="login()">Login</button>
-
-  <button ion-button (click)="list()">List</button>
-  <button ion-button (click)="storeVenue()">Store</button>
-
-  <ion-list *ngFor="let business of businessList">
-    <ion-item>{{business.name}}</ion-item>
-
-  </ion-list>
-
-  <ion-content padding>
-    <ion-label>List of events</ion-label>
-
-    <!-- <ion-list>
-        <h2>Event 1</h2>
-        <h2>Event 2</h2>
-        <h2>Event 3</h2>
-      </ion-list> -->
-    <ion-list *ngFor="let event of eventList">
-
-      <ion-item>
-        <h2>{{event.name}}</h2>
-      </ion-item>
-
-    </ion-list>
 
     <!-- <ion-list *ngFor="let day of days" inset>
       <ion-grid>
@@ -54,11 +29,10 @@
       </ion-grid>
     </ion-list>
     <ion-input type="submit" (click)="submit()">Submit</ion-input> -->
-
-
+<!-- 
     <form (ngSubmit) = "submitForm()">
       <ion-input type="text" [(ngModel)] = "EventName" name="event"></ion-input>
   
       <ion-input type="submit">Submit</ion-input>
-    </form>
+    </form> -->
   </ion-content>

@@ -9,10 +9,6 @@ export class ApiProvider {
   authorization;
   public access_token;    //access token for authorization to api
 
-  loading = this.loadingCtrl.create({
-    content: 'Please wait...'
-  });
-
   constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
     console.log('Hello ApiProvider Provider');
   }
@@ -25,8 +21,6 @@ export class ApiProvider {
       password: "123456"
     };
     let apiAddress = "https://accesscheck.herokuapp.com/api/auth/login";
-
-    this.loading.present();
 
     let a = this.http.post(apiAddress, data)
       .subscribe((
@@ -41,9 +35,7 @@ export class ApiProvider {
           console.log(error)
         },
         () => {
-          this.loading.dismiss();
         });
-    // this.loading.dismiss();
     return true;
     // if (this.loginCheck == true) {
     //   return true;

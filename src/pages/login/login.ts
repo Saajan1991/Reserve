@@ -26,17 +26,18 @@ export class LoginPage {
   }
 
   login() {
-
     let loginCheck = this.api.login();
-
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     if(loginCheck == true){
+      loading.dismiss();
       this.navCtrl.push(TabsPage);
     }
     else{
       //
     }
-    
-
     // console.log(loginCheck);
 
     // if (loginCheck == true) {
