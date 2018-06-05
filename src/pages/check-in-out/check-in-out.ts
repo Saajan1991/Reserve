@@ -32,19 +32,21 @@ export class CheckInOutPage {
 
   //go to check out page
   checkOut() {
-    this.scanBarcode();
-    this.navCtrl.push(CheckoutPage, {
-      barcodeResult: this.barcodeResults
+    // this.scanBarcode();
+    this.scanBarcode().then(result => {
+      this.navCtrl.push(CheckoutPage, {
+        barcodeResult: this.barcodeResults
+      });
     });
   }
 
-  //find people
+  //find people using barcode
   find(){
-    this.scanBarcode();
-    this.navCtrl.push(FindPage, {
-      barcodeResult: this.barcodeResults
+    this.scanBarcode().then(result => {
+      this.navCtrl.push(FindPage, {
+        barcodeResult: this.barcodeResults
+      });
     });
-    // this.navCtrl.push(EventPage);
   }
 
   //function to scan barcode
