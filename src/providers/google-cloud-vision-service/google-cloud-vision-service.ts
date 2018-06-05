@@ -44,28 +44,28 @@ export class GoogleCloudVisionServiceProvider {
   }
 
   //label detection google api
-  // getLabels(base64Image) {
-  //   let body = {
-  //     "requests": [
-  //       {
-  //         "image": {
-  //           "content": base64Image
-  //         },
-  //         "features": [
-  //           {
-  //             "type": "LABEL_DETECTION"
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   }
-  //   let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
-  //   if (response) {
-  //     alert("Response from google");
-  //   }
-  //   else {
-  //     alert("Error");
-  //   }
-  //   return response;
-  // }
+  getLabels(base64Image) {
+    let body = {
+      "requests": [
+        {
+          "image": {
+            "content": base64Image
+          },
+          "features": [
+            {
+              "type": "LABEL_DETECTION"
+            }
+          ]
+        }
+      ]
+    }
+    let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
+    if (response) {
+      alert("Response from google");
+    }
+    else {
+      alert("Error");
+    }
+    return response;
+  }
 }

@@ -32,30 +32,29 @@ export class CheckInOutPage {
 
   //go to check out page
   async checkOut() {
-
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
     let barcodeText = this.barcodeResults.text;
-    alert("barcode Result 1" + barcodeText);
     this.navCtrl.push(CheckoutPage, {
       barcodeResult: barcodeText
     });
-    alert("barcode Result 2")
   }
 
   //find people using barcode
-  find() {
-    this.scanBarcode().then(result => {
-      this.navCtrl.push(FindPage, {
-        barcodeResult: this.barcodeResults
-      });
+  async find() {
+    this.options = { prompt: 'Scan the barcode' };
+    this.barcodeResults = await this.barcode.scan(this.options);
+    let barcodeText = this.barcodeResults.text;
+    this.navCtrl.push(FindPage, {
+      barcodeResult: barcodeText
     });
   }
 
   //function to scan barcode
   async scanBarcode() {
     this.options = { prompt: 'Scan the barcode' };
-    this.barcodeResults = await this.barcode.scan(this.options);
+    let barcodeResults = await this.barcode.scan(this.options);
     // alert(this.barcodeResults.text);
+    return barcodeResults;
   }
 }
