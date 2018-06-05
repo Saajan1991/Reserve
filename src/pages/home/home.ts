@@ -16,6 +16,7 @@ import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-v
   templateUrl: 'home.html'
 })
 export class HomePage {
+  labels: any;
   faces: any;
   items: any;
   filename: number;
@@ -135,8 +136,8 @@ export class HomePage {
         // this.upload(imageDataResult);
         this.vision.getLabels(imageDataResult).subscribe((result) => {
           this.items = JSON.parse(JSON.stringify(result));
-          let label = this.items[0].labelAnnotation;
-          alert(this.items);
+          this.labels = this.items.responses[0].labelAnnotations;
+          alert(this.labels);
         });
       }, err => {
         alert(err);
