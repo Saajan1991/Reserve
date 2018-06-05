@@ -35,7 +35,7 @@ export class CheckInOutPage {
 
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
-    alert("barcode Result1")
+    alert("barcode Result1" + this.barcodeResults);
     this.navCtrl.push(CheckoutPage, {
       barcodeResult: this.barcodeResults.text
     });
