@@ -129,22 +129,18 @@ export class HomePage {
       correctOrientation: true
     }
 
-    try {
-      //open camera in device
-      this.camera.getPicture(options).then((imageData) => {
-        let imageDataResult = 'data:image/jpeg;base64,' + imageData;
-        // this.upload(imageDataResult);
-        this.vision.getLabels(imageDataResult).subscribe((result) => {
-          this.items = JSON.parse(JSON.stringify(result));
-          this.labels = this.items.responses[0].labelAnnotations;
-          alert(this.labels);
-        });
-      }, err => {
-        alert(err);
+    //open camera in device
+    this.camera.getPicture(options).then((imageData) => {
+      let imageDataResult = 'data:image/jpeg;base64,' + imageData;
+      // this.upload(imageDataResult);
+      this.vision.getLabels(imageDataResult).subscribe((result) => {
+        alert("result" + result);
+        this.items = JSON.parse(JSON.stringify(result));
+        this.labels = this.items.responses[0].labelAnnotations;
+        alert(this.labels);
       });
-    }
-    catch (e) {
-      console.log(e);
-    }
+    }, err => {
+      alert(err);
+    });
   }
 }

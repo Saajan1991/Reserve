@@ -34,11 +34,11 @@ export class GoogleCloudVisionServiceProvider {
       ]
     };
     //http post request to google api using API Key and request json
-    try{
+    try {
       let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
       return response;
     }
-    catch(e){
+    catch (e) {
       console.log(e);
     }
   }
@@ -61,6 +61,11 @@ export class GoogleCloudVisionServiceProvider {
     }
     let response = this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.firebaseConfig.googleCloudVisionAPIKey, body);
     if (response) {
+      alert("response" + response);
+      let items = JSON.parse(JSON.stringify(response));
+      let labels = items.responses[0].labelAnnotations;
+      alert("items" + items);
+      alert("labels" + labels);
       alert("Response from google");
     }
     else {
