@@ -13,7 +13,7 @@ export class CheckoutPage {
     let barcode = this.navParams.get('barcodeResults');
     console.log(barcode);
     alert("alert " + barcode);
-    alert("alert2 " + barcode.text);
+    alert("heello");
   }
 
   ionViewDidLoad() {
