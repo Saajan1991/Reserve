@@ -63,9 +63,9 @@ export class GoogleCloudVisionServiceProvider {
     if (response) {
       alert("response" + response);
       let items = JSON.parse(JSON.stringify(response));
-      let labels = items.responses[0].labelAnnotations;
+      // let labels = items.responses[0].labelAnnotations;
       alert("items" + items);
-      alert("labels" + labels);
+      // alert("labels" + labels);
       alert("Response from google");
     }
     else {
