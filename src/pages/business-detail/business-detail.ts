@@ -15,6 +15,7 @@ export class BusinessDetailPage {
   logo;
   businessId;
   businessDetail;
+  defaultLogo = "https://www.freelogodesign.org/img/logo-ex-7.png";
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,7 +27,8 @@ export class BusinessDetailPage {
     this.api.getBusinessById(this.businessId).subscribe((result => {
       this.businessDetail = JSON.parse(JSON.stringify(result));
       console.log(this.businessDetail.business);
-      this.logo = this.businessDetail.business.logo;
+      
+      this.logo = this.businessDetail.business.logo ? this.businessDetail.business.logo: this.defaultLogo;
       this.businessName = this.businessDetail.business.name;
     }));
   }

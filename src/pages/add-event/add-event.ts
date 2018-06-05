@@ -153,51 +153,7 @@ export class AddEventPage {
     this.eventData = formBuilder.group({
       eventName: ['', Validators.required],
       start: [''],
-      finish: [''],
-      days: [
-        {
-          'day': 'Sunday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-        {
-          'day': 'Monday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-        {
-          'day': 'Tuesday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-        {
-          'day': 'Wednesday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-        {
-          'day': 'Thursday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-        {
-          'day': 'Friday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-        {
-          'day': 'Saturday',
-          'status': false,
-          'startTime': '',
-          'finishTime': ''
-        },
-      ]
+      finish: ['']
     });
   }
 
@@ -214,21 +170,21 @@ export class AddEventPage {
       start: eventData.start,
       finish: eventData.finish
     };
-    this.storeEventData(data);
+    // this.storeEventData(data);
 
-    // let data = this.days;
-    // let arrayTime = [];
-    // for (let d of data) {
-    //   if (d.startTime == "" || d.finishTime == "") {
-    //     arrayTime.push("null");
-    //   }
-    //   else {
-    //     arrayTime.push(d.startTime + '-' + d.finishTime);
-    //   }
-    // }
-    // // console.log(arrayTime);
-    // var dataString = arrayTime.toString();
-    // console.log(dataString);
+    let day1 = this.days;
+    let arrayTime = [];
+    for (let d of day1) {
+      if (d.startTime == "" || d.finishTime == "") {
+        arrayTime.push("null");
+      }
+      else {
+        arrayTime.push(d.startTime + '-' + d.finishTime);
+      }
+    }
+    // console.log(arrayTime);
+    var dataString = arrayTime.toString();
+    console.log(dataString);
   }
 
 
@@ -253,6 +209,7 @@ export class AddEventPage {
   dayJsondata = [];
   changeDay(day) {
     console.log(day);
+    // day.status = true;
     if (day.status == true) {
       // this.showTimeInput = true;
     }

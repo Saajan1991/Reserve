@@ -34,7 +34,7 @@
 
     </ion-list>
 
-    <ion-list *ngFor="let day of days" inset>
+    <!-- <ion-list *ngFor="let day of days" inset>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -53,6 +53,12 @@
         </ion-row>
       </ion-grid>
     </ion-list>
-    <ion-input type="submit" (click)="submit()">Submit</ion-input>
+    <ion-input type="submit" (click)="submit()">Submit</ion-input> -->
 
+
+    <form (ngSubmit) = "submitForm()">
+      <ion-input type="text" [(ngModel)] = "EventName" name="event"></ion-input>
+  
+      <ion-input type="submit">Submit</ion-input>
+    </form>
   </ion-content>

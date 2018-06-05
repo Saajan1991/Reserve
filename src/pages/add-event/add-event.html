@@ -43,33 +43,6 @@
       </ion-row>
 
       <ion-row>
-        <ion-col>Days</ion-col>
-      </ion-row>
-      <ion-col>
-        <ion-list *ngFor="let day of days" inset>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-item>
-                  <ion-label>{{day.day}}</ion-label>
-                  <!-- formControlName="day.status" -->
-                  <ion-checkbox  (ionChange)="changeDay(day)"></ion-checkbox>
-                </ion-item>
-              </ion-col>
-
-              <ion-col>
-                <ion-datetime displayFormat="h:mm A" *ngIf="day.status" formControlName="day.startTime"></ion-datetime>
-              </ion-col>
-              <ion-col>
-                <ion-datetime displayFormat="h:mm A" *ngIf="day.status" formControlName="day.finishTime"></ion-datetime>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-list>
-      </ion-col>
-
-
-      <ion-row>
         <ion-col>
         </ion-col>
         <ion-col>
@@ -79,5 +52,56 @@
 
     </ion-grid>
   </form>
+
+  <!-- <form (ngSubmit)="submitForm()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Event Name</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="text" [(ngModel)]="eventName" name"eventName"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Start</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="date" [(ngModel)]="start" name"startDate"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Finish</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="date" [(ngModel)]="finish" name"finishDate"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list *ngFor="let day of days" inset>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>{{day.day}}</ion-label>
+              <ion-checkbox [(ngModel)]="day.status" (ionChange)="changeDay(day)" name"statusCheck"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-datetime displayFormat="h:mm A" *ngIf="day.status" [(ngModel)]="day.startTime" name"startTime"></ion-datetime>
+          </ion-col>
+          <ion-col>
+            <ion-datetime displayFormat="h:mm A" *ngIf="day.status" [(ngModel)]="day.finishTime" name"finishTime"></ion-datetime>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </form> -->
 
 </ion-content>

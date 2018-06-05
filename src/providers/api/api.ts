@@ -24,7 +24,7 @@ export class ApiProvider {
       email: "test@mailinator.com",
       password: "123456"
     };
-    let apiAddress = "https://accesscheck-pr-4.herokuapp.com/api/auth/login";
+    let apiAddress = "https://accesscheck.herokuapp.com/api/auth/login";
 
     this.loading.present();
 
