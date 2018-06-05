@@ -10,6 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class CheckoutPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let barcode = this.navParams.get('barcodeResults');
+    console.log(barcode);
+    alert(barcode);
+    alert(barcode.text);
   }
 
   ionViewDidLoad() {

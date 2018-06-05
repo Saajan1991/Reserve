@@ -106,7 +106,7 @@ export class HomePage {
     }
     // console.log(arrayTime);
     var dataString = arrayTime.toString();
-    console.log(dataString);
+    console.log(dataString); 
   }
 
   

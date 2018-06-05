@@ -21,7 +21,7 @@ export class CheckInOutPage {
   };
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
   }
 
 
@@ -32,14 +32,18 @@ export class CheckInOutPage {
 
   //go to check out page
   checkOut() {
-    // this.scanBarcode();
-    this.navCtrl.push(CheckoutPage);
+    this.scanBarcode();
+    this.navCtrl.push(CheckoutPage, {
+      barcodeResult: this.barcodeResults
+    });
   }
 
   //find people
   find(){
-    // this.scanBarcode();
-    this.navCtrl.push(FindPage);
+    this.scanBarcode();
+    this.navCtrl.push(FindPage, {
+      barcodeResult: this.barcodeResults
+    });
     // this.navCtrl.push(EventPage);
   }
 

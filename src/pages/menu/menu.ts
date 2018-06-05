@@ -16,7 +16,7 @@ export class MenuPage {
     this.pages = [
       { title: 'Business', pageName: BusinessPage, index: 0, icon: 'none', hide: false },
       { title: 'Setting', pageName: BusinessPage, index: 1, icon: 'settings', hide: false },
-      { title: 'Special', pageName: 'SpecialPage', icon: 'shuffle' }
+      // { title: 'Special', pageName: 'SpecialPage', icon: 'shuffle' }
     ];
 
 

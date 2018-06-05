@@ -9,6 +9,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class FindPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let barcode = this.navParams.get('barcodeResults');
+    alert(barcode);
+    alert(barcode.text);
   }
 
   ionViewDidLoad() {

@@ -27,6 +27,7 @@ export class LoginPage {
 
   login() {
     let loginCheck = this.api.login();
+    //loading controller to display spinner or wait message
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -38,11 +39,5 @@ export class LoginPage {
     else{
       //
     }
-    // console.log(loginCheck);
-
-    // if (loginCheck == true) {
-    //   this.navCtrl.push(TabsPage);
-    // }
-
   }
 }
