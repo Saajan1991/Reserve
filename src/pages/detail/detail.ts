@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageDisplayPage } from '../image-display/image-display';
 import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-vision-service/google-cloud-vision-service';
@@ -31,6 +31,7 @@ export class DetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
+    private loadingCtrl: LoadingController,
     private vision: GoogleCloudVisionServiceProvider,
     private toastCtrl: ToastController) {
     this.TotalNumberOfAdults = navParams.get('adults');
@@ -74,6 +75,10 @@ export class DetailPage {
   //funtion to upload image 
   //inlcudes face detection
   public upload(imageDataResult) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     try {
       this.storageRef = firebase.storage().ref();
       //generate name for file based on date
@@ -86,6 +91,7 @@ export class DetailPage {
           position: 'bottom'
         });
         toast.present();
+        loading.dismiss();
         // alert("upload Success");
 
         //vision api to detect faces

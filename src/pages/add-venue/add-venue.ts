@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { FormBuilder, Validators } from '@angular/forms';
 import { VenuePage } from '../venue/venue';
@@ -16,6 +16,7 @@ export class AddVenuePage {
     public navParams: NavParams,
     formBuilder: FormBuilder,
     private viewCtrl: ViewController,
+    private loadingCtrl: LoadingController,
     private api: ApiProvider) {
     this.businessId = navParams.get('businessId');
 
@@ -43,13 +44,21 @@ export class AddVenuePage {
   }
 
   storeVenue(data) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.api.storeVenue(this.businessId, data).subscribe((result => {
       let jsonResponse = JSON.parse(JSON.stringify(result));
       console.log(jsonResponse);
       this.dismiss();
-      this.navCtrl.push(VenuePage, {
-        businessId: this.businessId
-      });
+      setTimeout(() => {
+        loading.dismiss();
+        this.navCtrl.push(VenuePage, {
+          businessId: this.businessId
+        });
+      }, 1000);
+
     }));
   }
 

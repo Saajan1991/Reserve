@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
 import { VenuePage } from '../venue/venue';
 import { ApiProvider } from '../../providers/api/api';
 
@@ -20,15 +20,21 @@ export class BusinessDetailPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
+    private loadingCtrl: LoadingController,
     private api: ApiProvider) {
     //get data from nav params
     this.businessId = navParams.get('businessId');
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    // loading.present();
     this.api.getBusinessById(this.businessId).subscribe((result => {
       this.businessDetail = JSON.parse(JSON.stringify(result));
       console.log(this.businessDetail.business);
-      
-      this.logo = this.businessDetail.business.logo ? this.businessDetail.business.logo: this.defaultLogo;
+
+      this.logo = this.businessDetail.business.logo ? this.businessDetail.business.logo : this.defaultLogo;
       this.businessName = this.businessDetail.business.name;
+      // loading.dismiss();
     }));
   }
 

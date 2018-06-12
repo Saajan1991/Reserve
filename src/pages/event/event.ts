@@ -73,7 +73,7 @@
 // }
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AddEventPage } from '../add-event/add-event';
 import { ApiProvider } from '../../providers/api/api';
@@ -97,6 +97,7 @@ export class EventPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    private loadingCtrl: LoadingController,
     private api: ApiProvider) {
     this.businessId = navParams.get('businessId');
     this.venueId = navParams.get('venueId');
@@ -119,10 +120,15 @@ export class EventPage {
 
 
   getEvents(businessId, venueId) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     let a = this.api.getEvent(businessId, venueId);
     a.subscribe((result => {
       this.eventList = JSON.parse(JSON.stringify(result)).events;
       console.log(result);
+      loading.dismiss();
       return this.eventList;
     }));
   }

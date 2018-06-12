@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 //import Dom sanitizer for html input using innerHtml
 import { DomSanitizer } from '@angular/platform-browser';
 import { FaceDetailPage } from '../face-detail/face-detail';
@@ -26,6 +26,7 @@ export class ImageDisplayPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    private loadingCtrl: LoadingController,
     protected _sanitizer: DomSanitizer) {
     this.base64Image = navParams.get('image');
     this.TotalNumberOfAdults = navParams.get('adults');
@@ -35,10 +36,15 @@ export class ImageDisplayPage {
     this.items = navParams.get('faces');
 
     if (this.items != undefined) {
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      loading.present();
       //number of faces detected by api
       this.numberOfFaces = this.items.responses[0].faceAnnotations.length;
       // alert("Total Face Detected: " + this.numberOfFaces);
       this.faces = this.items.responses[0].faceAnnotations;
+      loading.dismiss();
     }
     else {
       alert("Face Not Detected");

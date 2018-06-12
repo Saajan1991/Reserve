@@ -13,9 +13,9 @@ export class MenuPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController) {
     this.pages = [
-      { title: 'Business', pageName: BusinessPage, index: 0, icon: 'none', hide: false },
+      { title: 'Business', pageName: BusinessPage, index: 0, icon: 'business', hide: false },
       { title: 'Settings', pageName: BusinessPage, index: 1, icon: 'settings', hide: false },
-      { title: 'Log Out', pageName: LoginPage, index: 2, icon: 'none', hide: false }
+      { title: 'Log Out', pageName: LoginPage, index: 2, icon: 'log-out', hide: false }
       // { title: 'Special', pageName: 'SpecialPage', icon: 'shuffle' }
     ];
 

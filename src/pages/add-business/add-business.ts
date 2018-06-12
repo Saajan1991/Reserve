@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
 import { BusinessPage } from '../business/business';
@@ -18,6 +18,7 @@ export class AddBusinessPage {
     public navParams: NavParams,
     private formBuilder: FormBuilder,
     private viewCtrl: ViewController,
+    public loadingCtrl: LoadingController,
     private api: ApiProvider) {
     this.BusinessData = formBuilder.group({
       businessName: ['', Validators.required]
@@ -47,11 +48,17 @@ export class AddBusinessPage {
 
   //store business data 
   storeBusinessData(data) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.api.storeBusiness(data).subscribe((result => {
       let response = result;
       let jsonResponse = JSON.parse(JSON.stringify(result));
-      // this.dismiss();
-      this.navCtrl.push(BusinessPage);
+      setTimeout(() => {
+        loading.dismiss();
+        this.navCtrl.push(BusinessPage);
+      }, 1000);
     }));
   }
 

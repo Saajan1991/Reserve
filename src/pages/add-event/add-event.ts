@@ -75,7 +75,7 @@
 
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import firebase from 'firebase';
 import { EventPage } from '../event/event';
@@ -88,6 +88,9 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class AddEventPage {
 
+  finish: any;
+  start: any;
+  eventName: any;
   eventData: any;
   businessId;
   venueId;
@@ -98,12 +101,13 @@ export class AddEventPage {
     public navParams: NavParams,
     formBuilder: FormBuilder,
     private api: ApiProvider,
+    private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
     public toastCtrl: ToastController) {
     this.businessId = navParams.get('businessId');
     this.venueId = navParams.get('venueId');
 
-    this.days =  [
+    this.days = [
       {
         'day': 'Sunday',
         'status': false,
@@ -165,13 +169,9 @@ export class AddEventPage {
   //submit for with data
   submitForm() {
     let eventData = this.eventData.value;
-    let data = {
-      name: eventData.eventName,
-      start: eventData.start,
-      finish: eventData.finish
-    };
-    // this.storeEventData(data);
-
+    let eventName = this.eventName;
+    let startDate = this.start;
+    let finishDate = this.finish;
     let day1 = this.days;
     let arrayTime = [];
     for (let d of day1) {
@@ -185,19 +185,34 @@ export class AddEventPage {
     // console.log(arrayTime);
     var dataString = arrayTime.toString();
     console.log(dataString);
+
+    let data = {
+      name: eventName,
+      start: startDate,
+      finish: finishDate,
+      repeat: arrayTime
+    };
+
+    this.storeEventData(data);
   }
 
 
   //store event data 
   storeEventData(data) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    // loading.present();
     this.api.storeEvent(this.businessId, this.venueId, data).subscribe((result => {
       let response = result;
       let jsonResponse = JSON.parse(JSON.stringify(result));
-      // this.dismiss();
-      this.navCtrl.push(EventPage, {
-        businessId: this.businessId,
-        venueId: this.venueId
-      });
+      // setTimeout(() => {
+      //   loading.dismiss();
+        this.navCtrl.push(EventPage, {
+          businessId: this.businessId,
+          venueId: this.venueId
+        });
+      // }, 1000);
     }));
   }
 
@@ -209,9 +224,13 @@ export class AddEventPage {
   dayJsondata = [];
   changeDay(day) {
     console.log(day);
-    // day.status = true;
     if (day.status == true) {
-      // this.showTimeInput = true;
+      console.log(day.startTime);
+      console.log(day.finishTime);
+    }
+    else {
+      day.startTime = '';
+      day.finishTime = '';
     }
   }
 }

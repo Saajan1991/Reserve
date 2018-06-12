@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { EventPage } from '../event/event';
 
@@ -22,6 +22,7 @@ export class VenueDetailPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
     private api: ApiProvider) {
     this.venueId = this.navParams.get('venueId');
@@ -41,6 +42,10 @@ export class VenueDetailPage {
   }
 
   getVenueDetail(businessId, venueId) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     let a = this.api.getVenueDetails(businessId, venueId);
     a.subscribe((result => {
       this.venueDetail = JSON.parse(JSON.stringify(result)).venue;
@@ -49,6 +54,7 @@ export class VenueDetailPage {
       this.area = this.venueDetail.sqm_capacity;
       this.eventId = this.venueDetail.id;
       console.log(this.venueDetail.name);
+      loading.dismiss();
       return this.venueDetail;
     }));
   }

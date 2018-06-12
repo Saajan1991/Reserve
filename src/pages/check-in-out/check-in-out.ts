@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CheckinPage } from '../checkin/checkin';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { CheckoutPage } from '../checkout/checkout';
@@ -20,7 +20,7 @@ export class CheckInOutPage {
   };
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcode: BarcodeScanner) {
+  constructor(public navCtrl: NavController, private loadingCtrl: LoadingController, public navParams: NavParams, private barcode: BarcodeScanner) {
   }
 
 
@@ -51,9 +51,14 @@ export class CheckInOutPage {
 
   //function to scan barcode
   async scanBarcode() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.options = { prompt: 'Scan the barcode' };
     let barcodeResults = await this.barcode.scan(this.options);
     // alert(this.barcodeResults.text);
+    loading.dismiss();
     return barcodeResults;
   }
 }

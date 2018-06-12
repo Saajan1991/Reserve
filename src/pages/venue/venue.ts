@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController } from 'ionic-angular';
 import { VenueDetailPage } from '../venue-detail/venue-detail';
 import { ApiProvider } from '../../providers/api/api';
 import { AddVenuePage } from '../add-venue/add-venue';
@@ -19,6 +19,7 @@ export class VenuePage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private api: ApiProvider,
+    private loadingCtrl: LoadingController,
     private modalCtrl: ModalController) {
     this.businessId = navParams.get('businessId');
     this.getVenueFromId(this.businessId);
@@ -52,9 +53,14 @@ export class VenuePage {
 
   //get venue from business id
   getVenueFromId(id){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.api.getVenue(id).subscribe((result => {
       this.venueList = JSON.parse(JSON.stringify(result)).venues;
       console.log(this.venueList);
+      loading.dismiss();
     }));
   }
 
@@ -66,9 +72,14 @@ export class VenuePage {
       ppl_capacity: "500"
     };
 
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.api.storeVenue(this.businessId, data).subscribe((result => {
      let jsonResponse = JSON.parse(JSON.stringify(result));
      console.log(jsonResponse);
+     loading.dismiss();
     }));
   }
 

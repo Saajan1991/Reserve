@@ -32,12 +32,16 @@ export class LoginPage {
       content: 'Please wait...'
     });
     loading.present();
+  
     if(loginCheck == true){
-      loading.dismiss();
-      this.navCtrl.push(TabsPage);
+      setTimeout(() => {
+        loading.dismiss();
+        this.navCtrl.push(TabsPage);
+      }, 1000);
     }
     else{
-      //
+      //back to login page
+      this.navCtrl.push(LoginPage);
     }
   }
 }

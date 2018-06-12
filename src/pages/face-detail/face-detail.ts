@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides, ToastController, Toast } from 'ionic-angular';
+import { NavController, NavParams, Slides, ToastController, Toast, LoadingController } from 'ionic-angular';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
 import { FormBuilder, Validators } from '@angular/forms';
 import firebase from 'firebase';
@@ -37,6 +37,7 @@ export class FaceDetailPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private barcode: BarcodeScanner,
+    private loadingCtrl: LoadingController,
     formBuilder: FormBuilder,
     private toastCtrl: ToastController) {
     this.items = navParams.get('faces');
@@ -82,15 +83,15 @@ export class FaceDetailPage {
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
     let barcode = this.barcodeResults.text;
-    
+
 
     let checkBarcode = this.checkBarcodeData(barcode);
     alert(checkBarcode);
 
-    if(checkBarcode){
+    if (checkBarcode) {
       document.querySelector('#barcode' + id).innerHTML = barcode;
     }
-    else{
+    else {
       alert("Scan Again");
       this.scanBarcode(id);
     }
@@ -137,11 +138,16 @@ export class FaceDetailPage {
   database() {
     // alert("database");
     try {
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      loading.present();
       var storageId = Math.floor(Date.now() / 1000);  //generate number for unique storage
       var ref = firebase.database().ref("visits/event");     //reference to database folder
       const imageRef = ref.child(`images/${storageId}`);
       //save data to firebase 
       imageRef.set(this.faceStorageArray);
+      loading.dismiss();
       // alert("Success");
       return true;
     }
@@ -151,6 +157,8 @@ export class FaceDetailPage {
   }
 
   checkBarcodeData(barcode) {
+
+    let barcodeCheckList = [];
     var ref = firebase.database().ref("visits/event/images");     //reference to database folder
 
     ref.on('value', function (snapshot) {
@@ -163,7 +171,7 @@ export class FaceDetailPage {
       }
       console.log(tempArray);
 
-      let barcodeCheckList = [];
+
       tempArray.forEach(result => {
         for (var a in result) {
           console.log(result[a].barcode);
@@ -172,17 +180,20 @@ export class FaceDetailPage {
           barcodeCheckList.push(barcode);
         }
       });
-
-      let list = barcodeCheckList;
-      var test = list.indexOf(barcode);
-      if (test > -1) {
-        console.log("Barcode is already used");
-        return false;
-      } else {
-        console.log("Unique Barcode");
-        return true;
-      }
+      // let list = barcodeCheckList;
     });
+
+    let list = barcodeCheckList;
+    var test = list.indexOf(barcode);
+    if (test > -1) {
+      console.log("Barcode is already used");
+      alert("Barcode is already used");
+      return false;
+    } else {
+      console.log("Unique Barcode");
+      alert("Unique Barcode");
+      return true;
+    }
   }
 
 
