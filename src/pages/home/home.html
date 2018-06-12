@@ -12,7 +12,7 @@
   <button (click) = "photo()">Photo</button>
 
   <ion-list *ngFor= "let a of labels">
-    {{a}}
+    {{a.description}}
   </ion-list>
     <!-- <ion-list *ngFor="let day of days" inset>
       <ion-grid>
@@ -40,4 +40,6 @@
   
       <ion-input type="submit">Submit</ion-input>
     </form> -->
+
+    <button (click) ="getData()">Data</button>
   </ion-content>

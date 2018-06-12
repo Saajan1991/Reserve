@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { AddBusinessPage } from '../add-business/add-business';
 import { BusinessDetailPage } from '../business-detail/business-detail';
 import { ApiProvider } from '../../providers/api/api';
@@ -41,7 +41,6 @@ export class BusinessPage {
     let a = this.api.getBusiness();
     a.subscribe((result => {
       this.businessList = JSON.parse(JSON.stringify(result)).businesses;
-      let list = result;
       console.log(this.businessList);
       // alert(this.businessList);
     }));

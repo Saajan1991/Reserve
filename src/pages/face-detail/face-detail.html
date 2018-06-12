@@ -52,14 +52,18 @@
                     <ion-option value="0-4">0-4</ion-option>
                     <ion-option value="4-9">4-9</ion-option>
                     <ion-option value="10-14">10-14</ion-option>
+                    <ion-option value="15-18">10-14</ion-option>
+                    <ion-option value="19-24">10-14</ion-option>
+                    <ion-option value="25-29">10-14</ion-option>
+                    <ion-option value="30-34">10-14</ion-option>
                   </ion-select>
                 </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-col col-3>
-                  <input type="button" ion-button (click)="scanBarcode(i)" value="Barcode">
-                  <ion-icon name="add"></ion-icon>
+                  <input type="button" ion-button (click)="scanBarcode(i)">
+                  <ion-icon name="barcode"></ion-icon>
                 </ion-col>
                 <ion-col col-9>
                   <ion-input type="text" readonly [id]="'barcode'+i" [attr.data-index]="i" formControlName="barcode"></ion-input>

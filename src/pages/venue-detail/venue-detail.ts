@@ -23,7 +23,6 @@ export class VenueDetailPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
-    private modalCtrl: ModalController,
     private api: ApiProvider) {
     this.venueId = this.navParams.get('venueId');
     this.businessId = this.navParams.get("businessId");

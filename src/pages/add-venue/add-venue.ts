@@ -44,8 +44,8 @@ export class AddVenuePage {
 
   storeVenue(data) {
     this.api.storeVenue(this.businessId, data).subscribe((result => {
-      let response = result;
       let jsonResponse = JSON.parse(JSON.stringify(result));
+      console.log(jsonResponse);
       this.dismiss();
       this.navCtrl.push(VenuePage, {
         businessId: this.businessId

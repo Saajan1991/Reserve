@@ -16,6 +16,7 @@ import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-v
   templateUrl: 'home.html'
 })
 export class HomePage {
+  barcodeCheckList;
   labels: any;
   faces: any;
   items: any;
@@ -119,28 +120,73 @@ export class HomePage {
   }
 
   photo() {
-    const options: CameraOptions = {
-      quality: 100,
-      targetHeight: 500,
-      targetWidth: 500,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.PNG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
-    }
+    let a = "a";
+    this.vision.getFaces("imageDataResult").subscribe((result) => {
+      alert("result" + result);
+      this.items = JSON.parse(JSON.stringify(result));
+      this.labels = this.items.responses[0].labelAnnotations;
+      alert(this.labels);
+    });
 
-    //open camera in device
-    this.camera.getPicture(options).then((imageData) => {
-      let imageDataResult = 'data:image/jpeg;base64,' + imageData;
-      // this.upload(imageDataResult);
-      this.vision.getLabels(imageDataResult).subscribe((result) => {
-        alert("result" + result);
-        this.items = JSON.parse(JSON.stringify(result));
-        this.labels = this.items.responses[0].labelAnnotations;
-        alert(this.labels);
+    // const options: CameraOptions = {
+    //   quality: 100,
+    //   targetHeight: 500,
+    //   targetWidth: 500,
+    //   destinationType: this.camera.DestinationType.DATA_URL,
+    //   encodingType: this.camera.EncodingType.PNG,
+    //   mediaType: this.camera.MediaType.PICTURE,
+    //   correctOrientation: true
+    // }
+
+    // //open camera in device
+    // this.camera.getPicture(options).then((imageData) => {
+    //   let imageDataResult = 'data:image/jpeg;base64,' + imageData;
+    //   // this.upload(imageDataResult);
+    //   this.vision.getLabels(imageDataResult).subscribe((result) => {
+    //     alert("result" + result);
+    //     this.items = JSON.parse(JSON.stringify(result));
+    //     this.labels = this.items.responses[0].labelAnnotations;
+    //     alert(this.labels);
+    //   });
+    // }, err => {
+    //   alert(err);
+    // });
+  }
+
+  getData() {
+    var ref = firebase.database().ref("visits/event/images");     //reference to database folder
+
+    ref.on('value', function (snapshot) {
+      console.log(snapshot.val());
+      let data = snapshot.val();
+
+      let tempArray = [];
+      for (var key in data) {
+        tempArray.push(data[key]);
+      }
+      console.log(tempArray);
+
+      let barcodeCheckList = [];
+      tempArray.forEach(result => {
+        for (var a in result) {
+          console.log(result[a].barcode);
+          let barcode = result[a].barcode;
+
+          barcodeCheckList.push(barcode);
+        }
       });
-    }, err => {
-      alert(err);
+
+
+      let barcode = '9310029228868';
+      let list = barcodeCheckList;
+      var test = list.indexOf(barcode);
+      if (test > -1) {
+        console.log("Barcode is already used");
+      } else{
+        
+      }
+
     });
   }
+
 }

@@ -19,7 +19,6 @@ export class VenuePage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private api: ApiProvider,
-    private viewCtrl: ViewController,
     private modalCtrl: ModalController) {
     this.businessId = navParams.get('businessId');
     this.getVenueFromId(this.businessId);
@@ -68,8 +67,8 @@ export class VenuePage {
     };
 
     this.api.storeVenue(this.businessId, data).subscribe((result => {
-     let response = result;
      let jsonResponse = JSON.parse(JSON.stringify(result));
+     console.log(jsonResponse);
     }));
   }
 

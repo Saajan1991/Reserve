@@ -20,7 +20,6 @@ export class BusinessDetailPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
-    private modalCtrl: ModalController,
     private api: ApiProvider) {
     //get data from nav params
     this.businessId = navParams.get('businessId');

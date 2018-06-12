@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, ToastController, Toast } from 'ionic-angular';
+import { NavController, NavParams, Slides, ToastController, Toast } from 'ionic-angular';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
 import { FormBuilder, Validators } from '@angular/forms';
 import firebase from 'firebase';
@@ -18,6 +18,7 @@ export class FaceDetailPage {
   faceData: any;
   faces: { response: {} };  // get faces from google api in this format
   items;
+  barcodeCheckList = [];
 
   options: BarcodeScannerOptions;
   //result for barcode scan
@@ -80,11 +81,21 @@ export class FaceDetailPage {
   async scanBarcode(id) {
     this.options = { prompt: 'Scan the barcode' };
     this.barcodeResults = await this.barcode.scan(this.options);
-    // alert(this.barcodeResults.text);
+    let barcode = this.barcodeResults.text;
+    
 
-    // id.color = "primary";
-    document.querySelector('#barcode' + id).innerHTML = this.barcodeResults.text;
+    let checkBarcode = this.checkBarcodeData(barcode);
+    alert(checkBarcode);
+
+    if(checkBarcode){
+      document.querySelector('#barcode' + id).innerHTML = barcode;
+    }
+    else{
+      alert("Scan Again");
+      this.scanBarcode(id);
+    }
   }
+
 
   submitForm(face, id) {
     let faceData = this.faceData.value;
@@ -137,6 +148,41 @@ export class FaceDetailPage {
     catch (e) {
       console.log(e);
     }
+  }
+
+  checkBarcodeData(barcode) {
+    var ref = firebase.database().ref("visits/event/images");     //reference to database folder
+
+    ref.on('value', function (snapshot) {
+      console.log(snapshot.val());
+      let data = snapshot.val();
+
+      let tempArray = [];
+      for (var key in data) {
+        tempArray.push(data[key]);
+      }
+      console.log(tempArray);
+
+      let barcodeCheckList = [];
+      tempArray.forEach(result => {
+        for (var a in result) {
+          console.log(result[a].barcode);
+          let barcode = result[a].barcode;
+
+          barcodeCheckList.push(barcode);
+        }
+      });
+
+      let list = barcodeCheckList;
+      var test = list.indexOf(barcode);
+      if (test > -1) {
+        console.log("Barcode is already used");
+        return false;
+      } else {
+        console.log("Unique Barcode");
+        return true;
+      }
+    });
   }
 
 

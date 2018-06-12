@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
-import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
-import { CheckinPage } from '../checkin/checkin';
 import { CheckInOutPage } from '../check-in-out/check-in-out';
 
-import { MenuController, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { MenuPage } from '../menu/menu';
 
 @Component({
@@ -19,7 +17,7 @@ export class TabsPage {
 
   index;
 
-  constructor(public menuCtrl: MenuController, private navParams: NavParams) {
+  constructor(public menuCtrl: MenuController) {
     // this.index = 0;
     // let index = navParams.get('index');
   // if (navParams.data.index) this.index = navParams.data.index;

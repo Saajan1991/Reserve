@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 //import Dom sanitizer for html input using innerHtml
 import { DomSanitizer } from '@angular/platform-browser';
 import { FaceDetailPage } from '../face-detail/face-detail';

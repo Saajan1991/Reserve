@@ -22,7 +22,7 @@ export class ApiProvider {
     };
     let apiAddress = "https://accesscheck.herokuapp.com/api/auth/login";
 
-    let a = this.http.post(apiAddress, data)
+    this.http.post(apiAddress, data)
       .subscribe((
         result => {
           this.authorization = JSON.parse(JSON.stringify(result));

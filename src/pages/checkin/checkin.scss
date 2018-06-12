@@ -1,21 +1,22 @@
 page-checkin {
   ion-content {
-    margin-top: 10%;
+    margin-top: 2%;
   }
   ion-input {
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%; // left: 30%;
-    font-size: 2em;
+    width: 40%;
+    left: 30%;
+    font-size: 1em;
   }
-  // #adult-block,
-  // #kid-block {
-  //   display: inline-flex;
-  //   height: 5em;
-  // }
-  // #kid-block {
-  //   margin-top: 10%;
-  // }
+  #adult-block,
+  #kid-block {
+    display: inline-flex;
+    height: 5em;
+  }
+  #kid-block {
+    margin-top: 2%;
+  }
   #content {
     text-align: center; // float: right;
   }
@@ -24,14 +25,14 @@ page-checkin {
   //   width: 200px;
   // }
 
-  // .nextButton {
-  //   // float: left;
-  //   height: 3em;
-  //   width: 50%;
-  //   font-size: 5em;
-  //   top: 20%;
-  //   left: 10%;
-  // }
+  .nextButton {
+    // float: left;
+    height: 1em;
+    // width: 50%;
+    font-size: 3em;
+    top: 20%;
+    left: 45%;
+  }
 
   // .iconMinus,
   // .iconPlus {

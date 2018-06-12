@@ -4,7 +4,6 @@ import { CheckinPage } from '../checkin/checkin';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { CheckoutPage } from '../checkout/checkout';
 import { FindPage } from '../find/find';
-import { EventPage } from '../event/event';
 
 @Component({
   selector: 'page-check-in-out',
