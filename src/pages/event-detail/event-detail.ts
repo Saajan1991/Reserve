@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
+import { SubEventsPage } from '../sub-events/sub-events';
 
 @IonicPage()
 @Component({
@@ -19,29 +20,27 @@ export class EventDetailPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private loadingCtrl: LoadingController,
+    public viewCtrl: ViewController,
     private api: ApiProvider) {
     this.businessId = this.navParams.get('businessId');
     this.venueId = this.navParams.get('venueId');
     this.eventId = this.navParams.get('eventId');
 
-    try{
+    try {
       this.eventDetail = this.getEventDetails(this.businessId, this.venueId, this.eventId);
     }
-    catch(error){
+    catch (error) {
       console.log(error);
     }
-    
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventDetailPage');
   }
 
   getEventDetails(businessId, venueId, eventId) {
+    //loading
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     loading.present();
+    //api to get EVENT DETAILS
     this.api.getEventDetails(businessId, venueId, eventId).subscribe((result => {
       let event = JSON.parse(JSON.stringify(result)).event;
       console.log(result);
@@ -52,4 +51,23 @@ export class EventDetailPage {
       // return this.eventDetail;
     }));
   }
+
+  subEvents() {
+    // go to SubEvents Page list with parameters
+    this.navCtrl.push(SubEventsPage, {
+      'businessId': this.businessId,
+      'venueId': this.venueId,
+      'eventId': this.eventId
+    });
+  }
+
+  //dismiss the modal
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EventDetailPage');
+  }
+
 }

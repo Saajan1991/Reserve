@@ -94,7 +94,7 @@ export class AddEventPage {
   eventData: any;
   businessId;
   venueId;
-
+  dayJsondata = [];
   days;
 
   constructor(public navCtrl: NavController,
@@ -152,7 +152,6 @@ export class AddEventPage {
       }
     ];
 
-
     //creating form
     this.eventData = formBuilder.group({
       eventName: ['', Validators.required],
@@ -161,14 +160,10 @@ export class AddEventPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddEventPage');
-  }
-
 
   //submit for with data
   submitForm() {
-    let eventData = this.eventData.value;
+    // let eventData = this.eventData.value;
     let eventName = this.eventName;
     let startDate = this.start;
     let finishDate = this.finish;
@@ -196,7 +191,6 @@ export class AddEventPage {
     this.storeEventData(data);
   }
 
-
   //store event data 
   storeEventData(data) {
     let loading = this.loadingCtrl.create({
@@ -206,14 +200,54 @@ export class AddEventPage {
     this.api.storeEvent(this.businessId, this.venueId, data).subscribe((result => {
       let response = result;
       let jsonResponse = JSON.parse(JSON.stringify(result));
+      let success = this.database(data);
+      if (success == true) {
+        let toast = this.toastCtrl.create({
+          message: "Data Save Successful",
+          duration: 2000,
+          position: 'bottom'
+        });
+        toast.present();
+
+      }
+      //go back to Event Page
       // setTimeout(() => {
       //   loading.dismiss();
-        this.navCtrl.push(EventPage, {
-          businessId: this.businessId,
-          venueId: this.venueId
-        });
+      this.navCtrl.push(EventPage, {
+        businessId: this.businessId,
+        venueId: this.venueId
+      });
       // }, 1000);
     }));
+  }
+
+  //firebase database to store data
+  database(data) {
+    // alert("database");
+    try {
+      var storageId = Math.floor(Date.now() / 1000);    //generate number for unique storage
+      var ref = firebase.database().ref("events");      //reference to database folder
+      const imageRef = ref.child(`${storageId}`);
+      imageRef.set(data);                               //save data to firebase 
+      // alert("Success");
+      return true;
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
+  //checkbox changes
+  changeDay(day) {
+    console.log(day);
+    if (day.status == true) {
+      // console.log(day.startTime);
+      // console.log(day.finishTime);
+    }
+    else {
+      // day.startTime = '';
+      // day.finishTime = '';
+    }
   }
 
   //dismiss the modal
@@ -221,16 +255,7 @@ export class AddEventPage {
     this.viewCtrl.dismiss();
   }
 
-  dayJsondata = [];
-  changeDay(day) {
-    console.log(day);
-    if (day.status == true) {
-      console.log(day.startTime);
-      console.log(day.finishTime);
-    }
-    else {
-      day.startTime = '';
-      day.finishTime = '';
-    }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AddEventPage');
   }
 }

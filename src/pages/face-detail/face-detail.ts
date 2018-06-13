@@ -171,7 +171,6 @@ export class FaceDetailPage {
       }
       console.log(tempArray);
 
-
       tempArray.forEach(result => {
         for (var a in result) {
           console.log(result[a].barcode);

@@ -6,9 +6,6 @@ import { LoadingController } from 'ionic-angular';
 @Injectable()
 export class ApiProvider {
 
-  authorization;
-  public access_token;    //access token for authorization to api
-
   constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
     console.log('Hello ApiProvider Provider');
   }
@@ -25,9 +22,10 @@ export class ApiProvider {
     this.http.post(apiAddress, data)
       .subscribe((
         result => {
-          this.authorization = JSON.parse(JSON.stringify(result));
-          this.access_token = this.authorization.access_token;
-          console.log(this.authorization.access_token);
+          let authorization = JSON.parse(JSON.stringify(result));
+          let access_token = authorization.access_token;
+          localStorage.setItem('token', access_token)
+          console.log(authorization.access_token);
           this.loginCheck = true;
           return true;
         }),
@@ -48,7 +46,7 @@ export class ApiProvider {
   getBusiness() {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
 
@@ -59,7 +57,7 @@ export class ApiProvider {
   getBusinessById(id) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
 
@@ -70,7 +68,7 @@ export class ApiProvider {
   getVenue(businessId) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues", httpOptions);
@@ -81,7 +79,7 @@ export class ApiProvider {
   getVenueDetails(businessId, venueId) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId, httpOptions);
@@ -91,7 +89,7 @@ export class ApiProvider {
   getEvent(businessId, venueId) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events", httpOptions);
@@ -103,10 +101,20 @@ export class ApiProvider {
   getEventDetails(businessId, venueId, eventId) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId, httpOptions);
+    return response;
+  }
+
+  getSubEvents(businessId, venueId, eventId){
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      })
+    };
+    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId + "/subevents", httpOptions);
     return response;
   }
 
@@ -119,7 +127,7 @@ export class ApiProvider {
     // };
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues", data, httpOptions);
@@ -129,7 +137,7 @@ export class ApiProvider {
   storeBusiness(data) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses", data, httpOptions);
@@ -139,7 +147,7 @@ export class ApiProvider {
   storeEvent(businessId, venueId, data) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.access_token
+        'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
     let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events", data, httpOptions);

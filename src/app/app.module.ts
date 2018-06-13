@@ -40,6 +40,8 @@ import { AddVenuePage } from '../pages/add-venue/add-venue';
 import { MenuPage } from '../pages/menu/menu';
 import { LoginPage } from '../pages/login/login';
 import { EventDetailPage } from '../pages/event-detail/event-detail';
+import { SubEventsPage } from '../pages/sub-events/sub-events';
+// import { IonicStorageModule } from '@ionic/Storage';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -68,7 +70,8 @@ firebase.initializeApp(environment.firebaseConfig)
     AddVenuePage,
     MenuPage,
     LoginPage,
-    EventDetailPage
+    EventDetailPage,
+    SubEventsPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ firebase.initializeApp(environment.firebaseConfig)
       scrollAssist: false,
       autoFocusAssist: false
     }),
-    HttpClientModule
+    HttpClientModule,
+    // IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -102,7 +106,8 @@ firebase.initializeApp(environment.firebaseConfig)
     AddVenuePage,
     MenuPage,
     LoginPage,
-    EventDetailPage
+    EventDetailPage,
+    SubEventsPage
   ],
   providers: [
     StatusBar,
@@ -111,7 +116,7 @@ firebase.initializeApp(environment.firebaseConfig)
     BarcodeScanner,
     GoogleCloudVisionServiceProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ApiProvider
+    ApiProvider,
   ]
 })
 export class AppModule { }
