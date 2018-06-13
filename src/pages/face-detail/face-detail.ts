@@ -86,7 +86,7 @@ export class FaceDetailPage {
 
 
     let checkBarcode = this.checkBarcodeData(barcode);
-    alert(checkBarcode);
+    // alert(checkBarcode);
 
     if (checkBarcode) {
       document.querySelector('#barcode' + id).innerHTML = barcode;
@@ -158,6 +158,9 @@ export class FaceDetailPage {
 
   checkBarcodeData(barcode) {
 
+    // let recentBarcodeList = [];
+
+
     let barcodeCheckList = [];
     var ref = firebase.database().ref("visits/event/images");     //reference to database folder
 
@@ -183,14 +186,17 @@ export class FaceDetailPage {
     });
 
     let list = barcodeCheckList;
-    var test = list.indexOf(barcode);
-    if (test > -1) {
+
+    var test = list.indexOf(barcode); //index of list from db
+    var testRecent = this.faceStorageArray.indexOf(barcode);  //index of list from the current form
+
+    if (test > -1 && testRecent > -1) {
       console.log("Barcode is already used");
-      alert("Barcode is already used");
+      // alert("Barcode is already used");
       return false;
     } else {
       console.log("Unique Barcode");
-      alert("Unique Barcode");
+      // alert("Unique Barcode");
       return true;
     }
   }
