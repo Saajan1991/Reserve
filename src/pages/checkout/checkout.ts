@@ -9,20 +9,27 @@ import firebase from 'firebase';
   templateUrl: 'checkout.html',
 })
 export class CheckoutPage {
+  barcodeData = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     let barcode = this.navParams.get('barcodeResult');
-    this.checkBarcode(barcode);
+    var a = this.checkBarcode(barcode);
+    console.log(this.barcodeData);
   }
 
-  checkBarcode(barcode) {
+
+  async checkBarcode(barcode) {
+    let abcData = {};
     let barcodeCheckList = [];
     var ref = firebase.database().ref("visits/event/images");     //reference to database folder
-    ref.on('value', function (snapshot) {
+
+
+    var arg = ref.once('value', function (snapshot) {
       console.log(snapshot.val());
       let data = snapshot.val();
-
+      let barcodeData;
       let tempArray = [];
+
       for (var key in data) {
         tempArray.push(data[key]);
       }
@@ -31,18 +38,27 @@ export class CheckoutPage {
       tempArray.forEach(result => {
         for (var a in result) {
           console.log(result[a].barcode);
-          let barcode = result[a].barcode;
+          let barcode1 = result[a].barcode;
 
-          barcodeCheckList.push(barcode);
+
+          barcodeCheckList.push(barcode1);
+          if (barcode1 == barcode) {
+            barcodeData = result[a];
+            console.log(barcodeData);
+          }
         }
+        // return this.barcodeData = ['123'];
       });
-      // let list = barcodeCheckList;
+
+      
+      let list = barcodeCheckList;
+      var test = list.indexOf(barcode);
+      // alert("the barcode is in index  " + test);
+
+      return barcodeData;
     });
 
-    let list = barcodeCheckList;
-    var test = list.indexOf(barcode);
-
-    alert("the barcode is in index  " + test);
+    // return barcodeData;
 
     // if (test > -1) {
     //   console.log("Barcode is already used");
@@ -53,8 +69,16 @@ export class CheckoutPage {
     //   alert("Unique Barcode");
     //   return true;
     // }
+
+    arg.then(result => {
+      console.log(result.val());
+    })
   }
 
+  barcodechange(barcodedata) {
+    this.barcodeData = ['123'];
+    // console.log(this.barcodeData);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutPage');
   }

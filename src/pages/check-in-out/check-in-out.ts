@@ -31,9 +31,10 @@ export class CheckInOutPage {
 
   //go to check out page
   async checkOut() {
-    this.options = { prompt: 'Scan the barcode' };
-    this.barcodeResults = await this.barcode.scan(this.options);
-    let barcodeText = this.barcodeResults.text;
+    // this.options = { prompt: 'Scan the barcode' };
+    // this.barcodeResults = await this.barcode.scan(this.options);
+    // let barcodeText = this.barcodeResults.text;
+    let barcodeText = '1234567890128';
     this.navCtrl.push(CheckoutPage, {
       barcodeResult: barcodeText
     });
