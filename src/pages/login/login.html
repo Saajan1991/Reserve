@@ -6,7 +6,43 @@
 
 </ion-header>
 
-<ion-content padding>
+<!-- <ion-content padding>
   Login Form
     <button ion-button (click)="login()">Login</button>
+</ion-content> -->
+
+
+<ion-content padding="true" scroll="false" id="login">
+
+  <form (ngSubmit)="login()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input type="email" [(ngModel)]="loginCredentials.email" [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-input type="password" [(ngModel)]="loginCredentials.password" [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div id="button_login">
+            <button ion-button type="submit">Login</button>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+
+
+
+
+
+  </form>
+
 </ion-content>
