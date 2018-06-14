@@ -84,9 +84,8 @@ export class FaceDetailPage {
     this.barcodeResults = await this.barcode.scan(this.options);
     let barcode = this.barcodeResults.text;
 
-
     let checkBarcode = this.checkBarcodeData(barcode);
-    // alert(checkBarcode);
+    alert(checkBarcode);
 
     if (checkBarcode) {
       document.querySelector('#barcode' + id).innerHTML = barcode;
@@ -160,7 +159,6 @@ export class FaceDetailPage {
 
     // let recentBarcodeList = [];
 
-
     let barcodeCheckList = [];
     var ref = firebase.database().ref("visits/event/images");     //reference to database folder
 
@@ -190,7 +188,7 @@ export class FaceDetailPage {
     var test = list.indexOf(barcode); //index of list from db
     var testRecent = this.faceStorageArray.indexOf(barcode);  //index of list from the current form
 
-    if (test > -1 && testRecent > -1) {
+    if (test > -1 || testRecent > -1) {
       console.log("Barcode is already used");
       alert("Barcode is already used");
       return false;
@@ -200,6 +198,5 @@ export class FaceDetailPage {
       return true;
     }
   }
-
 
 }
