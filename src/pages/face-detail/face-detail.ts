@@ -192,11 +192,11 @@ export class FaceDetailPage {
 
     if (test > -1 && testRecent > -1) {
       console.log("Barcode is already used");
-      // alert("Barcode is already used");
+      alert("Barcode is already used");
       return false;
     } else {
       console.log("Unique Barcode");
-      // alert("Unique Barcode");
+      alert("Unique Barcode");
       return true;
     }
   }

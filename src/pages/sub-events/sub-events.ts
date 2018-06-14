@@ -10,6 +10,7 @@ import { ApiProvider } from '../../providers/api/api';
 export class SubEventsPage {
 
 
+  sub_eventList;
   businessId;
   venueId;
   eventId;
@@ -23,6 +24,7 @@ export class SubEventsPage {
     this.venueId = navParams.get('venueId');
     this.eventId = navParams.get('eventId');
 
+    this.getSubEvents();
   }
 
   //get sub events from api
@@ -40,7 +42,14 @@ export class SubEventsPage {
 
   getSubevents(businessId, venueId, eventId) {
     //call api to get SUB EVENTS
-    this.api.getSubEvents(businessId, venueId, eventId);
+    this.api.getSubEvents(businessId, venueId, eventId)
+      .subscribe((result => {
+        if(result == []){
+          alert("There is no Sub Event for the event Selected");
+        }
+        this.sub_eventList = JSON.parse(JSON.stringify(result)).events;
+        console.log(this.sub_eventList);
+      }));
   }
 
 }

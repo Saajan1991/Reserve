@@ -1,12 +1,41 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>sub_events</ion-title>
+    <ion-title>Sub Events</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
- This page contains list
+  <ion-label>List of Sub Events</ion-label>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label>Event Name</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label>Start Date</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label>Finish Date</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let event of sub_eventList">
+      <ion-col>
+        <ion-label>{{event.name}}</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label>{{event.start}}</ion-label>
+      </ion-col>
+
+      <ion-col>
+        <ion-label>{{event.finish}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

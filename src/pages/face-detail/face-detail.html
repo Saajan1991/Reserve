@@ -64,8 +64,9 @@
 
               <ion-row>
                 <ion-col col-3>
-                  <input type="button" ion-button (click)="scanBarcode(i)">
-                  <ion-icon name="barcode"></ion-icon>
+                  <button ion-button (click)="scanBarcode(i)">
+                      <ion-icon name="barcode"></ion-icon>
+                  </button>
                 </ion-col>
                 <ion-col col-9>
                   <ion-input type="text" readonly [id]="'barcode'+i" [attr.data-index]="i" formControlName="barcode"></ion-input>
