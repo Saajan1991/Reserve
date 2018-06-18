@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { TabsPage } from '../tabs/tabs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -11,6 +13,8 @@ import { TabsPage } from '../tabs/tabs';
 export class LoginPage {
 
   loading: Loading;
+  loginForm: FormGroup;
+  loginError: string;
 
   //inititalize loginCredentials empty
   loginCredentials = {
@@ -21,36 +25,37 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
+    public fb: FormBuilder,
     private api: ApiProvider) {
+    this.loginForm = fb.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    });
+
   }
 
-  //login function
   login() {
-    let loginData = this.loginCredentials;
+    let data = this.loginForm.value;
 
-    //start LOADING display
-    this.showLoading();
+    if (!data.email) { return; }
 
-    //boolean value from api to check LOGIN success
-    let loginCheck = this.api.login(loginData);
-    //loading controller to display spinner or wait message
-    // check loginCheck Status
-    loginCheck.then(result => {
-      // if(result == true){
-        setTimeout(() => {
-          this.loading.dismiss();
-          this.navCtrl.push(TabsPage);
-        }, 1000);
-      // }
-      // else {
-      //   //back to login page
-      //   this.loading.dismiss();
-      //   this.navCtrl.setRoot(LoginPage);
-      // }
-    })
-    
-    
-    
+    let loginCredentials = {
+      email: data.email,
+      password: data.password
+    };
+
+    try {
+      //start LOADING display
+      this.showLoading();
+      let a = this.api.login(loginCredentials);
+      a.then(
+        () => this.navCtrl.setRoot(TabsPage),
+        error => this.loginError = error.message
+      );
+      this.loading.dismiss();
+    }
+    catch (e) {
+    }
   }
 
   ionViewDidLoad() {
@@ -58,7 +63,7 @@ export class LoginPage {
   }
 
   //Create loading 
-  showLoading(){
+  showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });

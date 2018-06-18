@@ -14,35 +14,31 @@
 
 <ion-content padding="true" scroll="false" id="login">
 
-  <form (ngSubmit)="login()">
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-input type="email" [(ngModel)]="loginCredentials.email" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input type="email" placeholder = "email" required formControlName = "email"></ion-input>
+          <!-- <ion-input type="email" required [(ngModel)]="loginCredentials.email" [ngModelOptions]="{standalone: true}"></ion-input> -->
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
-          <ion-input type="password" [(ngModel)]="loginCredentials.password" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input type="password" placeholder = "password" required formControlName = "password"></ion-input>
+          <!-- <ion-input type="password" required [(ngModel)]="loginCredentials.password" [ngModelOptions]="{standalone: true}"></ion-input> -->
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
           <div id="button_login">
-            <button ion-button type="submit">Login</button>
+            <button ion-button type="submit" [disabled]="!loginForm.valid">Login</button>
           </div>
         </ion-col>
       </ion-row>
 
     </ion-grid>
-
-
-
-
-
-
   </form>
-
+  <div class="form-error">{{loginError}}</div>
 </ion-content>

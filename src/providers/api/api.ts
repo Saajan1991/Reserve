@@ -13,29 +13,40 @@ export class ApiProvider {
 
   loginCheck: boolean;
   //login using email and password to get access token
-  async login(data) {
-    // let data = {
-    //   email: "test@mailinator.com",
-    //   password: "123456"
-    // };
-    
+  login(data1) {
+    let data = {
+      email: "test@mailinator.com",
+      password: "123456"
+    };
+
     let apiAddress = "https://accesscheck.herokuapp.com/api/auth/login";
 
-    this.http.post(apiAddress, data).subscribe((
-      result => {
-        let authorization = JSON.parse(JSON.stringify(result));
-        let access_token = authorization.access_token;
-        localStorage.setItem('token', access_token)
-        console.log(authorization.access_token);
-        this.loginCheck = true;
-        return this.loginCheck;
-      }),
-      error => {
-        console.log(error)
-        this.loginCheck = false;
-        return this.loginCheck;
-      },
-      () => { });
+    return new Promise(resolve => {
+      this.http.post(apiAddress, data)
+        .subscribe(result => {
+          let authorization = JSON.parse(JSON.stringify(result));
+          let access_token = authorization.access_token;
+          localStorage.setItem('token', access_token);
+          resolve(authorization);
+        });
+    });
+
+
+    // this.http.post(apiAddress, data).subscribe((
+    //   result => {
+    //     let authorization = JSON.parse(JSON.stringify(result));
+    //     let access_token = authorization.access_token;
+    //     localStorage.setItem('token', access_token);
+    //     console.log(authorization.access_token);
+    //     // this.loginCheck = true;
+    //     // return this.loginCheck;
+    //   }),
+    //   error => {
+    //     console.log(error)
+    //     // this.loginCheck = false;
+    //     // return this.loginCheck;
+    //   },
+    //   () => { });
 
     // return await this.loginCheck;
     // if (this.loginCheck == true) {

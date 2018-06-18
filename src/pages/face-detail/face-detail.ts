@@ -2,9 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Slides, ToastController, Toast, LoadingController } from 'ionic-angular';
 import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner'; //import for barcode scanner
 import { FormBuilder, Validators } from '@angular/forms';
-import firebase from 'firebase';
+import firebase, { auth } from 'firebase';
 import { CheckinPage } from '../checkin/checkin';
-
 
 @Component({
   selector: 'page-face-detail',

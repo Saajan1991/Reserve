@@ -1,79 +1,3 @@
-// import { Component } from '@angular/core';
-// import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-// import { FormBuilder, Validators } from '@angular/forms';
-// import firebase from 'firebase';
-// import { EventPage } from '../event/event';
-
-// @IonicPage()
-// @Component({
-//   selector: 'page-add-event',
-//   templateUrl: 'add-event.html',
-// })
-// export class AddEventPage {
-
-//   eventData: any;
-
-//   constructor(public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder, public toastCtrl: ToastController) {
-//     console.log('User Id', navParams.get('userId'));
-//     //creating form
-//     this.eventData = formBuilder.group({
-//       eventName: ['', Validators.required],
-//       start: [''],
-//       finish: ['']
-//     });
-//   }
-
-//   ionViewDidLoad() {
-//     console.log('ionViewDidLoad AddEventPage');
-//   }
-
-//   //form submit
-//   submit(){
-//     let eventData = this.eventData.value;
-//     let data = {
-//       "eventName": eventData.eventName,
-//       "start": eventData.start,
-//       "finish": eventData.finish
-//     };
-//     console.log(data);
-
-//     let success = this.database(data);
-
-//     if (success == true) {
-//       let toast = this.toastCtrl.create({
-//         message: "Data Save Successful",
-//         duration: 2000,
-//         position: 'bottom'
-//       });
-//       toast.present();
-//       // alert("Data Save Successful");
-//       this.navCtrl.push(EventPage);
-//     }
-
-//     //create event 
-//   }
-
-
-//   //firebase database to store data
-//   database(data) {
-//     // alert("database");
-//     try {
-//       var storageId = Math.floor(Date.now() / 1000);  //generate number for unique storage
-//       var ref = firebase.database().ref("events");     //reference to database folder
-//       const imageRef = ref.child(`${storageId}`);
-//       //save data to firebase 
-//       imageRef.set(data);
-//       // alert("Success");
-//       return true;
-//     }
-//     catch (e) {
-//       console.log(e);
-//     }
-//   }
-
-// }
-
-
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, ViewController, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -88,14 +12,21 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class AddEventPage {
 
+  //days
+  Sunday: {};
+  Monday: {};
+  Tuesday: {};
+  Wednesday: {};
+  Thursday: {};
+  Friday: {};
+  Saturday: {};
+  
   finish: any;
   start: any;
+
   eventName: any;
-  eventData: any;
   businessId;
   venueId;
-  dayJsondata = [];
-  days;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -107,69 +38,32 @@ export class AddEventPage {
     this.businessId = navParams.get('businessId');
     this.venueId = navParams.get('venueId');
 
-    this.days = [
-      {
-        'day': 'Sunday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Monday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Tuesday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Wednesday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Thursday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Friday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Saturday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      }
-    ];
-
-    //creating form
-    this.eventData = formBuilder.group({
-      eventName: ['', Validators.required],
-      start: [''],
-      finish: ['']
-    });
+    this.Sunday = { 'startTime': '', 'finishTime': '', 'status': false };
+    this.Monday = { 'startTime': '', 'finishTime': '', 'status': false };
+    this.Tuesday = { 'startTime': '', 'finishTime': '', 'status': false };
+    this.Wednesday = { 'startTime': '', 'finishTime': '', 'status': false };
+    this.Thursday = { 'startTime': '', 'finishTime': '', 'status': false };
+    this.Friday = { 'startTime': '', 'finishTime': '', 'status': false };
+    this.Saturday = { 'startTime': '', 'finishTime': '', 'status': false };
   }
-
 
   //submit for with data
   submitForm() {
-    // let eventData = this.eventData.value;
     let eventName = this.eventName;
     let startDate = this.start;
     let finishDate = this.finish;
-    let day1 = this.days;
     let arrayTime = [];
-    for (let d of day1) {
+    let days = [];
+    days.push(this.Sunday);
+    days.push(this.Monday);
+    days.push(this.Tuesday);
+    days.push(this.Wednesday);
+    days.push(this.Thursday);
+    days.push(this.Friday);
+    days.push(this.Saturday);
+
+    // loop throug days to create array for api
+    for (let d of days) {
       if (d.startTime == "" || d.finishTime == "") {
         arrayTime.push("null");
       }
@@ -177,18 +71,22 @@ export class AddEventPage {
         arrayTime.push(d.startTime + '-' + d.finishTime);
       }
     }
-    // console.log(arrayTime);
-    var dataString = arrayTime.toString();
-    console.log(dataString);
+    console.log(arrayTime);
 
+    //data to send into server
     let data = {
       name: eventName,
       start: startDate,
       finish: finishDate,
-      repeat: arrayTime
+      repeat: arrayTime.toString()
     };
 
-    this.storeEventData(data);
+    try {
+      this.storeEventData(data);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   //store event data 
@@ -234,19 +132,6 @@ export class AddEventPage {
     }
     catch (e) {
       console.log(e);
-    }
-  }
-
-  //checkbox changes
-  changeDay(day) {
-    console.log(day);
-    if (day.status == true) {
-      // console.log(day.startTime);
-      // console.log(day.finishTime);
-    }
-    else {
-      // day.startTime = '';
-      // day.finishTime = '';
     }
   }
 

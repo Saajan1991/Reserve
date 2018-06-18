@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, App } from 'ionic-angular';
 import { VenuePage } from '../venue/venue';
 import { ApiProvider } from '../../providers/api/api';
+import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -18,6 +20,7 @@ export class BusinessDetailPage {
   defaultLogo = "https://www.freelogodesign.org/img/logo-ex-7.png";
 
   constructor(public navCtrl: NavController,
+    public appCtrl: App,
     public navParams: NavParams,
     private viewCtrl: ViewController,
     private loadingCtrl: LoadingController,
@@ -48,10 +51,19 @@ export class BusinessDetailPage {
   }
 
   listVenues(id) {
-    this.navCtrl.push(VenuePage, {
+    this.dismiss();
+    this.appCtrl.getRootNav().push(VenuePage, {
       businessId: this.businessId,
       logo: this.logo
-    });
+    });;
+    // this.appCtrl.getRootNav().push(VenuePage, {
+    //   businessId: this.businessId,
+    //   logo: this.logo
+    // });
+    // this.navCtrl.push(VenuePage, {
+    //   businessId: this.businessId,
+    //   logo: this.logo
+    // });
     // let addVenueModal = this.modalCtrl.create(VenuePage, {
     //   businessId: this.businessId,
     //   logo: this.logo
