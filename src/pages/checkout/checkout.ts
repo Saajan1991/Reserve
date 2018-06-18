@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
+import { CheckInOutPage } from '../check-in-out/check-in-out';
 
 
 @IonicPage()
@@ -10,18 +11,38 @@ import firebase from 'firebase';
 })
 export class CheckoutPage {
 
+  barcodeData;
+  name;
+  gender;
+  age;
+  barcode;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     let barcode = this.navParams.get('barcodeResult');
-    var a = this.checkBarcode(barcode);
+    this.checkBarcode(barcode).then((result) => {
+
+      if (result != undefined) {
+        this.barcodeData = result;
+        this.name = this.barcodeData.firstName,
+          this.gender = this.barcodeData.gender,
+          this.age = this.barcodeData.age,
+          this.barcode = this.barcodeData.barcode
+      } else {
+        alert("No barcode found");
+        this.navCtrl.setRoot(CheckInOutPage);
+      }
+
+    });
   }
 
   async checkBarcode(barcode) {
+    alert(barcode);
     let abcData = {};
     let barcodeCheckList = [];
 
     var ref = firebase.database().ref("visits/event/images");     //reference to database folder
 
-    var abcd = new Promise(result => {
+    return new Promise(resolve => {
       var arg = ref.once('value', function (snapshot) {
         console.log(snapshot.val());
         let data = snapshot.val();
@@ -41,7 +62,6 @@ export class CheckoutPage {
             barcodeCheckList.push(barcode1);
             if (barcode1 == barcode) {
               barcodeData = result[a];
-              console.log(barcodeData);
             }
           }
         });
@@ -50,26 +70,24 @@ export class CheckoutPage {
         var test = list.indexOf(barcode);
         // alert("the barcode is in index  " + test);
 
-        console.log(barcodeData);
-        return barcodeData;
+        if (test > -1) {
+          console.log("Barcode is already used");
+          alert("Barcode is already used");
+        } else {
+          console.log("Unique Barcode");
+          alert("Unique Barcode");
+        }
 
+        resolve(barcodeData);
       });
-
-      let a = abcd;
-      console.log(a);
-      console.log(abcd);
 
     });
 
-    // arg.then(result => {
-    //   console.log(result.val());
-    // })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutPage');
   }
-
 }
 
 

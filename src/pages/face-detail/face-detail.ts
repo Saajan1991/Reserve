@@ -185,7 +185,9 @@ export class FaceDetailPage {
     let list = barcodeCheckList;
 
     var test = list.indexOf(barcode); //index of list from db
+    alert(test);
     var testRecent = this.faceStorageArray.indexOf(barcode);  //index of list from the current form
+    alert(testRecent);
 
     if (test > -1 || testRecent > -1) {
       console.log("Barcode is already used");

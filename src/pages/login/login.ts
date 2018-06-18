@@ -44,17 +44,20 @@ export class LoginPage {
       password: data.password
     };
 
+    //start LOADING display
+    this.showLoading();
     try {
-      //start LOADING display
-      this.showLoading();
-      let a = this.api.login(loginCredentials);
-      a.then(
-        () => this.navCtrl.setRoot(TabsPage),
-        error => this.loginError = error.message
-      );
-      this.loading.dismiss();
+      this.api.login(loginCredentials).then(result => {
+        console.log(result);
+        this.loading.dismiss();
+        this.navCtrl.setRoot(TabsPage);
+      }, error => {
+        this.loginError = error.message;
+      });
     }
-    catch (e) {
+    catch (error) {
+      console.log(error);
+      this.loading.dismiss();
     }
   }
 

@@ -62,6 +62,13 @@ export class BusinessPage {
       content: 'Please wait...'
     });
     loading.present();
+
+    this.api.getBusiness().subscribe((result) => {
+      this.businessList = JSON.parse(JSON.stringify(result)).businesses;
+      console.log(this.businessList);
+      loading.dismiss();
+    });
+
     let a = this.api.getBusiness();
     a.subscribe((result => {
       this.businessList = JSON.parse(JSON.stringify(result)).businesses;

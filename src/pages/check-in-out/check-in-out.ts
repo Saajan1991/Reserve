@@ -19,10 +19,11 @@ export class CheckInOutPage {
     format: string
   };
 
-
-  constructor(public navCtrl: NavController, private loadingCtrl: LoadingController, public navParams: NavParams, private barcode: BarcodeScanner) {
+  constructor(public navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    public navParams: NavParams,
+    private barcode: BarcodeScanner) {
   }
-
 
   //got to check in page
   checkIn() {
@@ -34,7 +35,7 @@ export class CheckInOutPage {
     // this.options = { prompt: 'Scan the barcode' };
     // this.barcodeResults = await this.barcode.scan(this.options);
     // let barcodeText = this.barcodeResults.text;
-    let barcodeText = '1234567890128';
+    let barcodeText = '123456789018';
     this.navCtrl.push(CheckoutPage, {
       barcodeResult: barcodeText
     });
