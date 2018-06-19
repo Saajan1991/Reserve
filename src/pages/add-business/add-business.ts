@@ -75,56 +75,56 @@ export class AddBusinessPage {
   }
 
 
-  public presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select Image Source',
-      buttons: [
-        {
-          text: 'Load from Library',
-          handler: () => {
-            // this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
-          }
-        },
-        {
-          text: 'Use Camera',
-          handler: () => {
-            // this.takePicture(this.camera.PictureSourceType.CAMERA);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }
-      ]
-    });
-    actionSheet.present();
-  }
+  // public presentActionSheet() {
+  //   let actionSheet = this.actionSheetCtrl.create({
+  //     title: 'Select Image Source',
+  //     buttons: [
+  //       {
+  //         text: 'Load from Library',
+  //         handler: () => {
+  //           // this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+  //         }
+  //       },
+  //       {
+  //         text: 'Use Camera',
+  //         handler: () => {
+  //           // this.takePicture(this.camera.PictureSourceType.CAMERA);
+  //         }
+  //       },
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel'
+  //       }
+  //     ]
+  //   });
+  //   actionSheet.present();
+  // }
 
-  takePicture() {
+  // takePicture() {
 
-    const options: CameraOptions = {
-      quality: 100,
-      targetHeight: 500,
-      targetWidth: 500,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.PNG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true,
-      saveToPhotoAlbum: false,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    }
+  //   const options: CameraOptions = {
+  //     quality: 100,
+  //     targetHeight: 500,
+  //     targetWidth: 500,
+  //     destinationType: this.camera.DestinationType.DATA_URL,
+  //     encodingType: this.camera.EncodingType.PNG,
+  //     mediaType: this.camera.MediaType.PICTURE,
+  //     correctOrientation: true,
+  //     saveToPhotoAlbum: false,
+  //     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+  //   }
 
 
-    this.camera.getPicture(options).then((imageData) => {
-      let imageDataResult = 'data:image/jpeg;base64,' + imageData;
-      // this.upload(imageDataResult);
-    }, err => {
-      alert(err);
-      // if(err == "cordova_not_available"){
-      //   let imageDataResult = 
-      // }
-    });
-  }
+  //   this.camera.getPicture(options).then((imageData) => {
+  //     let imageDataResult = 'data:image/jpeg;base64,' + imageData;
+  //     // this.upload(imageDataResult);
+  //   }, err => {
+  //     alert(err);
+  //     // if(err == "cordova_not_available"){
+  //     //   let imageDataResult = 
+  //     // }
+  //   });
+  // }
 
   getImage() {
     const options: CameraOptions = {
