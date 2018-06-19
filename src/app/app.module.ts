@@ -43,6 +43,9 @@ import { EventDetailPage } from '../pages/event-detail/event-detail';
 import { SubEventsPage } from '../pages/sub-events/sub-events';
 // import { IonicStorageModule } from '@ionic/Storage';
 
+import { File } from "@ionic-native/file";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from "@ionic-native/file-transfer";
+
 firebase.initializeApp(environment.firebaseConfig)
 
 @NgModule({
@@ -118,6 +121,9 @@ firebase.initializeApp(environment.firebaseConfig)
     GoogleCloudVisionServiceProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiProvider,
+    FileTransfer,
+    FileTransferObject,
+    File
   ]
 })
 export class AppModule { }

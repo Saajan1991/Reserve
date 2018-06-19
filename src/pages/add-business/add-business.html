@@ -11,6 +11,12 @@
 
 <ion-content padding>
   <form [formGroup]="BusinessData" (ngSubmit)="submitForm()">
+
+    <ion-item>
+      <p>{{imageURI}}</p>
+      <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+    </ion-item>
+
     <ion-avatar item-start (click)="uploadLogo()">
       <img src="https://www.freelogodesign.org/img/logo-ex-7.png">
     </ion-avatar>
@@ -19,4 +25,19 @@
 
     <button ion-button type="submit">Submit</button>
   </form>
+
+
+  <!-- <ion-item>
+    <p>{{imageURI}}</p>
+    <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+  </ion-item>
+  <ion-item>
+    <h4>Image Preview</h4>
+    <img src="{{imageFileName}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
+  </ion-item>
+  <ion-item>
+    <button ion-button (click)="uploadFile()">Upload</button>
+  </ion-item> -->
+
+
 </ion-content>
