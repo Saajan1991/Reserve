@@ -42,7 +42,8 @@ export class FindPage {
         this.gender = this.barcodeData.gender;
         this.age = this.barcodeData.age;
         this.barcode = this.barcodeData.barcode;
-      } else {
+      }
+      else {
         alert("No barcode found");
         this.navCtrl.setRoot(FindPage);
       }
