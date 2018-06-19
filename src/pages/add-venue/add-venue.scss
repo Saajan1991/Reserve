@@ -1,3 +1,11 @@
 page-add-venue {
-
+  ion-content {
+    text-align: center;
+  }
+  ion-input {
+    border: 1px solid #ccc;
+  }
+  button {
+    width: 100%;
+  }
 }

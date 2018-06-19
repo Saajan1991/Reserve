@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, LoadingController, App } from 'ionic-angular';
 import { BusinessPage } from '../business/business';
 import { LoginPage } from '../login/login';
 
@@ -11,7 +11,11 @@ export class MenuPage {
 
   pages: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private menuCtrl: MenuController,
+    public app: App,
+    private loadingCtrl: LoadingController) {
     this.pages = [
       { title: 'Business', pageName: BusinessPage, index: 0, icon: 'business', hide: false },
       { title: 'Settings', pageName: BusinessPage, index: 1, icon: 'settings', hide: false },
@@ -28,7 +32,12 @@ export class MenuPage {
 
 
   openPage(page) {
-    this.navCtrl.push(page.pageName);
+    if (page.pageName.name == "LoginPage") {
+      this.app.getRootNav().setRoot(page.pageName);
+      localStorage.removeItem('token');
+    } else {
+      this.navCtrl.push(page.pageName);
+    }
 
     // this.navCtrl.push(BusinessPage);
     // let params = {};

@@ -77,7 +77,8 @@ firebase.initializeApp(environment.firebaseConfig)
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       scrollAssist: false,
-      autoFocusAssist: false
+      autoFocusAssist: false,
+      // tabsHideOnSubPages: false
     }),
     HttpClientModule,
     // IonicStorageModule.forRoot()

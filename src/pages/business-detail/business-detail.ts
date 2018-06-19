@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, App, Modal } from 'ionic-angular';
 import { VenuePage } from '../venue/venue';
 import { ApiProvider } from '../../providers/api/api';
 import { TabsPage } from '../tabs/tabs';
@@ -23,6 +23,7 @@ export class BusinessDetailPage {
     public appCtrl: App,
     public navParams: NavParams,
     private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private api: ApiProvider) {
     //get data from nav params
@@ -51,19 +52,30 @@ export class BusinessDetailPage {
   }
 
   listVenues(id) {
+
     this.dismiss();
-    this.appCtrl.getRootNav().push(VenuePage, {
-      businessId: this.businessId,
-      logo: this.logo
-    });;
+
     // this.appCtrl.getRootNav().push(VenuePage, {
     //   businessId: this.businessId,
-    //   logo: this.logo
-    // });
+    //   logo: this.logo,
+    //   index: "1"
+    // });;
+
+    this.navCtrl.push(TabsPage).then(res => {
+      this.navCtrl.push(VenuePage, {
+        businessId: this.businessId,
+        logo: this.logo,
+        index: "1"
+      })
+    });
+
+
     // this.navCtrl.push(VenuePage, {
     //   businessId: this.businessId,
-    //   logo: this.logo
+    //   logo: this.logo,
+    //   index: "1"
     // });
+
     // let addVenueModal = this.modalCtrl.create(VenuePage, {
     //   businessId: this.businessId,
     //   logo: this.logo

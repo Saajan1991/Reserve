@@ -1,10 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
 export class ApiProvider {
+
+  apiAddress = "http://accesscheck.herokuapp.com/api/";
 
   constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
     console.log('Hello ApiProvider Provider');
@@ -19,44 +22,28 @@ export class ApiProvider {
       password: "123456"
     };
 
-    let apiAddress = "https://accesscheck.herokuapp.com/api/auth/login";
+    try {
+      return new Promise(resolve => {
+        this.http.post(this.apiAddress + "auth/login", data)
+          .subscribe(
+            (result) => {
+              let authorization = JSON.parse(JSON.stringify(result));
+              let access_token = authorization.access_token;
+              localStorage.setItem('token', access_token);
+              resolve(authorization);
+            },
+            (error) => {
+              console.log(error);
+              resolve(error);
+            });
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
-    return new Promise(resolve => {
-      this.http.post(apiAddress, data)
-        .subscribe(result => {
-          let authorization = JSON.parse(JSON.stringify(result));
-          let access_token = authorization.access_token;
-          localStorage.setItem('token', access_token);
-          resolve(authorization);
-        });
-    });
-
-
-    // this.http.post(apiAddress, data).subscribe((
-    //   result => {
-    //     let authorization = JSON.parse(JSON.stringify(result));
-    //     let access_token = authorization.access_token;
-    //     localStorage.setItem('token', access_token);
-    //     console.log(authorization.access_token);
-    //     // this.loginCheck = true;
-    //     // return this.loginCheck;
-    //   }),
-    //   error => {
-    //     console.log(error)
-    //     // this.loginCheck = false;
-    //     // return this.loginCheck;
-    //   },
-    //   () => { });
-
-    // return await this.loginCheck;
-    // if (this.loginCheck == true) {
-    //   return true;
-    // }
-    // else {
-    //   return false;
-    // }
   }
 
+  //function get List of business
   getBusiness() {
     let httpOptions = {
       headers: new HttpHeaders({
@@ -64,10 +51,11 @@ export class ApiProvider {
       })
     };
 
-    let response = this.http.get("http://accesscheck.herokuapp.com/api/businesses", httpOptions);
-    return response;
+    return this.http.get(this.apiAddress + "businesses", httpOptions);
   }
 
+
+  //function to Get Business Detail
   getBusinessById(id) {
     let httpOptions = {
       headers: new HttpHeaders({
@@ -75,97 +63,95 @@ export class ApiProvider {
       })
     };
 
-    let response = this.http.get("http://accesscheck.herokuapp.com/api/businesses/" + id, httpOptions);
-    return response;
+    return this.http.get(this.apiAddress + "businesses/" + id, httpOptions);
   }
 
+  //function to get Venues under Business
   getVenue(businessId) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues", httpOptions);
-    return response;
 
+    return this.http.get(this.apiAddress + "businesses/" + businessId + "/venues", httpOptions);
   }
 
+  //function to get Venue Details
   getVenueDetails(businessId, venueId) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId, httpOptions);
-    return response;
+
+    return this.http.get(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId, httpOptions);
   }
 
+  //function to get Events under venues
   getEvent(businessId, venueId) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events", httpOptions);
-    return response;
+
+    return this.http.get(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events", httpOptions);
   }
 
-  //get event details
-  //
+  //function to get event details
   getEventDetails(businessId, venueId, eventId) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId, httpOptions);
-    return response;
+
+    return this.http.get(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId, httpOptions);
   }
 
+  //function to get Sub Events under Events
   getSubEvents(businessId, venueId, eventId) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.get("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId + "/subevents", httpOptions);
-    return response;
+
+    return this.http.get(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId + "/subevents", httpOptions);
   }
 
-  //function to store venue
+  //function to add venue 
   storeVenue(businessId, data) {
-    // let data = {
-    //   name: "Venue Forest",
-    //   sqm_capacity: "1234.56",
-    //   ppl_capacity: "500"
-    // };
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues", data, httpOptions);
-    return response;
+
+    return this.http.post(this.apiAddress + "businesses/" + businessId + "/venues", data, httpOptions);
   }
 
+  //function to Add Business 
   storeBusiness(data) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses", data, httpOptions);
-    return response;
+
+    return this.http.post(this.apiAddress + "businesses", data, httpOptions);
   }
 
+  //function to Add event 
   storeEvent(businessId, venueId, data) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Authorization': "Bearer " + localStorage.getItem('token')
       })
     };
-    let response = this.http.post("https://accesscheck.herokuapp.com/api/businesses/" + businessId + "/venues/" + venueId + "/events", data, httpOptions);
-    return response;
+
+    return this.http.post(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events", data, httpOptions);
   }
 
 }

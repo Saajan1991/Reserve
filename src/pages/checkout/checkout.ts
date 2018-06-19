@@ -23,10 +23,10 @@ export class CheckoutPage {
 
       if (result != undefined) {
         this.barcodeData = result;
-        this.name = this.barcodeData.firstName,
-          this.gender = this.barcodeData.gender,
-          this.age = this.barcodeData.age,
-          this.barcode = this.barcodeData.barcode
+        this.name = this.barcodeData.firstName;
+        this.gender = this.barcodeData.gender;
+        this.age = this.barcodeData.age;
+        this.barcode = this.barcodeData.barcode;
       } else {
         alert("No barcode found");
         this.navCtrl.setRoot(CheckInOutPage);
@@ -36,7 +36,6 @@ export class CheckoutPage {
   }
 
   async checkBarcode(barcode) {
-    alert(barcode);
     let abcData = {};
     let barcodeCheckList = [];
 
@@ -66,17 +65,17 @@ export class CheckoutPage {
           }
         });
 
-        let list = barcodeCheckList;
-        var test = list.indexOf(barcode);
-        // alert("the barcode is in index  " + test);
+        // let list = barcodeCheckList;
+        // var test = list.indexOf(barcode);
+        // // alert("the barcode is in index  " + test);
 
-        if (test > -1) {
-          console.log("Barcode is already used");
-          alert("Barcode is already used");
-        } else {
-          console.log("Unique Barcode");
-          alert("Unique Barcode");
-        }
+        // if (test > -1) {
+        //   console.log("Barcode is already used");
+        //   alert("Barcode is already used");
+        // } else {
+        //   console.log("Unique Barcode");
+        //   alert("Unique Barcode");
+        // }
 
         resolve(barcodeData);
       });

@@ -11,6 +11,7 @@ import { AddVenuePage } from '../add-venue/add-venue';
 })
 export class VenuePage {
 
+  index: any;
   businessId: any;
   venueList: any;
   lists = ["Venue 1", "Venue 2", "Venue 3"];
@@ -22,7 +23,9 @@ export class VenuePage {
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController) {
     this.businessId = navParams.get('businessId');
+    this.index = navParams.get('index');
     this.getVenueFromId(this.businessId);
+    
     
   }
 

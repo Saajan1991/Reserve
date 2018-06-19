@@ -32,10 +32,10 @@ export class CheckInOutPage {
 
   //go to check out page
   async checkOut() {
-    // this.options = { prompt: 'Scan the barcode' };
-    // this.barcodeResults = await this.barcode.scan(this.options);
-    // let barcodeText = this.barcodeResults.text;
-    let barcodeText = '123456789018';
+    this.options = { prompt: 'Scan the barcode' };
+    this.barcodeResults = await this.barcode.scan(this.options);
+    let barcodeText = this.barcodeResults.text;
+    // let barcodeText = '1234567890128';
     this.navCtrl.push(CheckoutPage, {
       barcodeResult: barcodeText
     });
@@ -43,12 +43,14 @@ export class CheckInOutPage {
 
   //find people using barcode
   async find() {
-    this.options = { prompt: 'Scan the barcode' };
-    this.barcodeResults = await this.barcode.scan(this.options);
-    let barcodeText = this.barcodeResults.text;
-    this.navCtrl.push(FindPage, {
-      barcodeResult: barcodeText
-    });
+
+    // this.options = { prompt: 'Scan the barcode' };
+    // this.barcodeResults = await this.barcode.scan(this.options);
+    // let barcodeText = this.barcodeResults.text;
+    // this.navCtrl.push(FindPage, {
+    //   barcodeResult: barcodeText
+    // });
+    this.navCtrl.push(FindPage);
   }
 
   //function to scan barcode

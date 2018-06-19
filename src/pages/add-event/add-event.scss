@@ -1,18 +1,19 @@
 page-add-event {
-    ion-input{
-        border: 1px solid #ccc;
-    }
-
-    ion-select {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 90%;
-        padding: 5px;
-        font-size: 1em;
-        margin-top: 10px;
-      }
-    
-      ion-datetime{
-        border: 1px solid #ccc;
-      }
+  ion-input {
+    border: 1px solid #ccc;
+  }
+  ion-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+    padding: 5px;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+  ion-datetime {
+    border: 1px solid #ccc;
+  }
+  button {
+    width: 100%;
+  }
 }

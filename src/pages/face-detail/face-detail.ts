@@ -156,8 +156,6 @@ export class FaceDetailPage {
 
   checkBarcodeData(barcode) {
 
-    // let recentBarcodeList = [];
-
     let barcodeCheckList = [];
     var ref = firebase.database().ref("visits/event/images");     //reference to database folder
 
@@ -179,15 +177,14 @@ export class FaceDetailPage {
           barcodeCheckList.push(barcode);
         }
       });
-      // let list = barcodeCheckList;
     });
 
     let list = barcodeCheckList;
 
     var test = list.indexOf(barcode); //index of list from db
-    alert(test);
+    // alert(test);
     var testRecent = this.faceStorageArray.indexOf(barcode);  //index of list from the current form
-    alert(testRecent);
+    // alert(testRecent);
 
     if (test > -1 || testRecent > -1) {
       console.log("Barcode is already used");

@@ -46,19 +46,22 @@ export class LoginPage {
 
     //start LOADING display
     this.showLoading();
-    try {
-      this.api.login(loginCredentials).then(result => {
-        console.log(result);
-        this.loading.dismiss();
+
+    this.api.login(loginCredentials).then(result => {
+      console.log(result);
+      let authorization = JSON.parse(JSON.stringify(result));
+      if (authorization.statusText == "Unauthorized") {
+        
+        alert("User is Unauthorized");
+        this.navCtrl.setRoot(LoginPage);
+      }
+      else {
         this.navCtrl.setRoot(TabsPage);
-      }, error => {
-        this.loginError = error.message;
-      });
-    }
-    catch (error) {
-      console.log(error);
+      }
       this.loading.dismiss();
-    }
+    }, error => {
+      this.loginError = error.message;
+    });
   }
 
   ionViewDidLoad() {

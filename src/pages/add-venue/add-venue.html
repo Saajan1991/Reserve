@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Add Venue</ion-title>
+    <ion-buttons end class="cross" (click)="dismiss()">
+      <button ion-button icon-only color="royal">
+        <ion-icon item-right name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -8,10 +13,46 @@
   <!-- New Venue form -->
 
   <form [formGroup]="venueData" (ngSubmit)="submitForm()">
-    <ion-input type="text" placeholder="Venue Name" formControlName="name"></ion-input>
-    <ion-input type="text" placeholder="Area Capacity" formControlName="area"></ion-input>
-    <ion-input type="text" placeholder="People Capacity" formControlName="capacity"></ion-input>
 
-    <ion-input type="submit">Submit</ion-input>
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Venue Name</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="text" placeholder="Venue Name" formControlName="name"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>Area Capacity</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="text" placeholder="Area Capacity" formControlName="area"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label>People Capacity</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-input type="text" placeholder="People Capacity" formControlName="capacity"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button type="submit">Submit</button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
   </form>
 </ion-content>

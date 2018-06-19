@@ -1,4 +1,4 @@
-<ion-tabs color="#00CCFF" [selectedIndex]="index">
+<ion-tabs color="#00CCFF" selectedIndex={{index}}>
   <ion-tab [root]="tab1Root" tabTitle="Dashboard" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Check In" tabIcon="locate"></ion-tab>
   <ion-tab [root]="tab3Root" (ionSelect)="openSideMenu()" tabTitle="Menu" tabIcon="menu"></ion-tab>
