@@ -134,7 +134,10 @@ export class AddBusinessPage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      this.imageURI = imageData;
+      this.imageURI = 'data:image/jpeg;base64,' + imageData;
+      // this.imageURI = imageData;
+      // this.upload(imageDataResult);
+
     }, (err) => {
       console.log(err);
       this.presentToast(err);
