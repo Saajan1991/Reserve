@@ -16,6 +16,7 @@ import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-v
   templateUrl: 'home.html'
 })
 export class HomePage {
+  imageURI;
   barcodeCheckList;
   labels: any;
   faces: any;
@@ -124,5 +125,25 @@ export class HomePage {
     });
 
   }
+
+
+  getImage() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.imageURI = 'data:image/jpeg;base64,' + imageData;
+      // this.imageURI = imageData;
+      // this.upload(imageDataResult);
+
+    }, (err) => {
+      console.log(err);
+      // this.presentToast(err);
+    });
+  }
+  
 
 }
