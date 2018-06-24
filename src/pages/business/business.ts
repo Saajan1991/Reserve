@@ -26,12 +26,12 @@ export class BusinessPage {
 
 
   addBusiness() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    // loading.present();
     setTimeout(() => {
-      loading.dismiss();
+      // loading.dismiss();
       let addEventModal = this.modalCtrl.create(AddBusinessPage);
       addEventModal.present();
     }, 1000);
