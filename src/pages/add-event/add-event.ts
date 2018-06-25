@@ -12,6 +12,7 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class AddEventPage {
 
+  eventList: any;
   //days
   Sunday: {};
   Monday: {};
@@ -99,23 +100,19 @@ export class AddEventPage {
       let response = result;
       let jsonResponse = JSON.parse(JSON.stringify(result));
       let success = this.database(data);
-      if (success == true) {
-        let toast = this.toastCtrl.create({
-          message: "Data Save Successful",
-          duration: 2000,
-          position: 'bottom'
-        });
-        toast.present();
+      // if (success == true) {
+      //   let toast = this.toastCtrl.create({
+      //     message: "Data Save Successful",
+      //     duration: 2000,
+      //     position: 'bottom'
+      //   });
+      //   toast.present();
 
-      }
-      //go back to Event Page
-      // setTimeout(() => {
-      //   loading.dismiss();
-      this.navCtrl.push(EventPage, {
-        businessId: this.businessId,
-        venueId: this.venueId
-      });
-      // }, 1000);
+      // }
+
+      //get event list 
+      this.getEvents();
+
     }));
   }
 
@@ -143,4 +140,29 @@ export class AddEventPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddEventPage');
   }
+
+
+  getEvents() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    let a = this.api.getEvent(this.businessId, this.venueId);
+    a.subscribe((result => {
+      this.eventList = JSON.parse(JSON.stringify(result)).events;
+      console.log(result);
+
+      //navigate to Event Page
+      this.navCtrl.push(EventPage, {
+        venueId: this.venueId,
+        businessId: this.businessId,
+        eventList: this.eventList
+      });
+
+      loading.dismiss();
+    }));
+
+  }
+
 }

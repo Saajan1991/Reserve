@@ -11,10 +11,14 @@ import { AddVenuePage } from '../add-venue/add-venue';
 })
 export class VenuePage {
 
+  eventId: any;
+  area: any;
+  capacity: any;
+  venueName: any;
+  venueDetail: any;
   index: any;
   businessId: any;
   venueList: any;
-  lists = ["Venue 1", "Venue 2", "Venue 3"];
   logo = "https://www.freelogodesign.org/img/logo-ex-7.png";
 
   constructor(public navCtrl: NavController, 
@@ -24,9 +28,9 @@ export class VenuePage {
     private modalCtrl: ModalController) {
     this.businessId = navParams.get('businessId');
     this.index = navParams.get('index');
-    this.getVenueFromId(this.businessId);
-    
-    
+    this.venueList = navParams.get('venueList');
+
+    // this.getVenueFromId(this.businessId);
   }
 
   ionViewDidLoad() {
@@ -45,27 +49,55 @@ export class VenuePage {
   //view venue details
   venueDetails(businessId, venueId){
 
-    let addEventModal = this.modalCtrl.create(VenueDetailPage, {
-      venueId: venueId,
-      businessId: businessId
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
     });
-    addEventModal.present();
+    loading.present();
+    let a = this.api.getVenueDetails(businessId, venueId);
+    a.subscribe((result => {
+
+      this.venueDetail = JSON.parse(JSON.stringify(result)).venue;
+      this.venueName = this.venueDetail.name;
+      this.capacity = this.venueDetail.ppl_capacity;
+      this.area = this.venueDetail.sqm_capacity;
+      this.eventId = this.venueDetail.id;
+      this.businessId - this.venueDetail.businessId;
+      
+      console.log(this.venueDetail.name);
+
+
+      //modal for venue detail
+      let addEventModal = this.modalCtrl.create(VenueDetailPage, {
+        venueId: venueId,
+        businessId: businessId,
+        venueDetail: this.venueDetail,
+        venueName: this.venueName,
+        capacity: this.capacity,
+        area: this.area,
+        eventId: this.venueDetail.id
+      });
+      addEventModal.present();
+
+      loading.dismiss();
+    }));
+    
+    
 
 
   }
 
   //get venue from business id
-  getVenueFromId(id){
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-    this.api.getVenue(id).subscribe((result => {
-      this.venueList = JSON.parse(JSON.stringify(result)).venues;
-      console.log(this.venueList);
-      loading.dismiss();
-    }));
-  }
+  // getVenueFromId(id){
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'Please wait...'
+  //   });
+  //   loading.present();
+  //   this.api.getVenue(id).subscribe((result => {
+  //     this.venueList = JSON.parse(JSON.stringify(result)).venues;
+  //     console.log(this.venueList);
+  //     loading.dismiss();
+  //   }));
+  // }
 
   //call api to store venue
   storeVenue(){

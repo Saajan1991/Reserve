@@ -11,9 +11,12 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class BusinessPage {
 
+  businessName: any;
+  businessDetail: any;
   businessList: any;
-  lists = ["Business 1", "Business 2", "Business 3"];
-  logo = "https://www.freelogodesign.org/img/logo-ex-7.png";
+  defaultLogo = "https://www.freelogodesign.org/img/logo-ex-7.png";
+  logo;
+
   constructor(public navCtrl: NavController,
     private loadingCtrl: LoadingController,
     public navParams: NavParams, private modalCtrl: ModalController, private api: ApiProvider) {
@@ -39,29 +42,38 @@ export class BusinessPage {
   }
 
   businessDetails(id) {
+
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     loading.present();
-    setTimeout(() => {
-      // loading.dismiss();
-      loading.dismiss().then(() => {
-        let addEventModal = this.modalCtrl.create(BusinessDetailPage, {
-          businessId: id
-        });
-        addEventModal.present();
+
+    this.api.getBusinessById(id).subscribe((result => {
+      this.businessDetail = JSON.parse(JSON.stringify(result));
+      console.log(this.businessDetail.business);
+
+      this.logo = this.businessDetail.business.logo ? this.businessDetail.business.logo : this.defaultLogo;
+      this.businessName = this.businessDetail.business.name;
+
+      let addEventModal = this.modalCtrl.create(BusinessDetailPage, {
+        businessId: id,
+        businessName: this.businessName,
+        logo: this.logo
       });
-    }, 1000);
+      addEventModal.present();
+      loading.dismiss();
+    }));
 
   }
 
 
   //call api to get list of businesses
   listBusiness() {
+    
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-    loading.present();
+    loading.present();  //start loading
 
     this.api.getBusiness().subscribe((result) => {
       this.businessList = JSON.parse(JSON.stringify(result)).businesses;
@@ -73,7 +85,8 @@ export class BusinessPage {
     a.subscribe((result => {
       this.businessList = JSON.parse(JSON.stringify(result)).businesses;
       console.log(this.businessList);
-      loading.dismiss();
+      
+      loading.dismiss();  //loading dismiss
       // alert(this.businessList);
     }));
   }

@@ -16,8 +16,6 @@ export class BusinessDetailPage {
   businessName: any;
   logo;
   businessId;
-  businessDetail;
-  defaultLogo = "https://www.freelogodesign.org/img/logo-ex-7.png";
 
   constructor(public navCtrl: NavController,
     public appCtrl: App,
@@ -26,20 +24,12 @@ export class BusinessDetailPage {
     private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private api: ApiProvider) {
+      
     //get data from nav params
     this.businessId = navParams.get('businessId');
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...'
-    // });
-    // loading.present();
-    this.api.getBusinessById(this.businessId).subscribe((result => {
-      this.businessDetail = JSON.parse(JSON.stringify(result));
-      console.log(this.businessDetail.business);
+    this.businessName = navParams.get('businessName');
+    this.logo = navParams.get('logo');
 
-      this.logo = this.businessDetail.business.logo ? this.businessDetail.business.logo : this.defaultLogo;
-      this.businessName = this.businessDetail.business.name;
-      // loading.dismiss();
-    }));
   }
 
   ionViewDidLoad() {
@@ -51,35 +41,27 @@ export class BusinessDetailPage {
     this.viewCtrl.dismiss();
   }
 
-  listVenues(id) {
+  //list venue using business Id from API
+  listVenues(businessId) {
+    // this.dismiss();
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.api.getVenue(businessId).subscribe((result => {
+      this.venueList = JSON.parse(JSON.stringify(result)).venues;
+      console.log(this.venueList);
 
-    this.dismiss();
-
-    // this.appCtrl.getRootNav().push(VenuePage, {
-    //   businessId: this.businessId,
-    //   logo: this.logo,
-    //   index: "1"
-    // });;
-
-    this.navCtrl.push(TabsPage).then(res => {
+      // this.navCtrl.push(TabsPage).then(res => {
       this.navCtrl.push(VenuePage, {
         businessId: this.businessId,
         logo: this.logo,
-        index: "1"
-      })
-    });
+        index: "1",
+        venueList: this.venueList
+        // })
+      });
 
-
-    // this.navCtrl.push(VenuePage, {
-    //   businessId: this.businessId,
-    //   logo: this.logo,
-    //   index: "1"
-    // });
-
-    // let addVenueModal = this.modalCtrl.create(VenuePage, {
-    //   businessId: this.businessId,
-    //   logo: this.logo
-    // });
-    // addVenueModal.present();
+      loading.dismiss();
+    }));
   }
 }

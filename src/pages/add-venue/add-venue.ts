@@ -10,8 +10,12 @@ import { VenuePage } from '../venue/venue';
   templateUrl: 'add-venue.html',
 })
 export class AddVenuePage {
+
+  logo = "https://www.freelogodesign.org/img/logo-ex-7.png";
+  venueList: any;
   venueData: any;
-  businessId
+  businessId;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     formBuilder: FormBuilder,
@@ -54,9 +58,7 @@ export class AddVenuePage {
       this.dismiss();
       setTimeout(() => {
         loading.dismiss();
-        this.navCtrl.push(VenuePage, {
-          businessId: this.businessId
-        });
+        this.listVenues(this.businessId);
       }, 1000);
 
     }));
@@ -64,6 +66,30 @@ export class AddVenuePage {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  //list venue using business Id from API
+  listVenues(businessId) {
+    // this.dismiss();
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.api.getVenue(businessId).subscribe((result => {
+      this.venueList = JSON.parse(JSON.stringify(result)).venues;
+      console.log(this.venueList);
+
+      // this.navCtrl.push(TabsPage).then(res => {
+      this.navCtrl.push(VenuePage, {
+        businessId: this.businessId,
+        logo: this.logo,
+        index: "1",
+        venueList: this.venueList
+        // })
+      });
+
+      loading.dismiss();
+    }));
   }
 
 }
