@@ -158,13 +158,4 @@ export class HomePage {
     });
   }
 
-  public pathForImage(img) {
-    if (img === null) {
-      return '';
-    } else {
-      return cordova.file.dataDirectory + img;
-    }
-  }
-  
-
 }
