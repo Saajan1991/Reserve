@@ -13,7 +13,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class AddBusinessPage {
 
 
-  imageURI: any;
+  imageURI: any = "https://www.freelogodesign.org/img/logo-ex-7.png";
   BusinessData;
 
   constructor(public navCtrl: NavController,
