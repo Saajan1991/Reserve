@@ -136,15 +136,18 @@ export class HomePage {
 
   getImage() {
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      // this.imageURI = 'data:image/jpeg;base64,' + imageData;
+      this.imageURI = 'data:image/jpeg;base64,' + imageData;
       // this.imageURI = this.sanitizer.bypassSecurityTrustUrl(imageData);
-      this.imageURI = normalizeURL(imageData);
+      // this.imageURI = normalizeURL(imageData);
       // return path;
       // this.imageURI = imageData;
       // this.upload(imageDataResult);
