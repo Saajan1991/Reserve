@@ -10,6 +10,7 @@ import firebase from 'firebase';
 import { ApiProvider } from '../../providers/api/api';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-vision-service/google-cloud-vision-service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'page-home',
@@ -29,6 +30,7 @@ export class HomePage {
   dayStatus: boolean;
   businessList;
   constructor(public navCtrl: NavController,
+    private sanitizer: DomSanitizer,
     private vision: GoogleCloudVisionServiceProvider,
     private api: ApiProvider,
     private camera: Camera,
@@ -135,7 +137,8 @@ export class HomePage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      this.imageURI = 'data:image/jpeg;base64,' + imageData;
+      // this.imageURI = 'data:image/jpeg;base64,' + imageData;
+      this.imageURI = this.sanitizer.bypassSecurityTrustUrl(imageData);
       // this.imageURI = imageData;
       // this.upload(imageDataResult);
 

@@ -46,6 +46,8 @@ import { SubEventsPage } from '../pages/sub-events/sub-events';
 import { File } from "@ionic-native/file";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from "@ionic-native/file-transfer";
 
+import {ScreenOrientation} from '@ionic-native/screen-orientation';
+
 firebase.initializeApp(environment.firebaseConfig)
 
 @NgModule({
@@ -123,7 +125,8 @@ firebase.initializeApp(environment.firebaseConfig)
     ApiProvider,
     FileTransfer,
     FileTransferObject,
-    File
+    File,
+    ScreenOrientation
   ]
 })
 export class AppModule { }
