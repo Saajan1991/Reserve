@@ -31,7 +31,6 @@ export class HomePage {
   dayStatus: boolean;
   businessList;
   constructor(public navCtrl: NavController,
-    private sanitizer: DomSanitizer,
     private vision: GoogleCloudVisionServiceProvider,
     private api: ApiProvider,
     private camera: Camera,
