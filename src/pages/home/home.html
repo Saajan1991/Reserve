@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  Home Page
+  Home Page {{imageURI}}
+  <button ion-button (click)="getImage()">Image</button>
 
-  {{imageURI}}
-<button ion-button (click)="getImage()">Image</button>
-  </ion-content>
+  <img src="{{pathForImage(lastImage)}}" alt="">
+</ion-content>

@@ -12,12 +12,17 @@ import { CameraOptions, Camera } from '@ionic-native/camera';
 import { GoogleCloudVisionServiceProvider } from '../../providers/google-cloud-vision-service/google-cloud-vision-service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { normalizeURL } from 'ionic-angular';
+
+declare var cordova: any;
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
   imageURI;
+  lastImage;
   barcodeCheckList;
   labels: any;
   faces: any;
@@ -138,7 +143,9 @@ export class HomePage {
 
     this.camera.getPicture(options).then((imageData) => {
       // this.imageURI = 'data:image/jpeg;base64,' + imageData;
-      this.imageURI = this.sanitizer.bypassSecurityTrustUrl(imageData);
+      // this.imageURI = this.sanitizer.bypassSecurityTrustUrl(imageData);
+      this.imageURI = normalizeURL(imageData);
+      // return path;
       // this.imageURI = imageData;
       // this.upload(imageDataResult);
 
@@ -146,6 +153,14 @@ export class HomePage {
       console.log(err);
       // this.presentToast(err);
     });
+  }
+
+  public pathForImage(img) {
+    if (img === null) {
+      return '';
+    } else {
+      return cordova.file.dataDirectory + img;
+    }
   }
   
 
