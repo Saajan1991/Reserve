@@ -33,12 +33,13 @@ export class BusinessPage {
     //   content: 'Please wait...'
     // });
     // loading.present();
-    setTimeout(() => {
-      // loading.dismiss();
-      let addEventModal = this.modalCtrl.create(AddBusinessPage);
-      addEventModal.present();
-    }, 1000);
+    // setTimeout(() => {
+    //   // loading.dismiss();
+    //   let addEventModal = this.modalCtrl.create(AddBusinessPage);
+    //   addEventModal.present();
+    // }, 1000);
 
+    this.navCtrl.push(AddBusinessPage);
   }
 
   businessDetails(id) {
@@ -55,12 +56,17 @@ export class BusinessPage {
       this.logo = this.businessDetail.business.logo ? this.businessDetail.business.logo : this.defaultLogo;
       this.businessName = this.businessDetail.business.name;
 
-      let addEventModal = this.modalCtrl.create(BusinessDetailPage, {
+      this.navCtrl.push(BusinessDetailPage, {
         businessId: id,
         businessName: this.businessName,
         logo: this.logo
       });
-      addEventModal.present();
+      // let addEventModal = this.modalCtrl.create(BusinessDetailPage, {
+      //   businessId: id,
+      //   businessName: this.businessName,
+      //   logo: this.logo
+      // });
+      // addEventModal.present();
       loading.dismiss();
     }));
 
@@ -69,7 +75,7 @@ export class BusinessPage {
 
   //call api to get list of businesses
   listBusiness() {
-    
+
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -81,13 +87,13 @@ export class BusinessPage {
       loading.dismiss();
     });
 
-    let a = this.api.getBusiness();
-    a.subscribe((result => {
-      this.businessList = JSON.parse(JSON.stringify(result)).businesses;
-      console.log(this.businessList);
-      
-      loading.dismiss();  //loading dismiss
-      // alert(this.businessList);
-    }));
+    // let a = this.api.getBusiness();
+    // a.subscribe((result => {
+    //   this.businessList = JSON.parse(JSON.stringify(result)).businesses;
+    //   console.log(this.businessList);
+
+    //   loading.dismiss();  //loading dismiss
+    //   // alert(this.businessList);
+    // }));
   }
 }

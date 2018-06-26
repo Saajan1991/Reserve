@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Slides, ToastController } from 'ionic-angular';
+import { NavController, NavParams, Slides, ToastController, ModalController, App, ViewController } from 'ionic-angular';
 
 import { TestPage } from '../test/test';
 import { FaceDetailPage } from '../face-detail/face-detail';
@@ -36,115 +36,18 @@ export class HomePage {
     private camera: Camera,
     private toastCtrl: ToastController,
     public navParams: NavParams,
+    private modalCtrl: ModalController,
+    public appCtrl: App,
+    public viewCtrl : ViewController,
     formBuilder: FormBuilder) {
-    // this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    this.days = [
-      {
-        'day': 'Sunday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Monday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Tuesday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Wednesday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Thursday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Friday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-      {
-        'day': 'Saturday',
-        'status': false,
-        'startTime': '',
-        'finishTime': ''
-      },
-    ];
   }
 
-  list() {
-    let a = this.api.getEvent(1, 1);
-    a.subscribe((result => {
-      this.eventList = JSON.parse(JSON.stringify(result)).events;
-      console.log(result);
-      return this.eventList;
-    }));
-  }
 
-  dayJsondata = [];
-  changeDay(day) {
-    console.log(day);
-    if (day.status == true) {
-      // this.showTimeInput = true;
-    }
-  }
-
-  submit() {
-    let data = this.days;
-    let arrayTime = [];
-    for (let d of data) {
-      if (d.startTime == "" || d.finishTime == "") {
-        arrayTime.push("null");
-      }
-      else {
-        arrayTime.push(d.startTime + '-' + d.finishTime);
-      }
-    }
-    // console.log(arrayTime);
-    var dataString = arrayTime.toString();
-    console.log(dataString);
-  }
-
-  photo() {
-    let a = "a";
-    this.vision.getFaces("imageDataResult").subscribe((result) => {
-      alert("result" + result);
-      this.items = JSON.parse(JSON.stringify(result));
-      this.labels = this.items.responses[0].labelAnnotations;
-      alert(this.labels);
+  next() {
+    let addEventModal = this.modalCtrl.create(TestPage, {
+     viewCtrl: this.viewCtrl
     });
-
-  }
-
-
-  getImage() {
-    const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      this.imageURI = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      console.log(err);
-      // this.presentToast(err);
-    });
+    addEventModal.present();
   }
 
 }

@@ -2,4 +2,8 @@ page-event-detail {
   ion-content {
     text-align: center;
   }
+
+  #subevents, #settings {
+    width: 50%;
+  }
 }

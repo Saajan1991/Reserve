@@ -65,7 +65,12 @@ export class AddBusinessPage {
       let jsonResponse = JSON.parse(JSON.stringify(result));
       setTimeout(() => {
         loading.dismiss();
-        this.navCtrl.push(BusinessPage);
+        // this.navCtrl.popAll();
+        let currentIndex = this.navCtrl.getActive().index;
+        this.navCtrl.push(BusinessPage).then(()=> {
+          this.navCtrl.remove(currentIndex);
+          this.navCtrl.remove(currentIndex-1)
+        });
       }, 1000);
     }));
   }

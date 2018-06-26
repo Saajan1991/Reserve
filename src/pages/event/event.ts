@@ -43,11 +43,15 @@ export class EventPage {
 
   //function to add open add event modal
   addEvent() {
-    let addEventModal = this.modalCtrl.create(AddEventPage, {
+    this.navCtrl.push(AddEventPage, {
       businessId: this.businessId,
       venueId: this.venueId,
-    });
-    addEventModal.present();
+    })
+    // let addEventModal = this.modalCtrl.create(AddEventPage, {
+    //   businessId: this.businessId,
+    //   venueId: this.venueId,
+    // });
+    // addEventModal.present();
   }
 
 
@@ -81,7 +85,7 @@ export class EventPage {
       this.eventStart = event.start;
       this.eventFinish = event.finish;
 
-      let eventDetail = this.modalCtrl.create(EventDetailPage, {
+      this.navCtrl.push(EventDetailPage, {
         businessId: this.businessId,
         venueId: this.venueId,
         eventId: eventId,
@@ -89,11 +93,24 @@ export class EventPage {
         eventStart: this.eventStart,
         eventFinish: this.eventFinish
       });
-      eventDetail.present();
+      // let eventDetail = this.modalCtrl.create(EventDetailPage, {
+      //   businessId: this.businessId,
+      //   venueId: this.venueId,
+      //   eventId: eventId,
+      //   eventName: this.eventName,
+      //   eventStart: this.eventStart,
+      //   eventFinish: this.eventFinish
+      // });
+      // eventDetail.present();
 
       loading.dismiss();
       // return this.eventDetail;
     }));
 
+  }
+
+  //function to go back to venue
+  goBack() {
+    this.navCtrl.pop();
   }
 }

@@ -4,6 +4,8 @@ import { VenuePage } from '../venue/venue';
 import { ApiProvider } from '../../providers/api/api';
 import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home';
+import { MenuPage } from '../menu/menu';
+import { BusinessPage } from '../business/business';
 
 @IonicPage()
 @Component({
@@ -24,7 +26,7 @@ export class BusinessDetailPage {
     private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private api: ApiProvider) {
-      
+
     //get data from nav params
     this.businessId = navParams.get('businessId');
     this.businessName = navParams.get('businessName');
@@ -43,7 +45,7 @@ export class BusinessDetailPage {
 
   //list venue using business Id from API
   listVenues(businessId) {
-    // this.dismiss();
+    this.dismiss();
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -52,15 +54,13 @@ export class BusinessDetailPage {
       this.venueList = JSON.parse(JSON.stringify(result)).venues;
       console.log(this.venueList);
 
-      // this.navCtrl.push(TabsPage).then(res => {
-      this.navCtrl.push(VenuePage, {
+      this.navCtrl.setRoot(VenuePage, {
         businessId: this.businessId,
         logo: this.logo,
         index: "1",
         venueList: this.venueList
-        // })
       });
-
+     
       loading.dismiss();
     }));
   }

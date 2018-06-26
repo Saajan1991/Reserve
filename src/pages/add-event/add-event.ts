@@ -21,7 +21,7 @@ export class AddEventPage {
   Thursday: {};
   Friday: {};
   Saturday: {};
-  
+
   finish: any;
   start: any;
 
@@ -154,10 +154,20 @@ export class AddEventPage {
       console.log(result);
 
       //navigate to Event Page
+      // this.navCtrl.push(EventPage, {
+      //   venueId: this.venueId,
+      //   businessId: this.businessId,
+      //   eventList: this.eventList
+      // });
+
+      let currentIndex = this.navCtrl.getActive().index;
       this.navCtrl.push(EventPage, {
         venueId: this.venueId,
         businessId: this.businessId,
         eventList: this.eventList
+      }).then(() => {
+        this.navCtrl.remove(currentIndex);
+        this.navCtrl.remove(currentIndex - 1)
       });
 
       loading.dismiss();

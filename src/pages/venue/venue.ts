@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController, L
 import { VenueDetailPage } from '../venue-detail/venue-detail';
 import { ApiProvider } from '../../providers/api/api';
 import { AddVenuePage } from '../add-venue/add-venue';
+import { BusinessPage } from '../business/business';
 
 @IonicPage()
 @Component({
@@ -21,8 +22,8 @@ export class VenuePage {
   venueList: any;
   logo = "https://www.freelogodesign.org/img/logo-ex-7.png";
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
     private api: ApiProvider,
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController) {
@@ -33,21 +34,25 @@ export class VenuePage {
     // this.getVenueFromId(this.businessId);
   }
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad VenuePage');
   }
 
   //add venue
-  addVenue(){
-    //code to add venue to the list
-    let addEventModal = this.modalCtrl.create(AddVenuePage, {
+  addVenue() {
+    this.navCtrl.push(AddVenuePage, {
       businessId: this.businessId
     });
-    addEventModal.present();
+    //code to add venue to the list
+    // let addEventModal = this.modalCtrl.create(AddVenuePage, {
+    //   businessId: this.businessId
+    // });
+    // addEventModal.present();
   }
 
   //view venue details
-  venueDetails(businessId, venueId){
+  venueDetails(businessId, venueId) {
 
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -62,12 +67,10 @@ export class VenuePage {
       this.area = this.venueDetail.sqm_capacity;
       this.eventId = this.venueDetail.id;
       this.businessId - this.venueDetail.businessId;
-      
+
       console.log(this.venueDetail.name);
 
-
-      //modal for venue detail
-      let addEventModal = this.modalCtrl.create(VenueDetailPage, {
+      this.navCtrl.push(VenueDetailPage, {
         venueId: venueId,
         businessId: businessId,
         venueDetail: this.venueDetail,
@@ -76,13 +79,20 @@ export class VenuePage {
         area: this.area,
         eventId: this.venueDetail.id
       });
-      addEventModal.present();
+      //modal for venue detail
+      // let addEventModal = this.modalCtrl.create(VenueDetailPage, {
+      //   venueId: venueId,
+      //   businessId: businessId,
+      //   venueDetail: this.venueDetail,
+      //   venueName: this.venueName,
+      //   capacity: this.capacity,
+      //   area: this.area,
+      //   eventId: this.venueDetail.id
+      // });
+      // addEventModal.present();
 
       loading.dismiss();
     }));
-    
-    
-
 
   }
 
@@ -99,23 +109,10 @@ export class VenuePage {
   //   }));
   // }
 
-  //call api to store venue
-  storeVenue(){
-    let data = {
-      name: "Venue Forest",
-      sqm_capacity: "1234.56",
-      ppl_capacity: "500"
-    };
-
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-    this.api.storeVenue(this.businessId, data).subscribe((result => {
-     let jsonResponse = JSON.parse(JSON.stringify(result));
-     console.log(jsonResponse);
-     loading.dismiss();
-    }));
+  //function to go back to business page
+  goBack() {
+    this.navCtrl.pop();
+    // this.navCtrl.pop
   }
 
 }

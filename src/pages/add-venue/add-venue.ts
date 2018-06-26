@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, ModalController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { FormBuilder, Validators } from '@angular/forms';
 import { VenuePage } from '../venue/venue';
@@ -32,10 +32,6 @@ export class AddVenuePage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddVenuePage');
-  }
-
   submitForm() {
     let venueData = this.venueData.value;
     let data = {
@@ -64,13 +60,10 @@ export class AddVenuePage {
     }));
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
-  }
-
   //list venue using business Id from API
   listVenues(businessId) {
     // this.dismiss();
+    
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -79,17 +72,28 @@ export class AddVenuePage {
       this.venueList = JSON.parse(JSON.stringify(result)).venues;
       console.log(this.venueList);
 
-      // this.navCtrl.push(TabsPage).then(res => {
+      let currentIndex = this.navCtrl.getActive().index;
       this.navCtrl.push(VenuePage, {
         businessId: this.businessId,
         logo: this.logo,
         index: "1",
         venueList: this.venueList
-        // })
+      }).then(() => {
+        this.navCtrl.remove(currentIndex);
+        this.navCtrl.remove(currentIndex - 1)
       });
 
       loading.dismiss();
     }));
   }
 
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AddVenuePage');
+  }
+
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 }

@@ -3,11 +3,11 @@
   <ion-navbar>
     <ion-title>Business Detail</ion-title>
 
-    <ion-buttons end class="cross" (click)="dismiss()">
+    <!-- <ion-buttons end class="cross" (click)="dismiss()">
       <button ion-button icon-only color="royal">
         <ion-icon item-right name="close"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
@@ -25,12 +25,12 @@
 
   <ion-buttons>
     <div>
-      <button ion-button (click)="listVenues(businessId)">
+      <button ion-button (click)="listVenues(businessId)" id="venues">
         Venues
       </button>
     </div>
     <div>
-      <button ion-button (click)="settings()">
+      <button ion-button (click)="settings()" id="settings">
         Settings
       </button>
     </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, App } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { EventPage } from '../event/event';
 
@@ -25,6 +25,7 @@ export class VenueDetailPage {
     public navParams: NavParams,
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
+    private appCtrl: App,
     private api: ApiProvider) {
 
     this.venueId = this.navParams.get('venueId');
@@ -65,17 +66,31 @@ export class VenueDetailPage {
   //   }));
   // }
 
-  getEvents() {
 
+  //function to dismiss the view controller (modal)
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+
+  //function to get Events of the venue
+  getEvents() {
+    this.dismiss();
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     loading.present();
+
     let a = this.api.getEvent(this.businessId, this.venueId);
     a.subscribe((result => {
       this.eventList = JSON.parse(JSON.stringify(result)).events;
       console.log(result);
 
+      // this.appCtrl.getRootNav().push(EventPage, {
+      //   venueId: this.venueId,
+      //   businessId: this.businessId,
+      //   eventList: this.eventList
+      // });
       this.navCtrl.push(EventPage, {
         venueId: this.venueId,
         businessId: this.businessId,
@@ -84,11 +99,6 @@ export class VenueDetailPage {
 
       loading.dismiss();
     }));
-
-  }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
   }
 
 }

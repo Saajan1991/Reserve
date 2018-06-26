@@ -6,8 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-
-
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html',
@@ -16,6 +15,7 @@ export class MyApp {
 
   @ViewChild(Nav) nav: NavController;
 
+  
   rootPage: any = LoginPage;
   pages;
 

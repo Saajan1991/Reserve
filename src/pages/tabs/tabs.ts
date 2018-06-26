@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { CheckInOutPage } from '../check-in-out/check-in-out';
 
-import { MenuController } from 'ionic-angular';
+import { MenuController, NavParams } from 'ionic-angular';
 import { MenuPage } from '../menu/menu';
 
 @Component({
@@ -17,10 +17,9 @@ export class TabsPage {
 
   index;
 
-  constructor(public menuCtrl: MenuController) {
-    // this.index = 0;
-    // let index = navParams.get('index');
-  // if (navParams.data.index) this.index = navParams.data.index;
+  constructor(public menuCtrl: MenuController, public navParams: NavParams) {
+    this.index = navParams.data.index || 0;
+    this.tab1Root = navParams.data.rootPage || HomePage;
   }
   
   openSideMenu() {

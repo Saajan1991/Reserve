@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <ion-buttons end class="cross" (click)="dismiss()">
+            <button ion-button icon-only color="royal">
+              <ion-icon item-right name="close"></ion-icon>
+            </button>
+          </ion-buttons>
 </head>
 <body>
     Hello This is test
+    <button ion-button (click)="nextPage()">NextPage</button>
 </body>
 </html>
