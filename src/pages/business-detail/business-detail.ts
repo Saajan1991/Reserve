@@ -45,7 +45,7 @@ export class BusinessDetailPage {
 
   //list venue using business Id from API
   listVenues(businessId) {
-    this.dismiss();
+    // this.dismiss();
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -54,7 +54,7 @@ export class BusinessDetailPage {
       this.venueList = JSON.parse(JSON.stringify(result)).venues;
       console.log(this.venueList);
 
-      this.navCtrl.setRoot(VenuePage, {
+      this.navCtrl.push(VenuePage, {
         businessId: this.businessId,
         logo: this.logo,
         index: "1",

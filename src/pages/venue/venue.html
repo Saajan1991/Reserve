@@ -24,9 +24,9 @@
     <ion-list *ngFor="let venue of venueList">
   
       <ion-item>
-        <ion-thumbnail item-start>
+        <!-- <ion-thumbnail item-start>
           <img [src]="logo">
-        </ion-thumbnail>
+        </ion-thumbnail> -->
         <h2 (click)="venueDetails(venue.business_id, venue.id)">{{venue.name}}</h2>
       </ion-item>
   

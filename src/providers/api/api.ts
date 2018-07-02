@@ -154,4 +154,34 @@ export class ApiProvider {
     return this.http.post(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events", data, httpOptions);
   }
 
+  getVisitors(businessId, venueId, eventId) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      })
+    };
+
+    return this.http.get(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId + "/visitors", httpOptions);
+  }
+
+  storeVisitors(businessId, venueId, eventId, data) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      })
+    };
+
+    return this.http.post(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId + "/visitors", data, httpOptions);
+  }
+
+  updateVisitors(businessId, venueId, eventId, visitorId, data) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      })
+    };
+
+    return this.http.post(this.apiAddress + "businesses/" + businessId + "/venues/" + venueId + "/events/" + eventId + "/visitors/" + visitorId, data, httpOptions);
+  }
+
 }

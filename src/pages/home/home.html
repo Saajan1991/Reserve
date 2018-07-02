@@ -11,5 +11,24 @@
 
   <!-- <img src="{{pathForImage(lastImage)}}" alt=""> -->
 
-  <img [src]="imageURI" />
+<ion-grid>
+  <ion-row>
+    <ion-col col-3>
+      <ion-buttons>
+        <ion-icon name="barcode" large (click)="scanBarcode(i)"></ion-icon>
+      </ion-buttons>
+    </ion-col>
+    <ion-col col-9>
+      <ion-input type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
+    
+  
+
+
 </ion-content>

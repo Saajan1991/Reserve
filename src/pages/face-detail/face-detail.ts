@@ -4,6 +4,7 @@ import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-sca
 import { FormBuilder, Validators } from '@angular/forms';
 import firebase, { auth } from 'firebase';
 import { CheckinPage } from '../checkin/checkin';
+import { ApiProvider } from '../../providers/api/api';
 
 @Component({
   selector: 'page-face-detail',
@@ -38,6 +39,7 @@ export class FaceDetailPage {
     private barcode: BarcodeScanner,
     private loadingCtrl: LoadingController,
     formBuilder: FormBuilder,
+    private api: ApiProvider,
     private toastCtrl: ToastController) {
     this.items = navParams.get('faces');
     this.imageData = navParams.get('image');
@@ -147,6 +149,35 @@ export class FaceDetailPage {
       imageRef.set(this.faceStorageArray);
       loading.dismiss();
       // alert("Success");
+
+
+      let businessId;
+      let eventId;
+      let venueId;
+
+      // let data = this.faceStorageArray;
+
+      let data = {
+        is_leader: true,
+        phone: 123456689,
+        email: "abc@gmail.com",
+        dependent_id: 1,
+        photo: this.imageData,
+        event_capacity_id: 2 
+      };
+
+      this.api.storeVisitors(businessId, venueId, eventId, data).subscribe((result => {
+        let jsonResponse = JSON.parse(JSON.stringify(result));
+        console.log(jsonResponse);
+        alert("Success");
+        alert(jsonResponse);
+      }));
+
+      // this.api.getVisitors(businessId, venueId, eventId).subscribe((result => {
+      //   let jsonResponse = JSON.parse(JSON.stringify(result));
+      //   loading.dismiss();
+      // }));
+
       return true;
     }
     catch (e) {
